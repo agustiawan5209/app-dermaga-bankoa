@@ -155,61 +155,6 @@
                   <path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path>
                 </svg></div>
             </span></a></div>
-        {{-- <div class="pt-8 mx-auto max-w-screen-xl border-t-2 border-solid box-border space-y-8 dark:border-slate-700">
-          <div class="md:grid md:grid-cols-5">
-            <div class="py-1 dark:border-slate-700 md:border-r-2 md:pr-4 md:col-span-1">
-              <h5 class="m-0 text-lg font-semibold leading-none text-slate-900 dark:text-slate-100"> Policies</h5>
-            </div>
-            <nav class="col-span-4 col-start-2 mt-2 md:pl-12 md:mt-0 lg:pl-24">
-              <ul class="flex flex-col p-0 space-y-2 sm:flex-row sm:space-x-10 sm:space-y-0">
-                <li class="text-left"><a href="#" class="text-base font-normal cursor-pointer hover:text-gray-800 dark:hover:text-gray-100">Privacy Policy</a></li>
-                <li class="text-left"><a href="#" class="text-base font-normal cursor-pointer hover:text-gray-800 dark:hover:text-gray-100">Terms and conditions</a></li>
-                <li class="text-left"><a href="#" class="text-base font-normal cursor-pointer hover:text-gray-800 dark:hover:text-gray-100">Refund policy</a></li>
-                <li class="text-left"><a href="#" class="text-base font-normal cursor-pointer hover:text-gray-800 dark:hover:text-gray-100">Return Policy</a></li>
-              </ul>
-            </nav>
-          </div>
-          <div class="md:grid md:grid-cols-5">
-            <div class="py-1 dark:border-slate-700 md:border-r-2 md:pr-4 md:col-span-1">
-              <h5 class="m-0 text-lg font-semibold leading-none text-slate-900 dark:text-slate-100">Links</h5>
-            </div>
-            <nav class="col-span-4 col-start-2 mt-2 md:pl-12 md:mt-0 lg:pl-24">
-              <ul class="flex flex-col p-0 space-y-2 sm:flex-row sm:space-x-10 sm:space-y-0">
-                <li class="text-left"><a href="#" class="text-base font-normal cursor-pointer hover:text-gray-800 dark:hover:text-gray-100">Care</a></li>
-                <li class="text-left"><a href="#" class="text-base font-normal cursor-pointer hover:text-gray-800 dark:hover:text-gray-100">About Us</a></li>
-                <li class="text-left"><a href="#" class="text-base font-normal cursor-pointer hover:text-gray-800 dark:hover:text-gray-100">Contact Us</a></li>
-                <li class="text-left"><a href="#" class="text-base font-normal cursor-pointer text-secondary hover:text-gray-800 dark:hover:text-gray-100">support@chaibuilder.com</a></li>
-              </ul>
-            </nav>
-          </div>
-          <div class="md:grid md:grid-cols-5">
-            <div class="py-1 dark:border-slate-700 md:border-r-2 md:pr-4 md:col-span-1">
-              <h5 class="m-0 text-lg font-semibold leading-none text-slate-900 dark:text-slate-100"> Social Media</h5>
-            </div>
-            <nav class="col-span-4 col-start-2 mt-2 md:pl-12 md:mt-0 lg:pl-24">
-              <ul class="flex flex-col p-0 space-y-2 sm:flex-row sm:space-x-10 sm:space-y-0">
-                <li class="text-left"><a href="#" class="flex text-base font-normal cursor-pointer items-center gap-x-2 hover:text-gray-800 dark:hover:text-gray-100">Twitter<span class="order-last">
-                      <div style="font-size:inherit;color:inherit;padding:2px"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-48.9 158.8c.2 2.8.2 5.7.2 8.5 0 86.7-66 186.6-186.6 186.6-37.2 0-71.7-10.8-100.7-29.4 5.3.6 10.4.8 15.8.8 30.7 0 58.9-10.4 81.4-28-28.8-.6-53-19.5-61.3-45.5 10.1 1.5 19.2 1.5 29.6-1.2-30-6.1-52.5-32.5-52.5-64.4v-.8c8.7 4.9 18.9 7.9 29.6 8.3a65.447 65.447 0 0 1-29.2-54.6c0-12.2 3.2-23.4 8.9-33.1 32.3 39.8 80.8 65.8 135.2 68.6-9.3-44.5 24-80.6 64-80.6 18.9 0 35.9 7.9 47.9 20.7 14.8-2.8 29-8.3 41.6-15.8-4.9 15.2-15.2 28-28.8 36.1 13.2-1.4 26-5.1 37.8-10.2-8.9 13.1-20.1 24.7-32.9 34z"></path>
-                        </svg></div>
-                    </span></a></li>
-                <li class="text-left"><a href="#" class="flex text-base font-normal cursor-pointer items-center gap-x-2 hover:text-gray-800 dark:hover:text-gray-100">Google<span class="order-last">
-                      <div style="font-size:inherit;color:inherit;padding:2px"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 640 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M386.061 228.496c1.834 9.692 3.143 19.384 3.143 31.956C389.204 370.205 315.599 448 204.8 448c-106.084 0-192-85.915-192-192s85.916-192 192-192c51.864 0 95.083 18.859 128.611 50.292l-52.126 50.03c-14.145-13.621-39.028-29.599-76.485-29.599-65.484 0-118.92 54.221-118.92 121.277 0 67.056 53.436 121.277 118.92 121.277 75.961 0 104.513-54.745 108.965-82.773H204.8v-66.009h181.261zm185.406 6.437V179.2h-56.001v55.733h-55.733v56.001h55.733v55.733h56.001v-55.733H627.2v-56.001h-55.733z"></path>
-                        </svg></div>
-                    </span></a></li>
-                <li class="text-left"><a href="#" class="flex text-base font-normal cursor-pointer items-center gap-x-2 hover:text-gray-800 dark:hover:text-gray-100">Instagram<span class="order-last">
-                      <div style="font-size:inherit;color:inherit;padding:2px"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M224,202.66A53.34,53.34,0,1,0,277.36,256,53.38,53.38,0,0,0,224,202.66Zm124.71-41a54,54,0,0,0-30.41-30.41c-21-8.29-71-6.43-94.3-6.43s-73.25-1.93-94.31,6.43a54,54,0,0,0-30.41,30.41c-8.28,21-6.43,71.05-6.43,94.33S91,329.26,99.32,350.33a54,54,0,0,0,30.41,30.41c21,8.29,71,6.43,94.31,6.43s73.24,1.93,94.3-6.43a54,54,0,0,0,30.41-30.41c8.35-21,6.43-71.05,6.43-94.33S357.1,182.74,348.75,161.67ZM224,338a82,82,0,1,1,82-82A81.9,81.9,0,0,1,224,338Zm85.38-148.3a19.14,19.14,0,1,1,19.13-19.14A19.1,19.1,0,0,1,309.42,189.74ZM400,32H48A48,48,0,0,0,0,80V432a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V80A48,48,0,0,0,400,32ZM382.88,322c-1.29,25.63-7.14,48.34-25.85,67s-41.4,24.63-67,25.85c-26.41,1.49-105.59,1.49-132,0-25.63-1.29-48.26-7.15-67-25.85s-24.63-41.42-25.85-67c-1.49-26.42-1.49-105.61,0-132,1.29-25.63,7.07-48.34,25.85-67s41.47-24.56,67-25.78c26.41-1.49,105.59-1.49,132,0,25.63,1.29,48.33,7.15,67,25.85s24.63,41.42,25.85,67.05C384.37,216.44,384.37,295.56,382.88,322Z"></path>
-                        </svg></div>
-                    </span></a></li>
-              </ul>
-            </nav>
-          </div>
-        </div> --}}
-        {{-- <div class="pt-8 mx-auto mt-8 max-w-screen-xl border-t-2 border-solid box-border dark:border-slate-700 lg:mt-12">
-          <p class="m-0 text-sm leading-5 text-center md:text-left"> ©2022 All rights reserved </p>
-        </div> --}}
       </footer>
     <script>
         for (let i = 1; i < 11; i++) {
