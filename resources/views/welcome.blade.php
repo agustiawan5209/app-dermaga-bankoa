@@ -64,15 +64,7 @@
             <h2
                 class="m-0 w-full text-2xl leading-8 text-gray-900 font-bold sm:text-3xl sm:leading-9 md:text-4xl md:leading-10 lg:font-bold lg:text-4xl xl:text-5xl drop-shadow-md shadow-white whitespace-pre-line md:whitespace-nowrap wow fadeIn ">
                 DERMAGA KAYU BANGKOA</h2>
-            {{-- <p class="mx-0 mt-6 mb-0 max-w-xl text-lg leading-relaxed xl:leading-7"> World among the stalks, and
-            grow familiar with the countless indescribable forms flies </p><a href="#"
-            class="inline-block py-3 px-5 mt-8 text-sm font-semibold leading-5 text-green-100 rounded-lg cursor-pointer bg-primary-500">Get
-            started</a> --}}
         </div>
-        {{-- <div class="order-1 col-span-1 text-gray-700 xl:pt-0 xl:col-span-3 md:order-2 md:pt-6"><img alt="No alt"
-            src="https://res.cloudinary.com/dpatgkgqs/image/upload/v1647758849/illustrations/undraw_instant_analysis_re_mid5_npfo7x.svg"
-            class="block self-start max-w-full h-auto align-middle rounded-lg shadow-xs w-10/12 mx-auto " />
-    </div> --}}
     </div>
     <div class="container mx-auto w-full flex justify-center h-64 py-6 bg-white">
         {{-- Pemesanan Tiket --}}
