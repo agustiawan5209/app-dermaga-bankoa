@@ -41,17 +41,17 @@
                     </svg></span></button>
             <div class="hidden absolute inset-x-0 z-50 py-2 w-full transform md:hidden">
                 <nav class="p-3 bg-white rounded-lg transform shadow-xs"><a href="#"
-                        class="block py-3 px-6 font-semibold border-t-0 border-r-0 border-l-0 border-b border-blue-100 border-indigo-100 border-solid cursor-pointer box-border">Home</a><a
+                        class="block py-3 px-6 font-semibold border-t-0 border-r-0 border-l-0 border-b border-blue-100  border-solid cursor-pointer box-border">Home</a><a
                         href="#"
-                        class="block py-3 px-6 font-semibold border-t-0 border-r-0 border-l-0 border-b border-blue-100 border-indigo-100 border-solid cursor-pointer box-border">Services</a><a
+                        class="block py-3 px-6 font-semibold border-t-0 border-r-0 border-l-0 border-b border-blue-100  border-solid cursor-pointer box-border">Services</a><a
                         href="#"
-                        class="block py-3 px-6 font-semibold border-t-0 border-r-0 border-l-0 border-b border-blue-100 border-indigo-100 border-solid cursor-pointer box-border">Pricing</a><a
+                        class="block py-3 px-6 font-semibold border-t-0 border-r-0 border-l-0 border-b border-blue-100  border-solid cursor-pointer box-border">Pricing</a><a
                         href="#"
-                        class="block py-3 px-6 font-semibold border-t-0 border-r-0 border-l-0 border-b border-blue-100 border-indigo-100 border-solid cursor-pointer box-border">Blog</a><a
+                        class="block py-3 px-6 font-semibold border-t-0 border-r-0 border-l-0 border-b border-blue-100  border-solid cursor-pointer box-border">Blog</a><a
                         href="#"
-                        class="block py-3 px-6 font-semibold border-t-0 border-r-0 border-l-0 border-b border-blue-100 border-indigo-100 border-solid cursor-pointer box-border">Contact</a><a
+                        class="block py-3 px-6 font-semibold border-t-0 border-r-0 border-l-0 border-b border-blue-100  border-solid cursor-pointer box-border">Contact</a><a
                         href="#"
-                        class="block py-3 px-6 font-semibold border-t-0 border-r-0 border-l-0 border-b border-blue-100 border-indigo-100 border-solid cursor-pointer box-border">Login</a><a
+                        class="block py-3 px-6 font-semibold border-t-0 border-r-0 border-l-0 border-b border-blue-100  border-solid cursor-pointer box-border">Login</a><a
                         href="#"
                         class="block py-3 text-sm font-semibold leading-5 text-center text-white bg-green-900 rounded-lg cursor-pointer">Get
                         started</a></nav>
