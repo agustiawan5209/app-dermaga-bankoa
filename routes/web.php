@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Destinasi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $destinasi = Destinasi::all();
+    return view('welcome', [
+        'destinasi'=> $destinasi,
+    ]);
+})->name('home');
 
+Route::group(['DermagaBangkoa'=> ['user']], function(){
+    Route::get('Reservasi/Tiket', function(){
+        $destinasi = Destinasi::all();
+    return view('page.reservasi', [
+        'destinasi'=> $destinasi,
+    ]);
+    })->name('Pesan-Tiket');
+});
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

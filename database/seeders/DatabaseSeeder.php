@@ -20,5 +20,31 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        \App\Models\Destinasi::insert([
+            [
+                'lokasi' => 'Pulau lae-lae',
+                'harga' => '120000'
+            ],
+            [
+                'lokasi' => 'Pulau kahyangan ',
+                'harga' => '120000'
+            ],
+            [
+                'lokasi' => 'Pulau Samalona ',
+                'harga' => '120000'
+            ],
+            [
+                'lokasi' => 'Pulau Caddi ',
+                'harga' => '120000'
+            ],
+            [
+                'lokasi' => 'Pulau barrang Lompo',
+                'harga' => '120000'
+            ],
+            [
+                'lokasi' => 'Pulau Kodingareng',
+                'harga' => '120000'
+            ],
+        ]);
     }
 }
