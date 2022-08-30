@@ -17,11 +17,14 @@ class Checkrole
      */
     public function handle(Request $request, Closure $next, string $role)
     {
-        if ($role == 'Admin'  && Auth::user()->role_id != 'SuperAdmin') {
-            abort(403);
+        if ($role == 'Admin' && Auth::user()->role_id != '1') {
+            abort(401);
         }
-        if ($role == 'Customer'  && Auth::user()->role_id != "Customer") {
-            abort(403);
+        if ($role == 'Pemilik' && Auth::user()->role_id != '2') {
+            abort(401);
+        }
+        if ($role == 'Customer' && Auth::user()->role_id != '3') {
+            abort(401);
         }
         return $next($request);
     }
