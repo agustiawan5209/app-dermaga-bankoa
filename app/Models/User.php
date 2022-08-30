@@ -23,6 +23,7 @@ class User extends Authenticatable
      *
      * @var string[]
      */
+    public $timestamps = true;
     protected $fillable = [
         'name',
         'email',

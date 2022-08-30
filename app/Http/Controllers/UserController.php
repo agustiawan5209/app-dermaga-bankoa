@@ -13,7 +13,8 @@ class UserController extends Controller
     }
     public function user()
     {
-        $user_id = Auth::user()->id;
+        $user_id = Auth::user()->role->id;
+        dd($user_id);
         // if()
     }
 }
