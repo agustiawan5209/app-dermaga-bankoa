@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\TiketController;
+use App\Http\Livewire\Transaksi\PemesananTiketPage;
 use App\Models\Destinasi;
 use Illuminate\Support\Facades\Route;
 
@@ -22,12 +25,10 @@ Route::get('/', function () {
 })->name('home');
 
 Route::group(['DermagaBangkoa'=> ['user']], function(){
-    Route::get('Reservasi/Tiket', function(){
-        $destinasi = Destinasi::all();
-    return view('page.reservasi', [
-        'destinasi'=> $destinasi,
-    ]);
-    })->name('Pesan-Tiket');
+    Route::get('Reservasi/Tiket', [TiketController::class, 'index'])->name('Pesan-Tiket');
+    Route::get('Layanan/Jasa', [PageController::class, 'layananPage'])->name('Layanan-page');
+    Route::get('Jasa/Logistik', [PageController::class, 'logistikPage'])->name('logistik-page');
+
 });
 Route::middleware([
     'auth:sanctum',
@@ -37,4 +38,9 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});
+Route::group(['middleware' => ['auth']], function () {
+    Route::group(['middleware' =>  'role:Admin', 'prefix' => 'Admin', 'as' => 'Admin.'], function(){
+        Route::get('Pemesanan/Tiket', PemesananTiketPage::class)->name('Page.Pemesanan.Tiket');
+    });
 });

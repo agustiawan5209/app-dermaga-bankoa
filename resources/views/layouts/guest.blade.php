@@ -26,14 +26,15 @@
             <nav class="hidden flex-row justify-center items-center w-auto font-semibold gap-x-12 md:flex"><a
                     href="{{route('home')}}" class="cursor-pointer">Home</a>
                 <a href="{{ route('Pesan-Tiket') }}" class="cursor-pointer">Reservasi Tiket</a>
-                <a href="#" class="cursor-pointer">Layanan</a><a href="#" class="cursor-pointer">Jasa
+                <a href="{{route('Layanan-page')}}" class="cursor-pointer">Layanan</a>
+                <a href="{{route('logistik-page')}}" class="cursor-pointer">Jasa
                     Logistik</a>
                 <a href="{{route('login')}}" class="cursor-pointer">Login</a>
                 <a
                     href="{{route('register')}}"class="inline-block py-3 px-5 text-sm leading-5 text-black rounded-lg cursor-pointer ">
                     Register</a>
             </nav><button id="cAzqws"
-                class="block relative z-30 p-2 mx-0 mt-1 mb-0 w-8 text-center text-gray-300 normal-case bg-none rounded-md cursor-pointer bg-primary-500 md:hidden "><span><svg
+                class="block relative z-30 p-2 mx-0 mt-1 mb-0 w-8 text-center text-gray-300 normal-case bg-none rounded-md cursor-pointer bg-blue-500-500 md:hidden "><span><svg
                         class="block align-middle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                         fill="currentColor" class="block align-middle">
                         <path fill-rule="evenodd"

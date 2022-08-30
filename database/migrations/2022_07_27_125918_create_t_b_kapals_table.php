@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_kapal', 30);
             $table->string('jenis_kapal', 20);
-            $table->foreign('detail_kapal');
+            // $table->foreign('detail_kapal');
             $table->integer('jumlah_muatan');
             $table->enum('status', ['bersandar', 'full', 'berangkat']);
             $table->timestamps();

@@ -53,7 +53,7 @@
         </div>
     </div>
     <div class="px-10 py-4 mx-auto w-full">
-        <h3 class="text-2xl font-bold text-center indent-3 ring-indigo-50 text-gray-800 ">Kapal</h3>
+        <h3 class="text-2xl font-bold text-center indent-3 ring-indigo-50 text-gray-800 ">Kapal Yang Tersedia</h3>
         <div class="flex flex-wrap  w-full justify-center px-10 mx-auto">
             @for ($i = 0; $i < 5 ; $i++)
             <div class="w-full h-32 bg-red-500 mb-10 grid grid-cols-3 md:grid-cols-9 grid-flow-row">
