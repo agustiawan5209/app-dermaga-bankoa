@@ -26,7 +26,7 @@
 
 </head>
 
-<body class="bg-black-alt font-sans leading-normal tracking-normal">
+<body class="bg-gray-700 font-sans leading-normal tracking-normal">
 
     <nav id="header" class="bg-gray-900 fixed w-full z-10 top-0 shadow">
 

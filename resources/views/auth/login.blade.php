@@ -26,8 +26,8 @@
                 class="inline-block mb-6 text-3xl font-bold tracking-wider uppercase text-blue-500-dark dark:text-light">
                 Dermaga Kayu Bangkoa
             </a>
-            <main>
-                <div class="w-full max-w-sm px-4 py-6 space-y-6 bg-white rounded-md dark:bg-darker">
+            <main >
+                <div class="w-full max-w-sm px-4 py-6 space-y-6 bg-white rounded-md dark:bg-darker shadow-lg">
                     <h1 class="text-xl font-semibold text-center">Login</h1>
                     <x-jet-validation-errors class="mb-4 text-center mx-auto" />
                     @if (session('status'))
@@ -94,21 +94,6 @@
             </main>
         </div>
         <!-- Toggle dark mode button -->
-        <div class="fixed bottom-5 left-5">
-            <button aria-hidden="true" @click="toggleTheme"
-                class="p-2 transition-colors duration-200 rounded-full shadow-md bg-blue-500 hover:bg-blue-900 focus:outline-none focus:ring focus:ring-blue-500">
-                <svg x-show="isDark" class="w-8 h-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                    viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                </svg>
-                <svg x-show="!isDark" class="w-8 h-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                    viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                </svg>
-            </button>
-        </div>
     </div>
 
     <script>
