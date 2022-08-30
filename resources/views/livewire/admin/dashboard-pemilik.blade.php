@@ -11,7 +11,7 @@
                                 class="fa fa-wallet fa-2x fa-fw fa-inverse"></i></div>
                     </div>
                     <div class="flex-1 text-right md:text-center">
-                        <h5 class="font-bold uppercase text-gray-400">Total Revenue</h5>
+                        <h5 class="font-bold uppercase text-gray-400">Total Pendapatan</h5>
                         <h3 class="font-bold text-3xl text-gray-600">$3249 <span class="text-green-500"><i
                                     class="fas fa-caret-up"></i></span></h3>
                     </div>
@@ -28,8 +28,8 @@
                                 class="fas fa-users fa-2x fa-fw fa-inverse"></i></div>
                     </div>
                     <div class="flex-1 text-right md:text-center">
-                        <h5 class="font-bold uppercase text-gray-400">Total Users</h5>
-                        <h3 class="font-bold text-3xl text-gray-600">249 <span class="text-pink-500"><i
+                        <h5 class="font-bold uppercase text-gray-400">Total Pengguna</h5>
+                        <h3 class="font-bold text-3xl text-gray-600">{{$datapelanggan->count()}} <span class="text-pink-500"><i
                                     class="fas fa-exchange-alt"></i></span></h3>
                     </div>
                 </div>
