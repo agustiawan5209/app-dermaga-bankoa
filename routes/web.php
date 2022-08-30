@@ -4,6 +4,9 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\TiketController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\Admin\DashboardPemilik;
+use App\Http\Livewire\Admin\PageDataPelanggan;
+use App\Http\Livewire\Admin\PageTransaksiPesanan;
+use App\Http\Livewire\Admin\PageUlasan;
 use App\Http\Livewire\Customer\DashboardCustomer;
 use App\Http\Livewire\Transaksi\PemesananTiketPage;
 use App\Models\Destinasi;
@@ -45,6 +48,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' =>  'role:Admin', 'prefix' => 'Admin', 'as' => 'Admin.'], function(){
         Route::get('Dashboard', DashboardPemilik::class)->name('Dashboard.Pemilik');
         Route::get('Pemesanan/Tiket', PemesananTiketPage::class)->name('Page.Pemesanan.Tiket');
+        Route::get('Data/Pelanggan', PageDataPelanggan::class)->name('Data-Pelanggan');
+        Route::get('Data/Pesanan/Tiket', PageTransaksiPesanan::class)->name('Data-Tr-Tiket');
+        Route::get('Data/Ulasan', PageUlasan::class)->name('Data-Ulasan');
     });
 
     // Akses Customer
