@@ -14,7 +14,12 @@ class UserController extends Controller
     public function user()
     {
         $user_id = Auth::user()->role->id;
-        dd($user_id);
-        // if()
+        // dd($user_id);
+        if($user_id == 1){
+            return redirect()->route('Admin.Dashboard.Pemilik');
+        }
+        if($user_id == 3){
+            return redirect()->route('Customer.Dashboard.Customer');
+        }
     }
 }

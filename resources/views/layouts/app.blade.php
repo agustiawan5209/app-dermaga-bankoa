@@ -35,7 +35,7 @@
 
             <div class="w-1/2 pl-2 md:pl-0">
                 <a class="text-gray-100 text-base xl:text-xl no-underline hover:no-underline font-bold" href="#">
-                    <i class="fas fa-moon text-blue-400 pr-3"></i> Admin Dark Mode
+                    <i class="fas fa-moon text-blue-400 pr-3"></i> {{Carbon\Carbon::now()->format('Y M d')}}
                 </a>
             </div>
             <div class="w-1/2 pr-0">
@@ -44,7 +44,7 @@
                     <div class="relative text-sm text-gray-100">
                         <button id="userButton" class="flex items-center focus:outline-none mr-3">
                             <img class="w-8 h-8 rounded-full mr-4" src="http://i.pravatar.cc/300" alt="Avatar of User">
-                            <span class="hidden md:inline-block text-gray-100">Hi, User</span>
+                            <span class="hidden md:inline-block text-gray-100">Hi, {{Auth::user()->name}}</span>
                             <svg class="pl-2 h-2 fill-current text-gray-100" version="1.1"
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
@@ -101,26 +101,26 @@
                     <li class="mr-6 my-2 md:my-0">
                         <a href="#"
                             class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-100 border-b-2 border-gray-900  hover:border-pink-400">
-                            <i class="fas fa-tasks fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Tasks</span>
+                            <i class="fas fa-tasks fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Data Pelanggan</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
                         <a href="#"
                             class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-100 border-b-2 border-gray-900  hover:border-purple-400">
-                            <i class="fa fa-envelope fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Messages</span>
+                            <i class="fa fa-envelope fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Pesanan Tiket</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
                         <a href="#"
                             class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-100 border-b-2 border-gray-900  hover:border-green-400">
                             <i class="fas fa-chart-area fa-fw mr-3"></i><span
-                                class="pb-1 md:pb-0 text-sm">Analytics</span>
+                                class="pb-1 md:pb-0 text-sm">Ulasan</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
                         <a href="#"
                             class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-100 border-b-2 border-gray-900  hover:border-red-400">
-                            <i class="fa fa-wallet fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Payments</span>
+                            <i class="fa fa-wallet fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Metode Pembayaran</span>
                         </a>
                     </li>
                 </ul>
