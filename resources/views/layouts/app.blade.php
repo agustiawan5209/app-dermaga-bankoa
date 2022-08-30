@@ -10,8 +10,13 @@
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    {{-- <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"
+        integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
+    {{-- <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css"> --}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <!-- Styles -->
     @livewireStyles
@@ -21,1159 +26,545 @@
 
 </head>
 
-<body class=" bg-gray-100 font-sans">
-    <!-- start navbar -->
-    <div x-data="setup()" x-init="$refs.loading.classList.add('hidden');
-    setColors(color);" :class="{ 'dark': isDark }">
-        <div class="flex h-screen antialiased text-gray-900 bg-gray-100 dark:bg-gray-900 dark:text-gray-50">
-            <!-- Loading screen -->
-            <div x-ref="loading"
-                class="fixed inset-0 z-50 flex items-center justify-center text-2xl font-semibold text-white bg-blue-800er">
-                Loading.....
+<body class="bg-black-alt font-sans leading-normal tracking-normal">
+
+    <nav id="header" class="bg-gray-900 fixed w-full z-10 top-0 shadow">
+
+
+        <div class="w-full container mx-auto flex flex-wrap items-center mt-0 pt-3 pb-3 md:pb-0">
+
+            <div class="w-1/2 pl-2 md:pl-0">
+                <a class="text-gray-100 text-base xl:text-xl no-underline hover:no-underline font-bold" href="#">
+                    <i class="fas fa-moon text-blue-400 pr-3"></i> Admin Dark Mode
+                </a>
+            </div>
+            <div class="w-1/2 pr-0">
+                <div class="flex relative inline-block float-right">
+
+                    <div class="relative text-sm text-gray-100">
+                        <button id="userButton" class="flex items-center focus:outline-none mr-3">
+                            <img class="w-8 h-8 rounded-full mr-4" src="http://i.pravatar.cc/300" alt="Avatar of User">
+                            <span class="hidden md:inline-block text-gray-100">Hi, User</span>
+                            <svg class="pl-2 h-2 fill-current text-gray-100" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
+                                <g>
+                                    <path
+                                        d="m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z" />
+                                </g>
+                            </svg>
+                        </button>
+                        <div id="userMenu"
+                            class="bg-gray-900 rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible">
+                            <ul class="list-reset">
+                                <li><a href="#"
+                                        class="px-4 py-2 block text-gray-100 hover:bg-gray-800 no-underline hover:no-underline">My
+                                        account</a></li>
+                                <li><a href="#"
+                                        class="px-4 py-2 block text-gray-100 hover:bg-gray-800 no-underline hover:no-underline">Notifications</a>
+                                </li>
+                                <li>
+                                    <hr class="border-t mx-2 border-gray-400">
+                                </li>
+                                <li><a href="#"
+                                        class="px-4 py-2 block text-gray-100 hover:bg-gray-800 no-underline hover:no-underline">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <div class="block lg:hidden pr-4">
+                        <button id="nav-toggle"
+                            class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-gray-100 hover:border-teal-500 appearance-none focus:outline-none">
+                            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <title>Menu</title>
+                                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- Sidebar -->
-            @livewire('navigation-menu')
 
-            <div class="flex-1 h-full overflow-x-hidden overflow-y-auto">
-                <!-- Navbar -->
-                <header class="relative bg-white dark:bg-gray-800">
-                    <div class="flex items-center justify-between p-2 border-b dark:border-blue-800er">
-                        <!-- Mobile menu button -->
-                        <button @click="isMobileMainMenuOpen = !isMobileMainMenuOpen"
-                            class="p-1 transition-colors duration-200 rounded-md text-blue-300 bg-blue-500-50 hover:text-primary hover:bg-blue-500-100 dark:hover:text-gray-50 dark:hover:bg-blue-800 dark:bg-gray-900 md:hidden focus:outline-none focus:ring">
-                            <span class="sr-only">Open main manu</span>
-                            <span aria-hidden="true">
-                                <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4 6h16M4 12h16M4 18h16" />
-                                </svg>
-                            </span>
-                        </button>
-
-                        <!-- Brand -->
-                        <a href="index.html"
-                            class="inline-block text-2xl font-bold tracking-wider uppercase text-blue-800 dark:text-gray-50">
-                            Dermaga Kayu Bangkoa
+            <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-gray-900 z-20"
+                id="nav-content">
+                <ul class="list-reset lg:flex flex-1 items-center px-4 md:px-0">
+                    <li class="mr-6 my-2 md:my-0">
+                        <a href="#"
+                            class="block py-1 md:py-3 pl-1 align-middle text-blue-400 no-underline hover:text-gray-100 border-b-2 border-blue-400 hover:border-blue-400">
+                            <i class="fas fa-home fa-fw mr-3 text-blue-400"></i><span
+                                class="pb-1 md:pb-0 text-sm">Home</span>
                         </a>
-
-                        <!-- Mobile sub menu button -->
-                        <button @click="isMobileSubMenuOpen = !isMobileSubMenuOpen"
-                            class="p-1 transition-colors duration-200 rounded-md text-blue-300 bg-blue-500-50 hover:text-primary hover:bg-blue-500-100 dark:hover:text-gray-50 dark:hover:bg-blue-800 dark:bg-gray-900 md:hidden focus:outline-none focus:ring">
-                            <span class="sr-only">Open sub manu</span>
-                            <span aria-hidden="true">
-                                <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                </svg>
-                            </span>
-                        </button>
-
-                        <!-- Desktop Right buttons -->
-                        <nav aria-label="Secondary" class="hidden space-x-2 md:flex md:items-center">
-                            <!-- Toggle dark theme button -->
-                            <button aria-hidden="true" class="relative focus:outline-none" x-cloak @click="toggleTheme">
-                                <div
-                                    class="w-12 h-6 transition rounded-full outline-none bg-blue-500-100 dark:bg-blue-300">
-                                </div>
-                                <div class="absolute top-0 left-0 inline-flex items-center justify-center w-6 h-6 transition-all duration-150 transform scale-110 rounded-full shadow-sm"
-                                    :class="{
-                                        'translate-x-0 -translate-y-px  bg-white text-blue-800': !
-                                            isDark,
-                                        'translate-x-6 text-primary-100 bg-blue-800er': isDark
-                                    }">
-                                    <svg x-show="!isDark" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                                    </svg>
-                                    <svg x-show="isDark" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                                    </svg>
-                                </div>
-                            </button>
-
-                            <!-- Notification button -->
-                            <button @click="openNotificationsPanel"
-                                class="p-2 transition-colors duration-200 rounded-full text-blue-300 bg-blue-500-50 hover:text-primary hover:bg-blue-500-100 dark:hover:text-gray-50 dark:hover:bg-blue-800 dark:bg-gray-900 focus:outline-none focus:bg-blue-500-100 dark:focus:bg-blue-800 focus:ring-blue-800er">
-                                <span class="sr-only">Open Notification panel</span>
-                                <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                                </svg>
-                            </button>
-
-                            <!-- Search button -->
-                            <button @click="openSearchPanel"
-                                class="p-2 transition-colors duration-200 rounded-full text-blue-300 bg-blue-500-50 hover:text-primary hover:bg-blue-500-100 dark:hover:text-gray-50 dark:hover:bg-blue-800 dark:bg-gray-900 focus:outline-none focus:bg-blue-500-100 dark:focus:bg-blue-800 focus:ring-blue-800er">
-                                <span class="sr-only">Open search panel</span>
-                                <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                </svg>
-                            </button>
-
-                            <!-- Settings button -->
-                            <button @click="openSettingsPanel"
-                                class="p-2 transition-colors duration-200 rounded-full text-blue-300 bg-blue-500-50 hover:text-primary hover:bg-blue-500-100 dark:hover:text-gray-50 dark:hover:bg-blue-800 dark:bg-gray-900 focus:outline-none focus:bg-blue-500-100 dark:focus:bg-blue-800 focus:ring-blue-800er">
-                                <span class="sr-only">Open settings panel</span>
-                                <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                            </button>
-
-                            <!-- User avatar button -->
-                            <div class="relative" x-data="{ open: false }">
-                                <button @click="open = !open; $nextTick(() => { if(open){ $refs.userMenu.focus() } })"
-                                    type="button" aria-haspopup="true" :aria-expanded="open ? 'true' : 'false'"
-                                    class="transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
-                                    <span class="sr-only">User menu</span>
-                                    <img class="w-10 h-10 rounded-full" src="{{ asset('img/icon-male.png') }}"
-                                        alt="Wawan" />
-                                </button>
-
-                                <!-- User dropdown menu -->
-                                <div x-show="open" x-ref="userMenu"
-                                    x-transition:enter="transition-all transform ease-out"
-                                    x-transition:enter-start="translate-y-1/2 opacity-0"
-                                    x-transition:enter-end="translate-y-0 opacity-100"
-                                    x-transition:leave="transition-all transform ease-in"
-                                    x-transition:leave-start="translate-y-0 opacity-100"
-                                    x-transition:leave-end="translate-y-1/2 opacity-0" @click.away="open = false"
-                                    @keydown.escape="open = false"
-                                    class="absolute right-0 w-48 py-1 bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-gray-900 focus:outline-none"
-                                    tabindex="-1" role="menu" aria-orientation="vertical"
-                                    aria-label="User menu">
-                                    <a href="#" role="menuitem"
-                                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-50 dark:hover:bg-blue-500">
-                                        Your Profile
-                                    </a>
-                                    <a href="#" role="menuitem"
-                                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-50 dark:hover:bg-blue-500">
-                                        Settings
-                                    </a>
-                                    <form action="{{ route('logout') }}" method="POST">
-                                        @csrf
-                                        <button type="submit" role="menuitem"
-                                            class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-50 dark:hover:bg-blue-500">
-                                            Logout
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </nav>
-
-                        <!-- Mobile sub menu -->
-                        <nav x-transition:enter="transition duration-200 ease-in-out transform sm:duration-500"
-                            x-transition:enter-start="-translate-y-full opacity-0"
-                            x-transition:enter-end="translate-y-0 opacity-100"
-                            x-transition:leave="transition duration-300 ease-in-out transform sm:duration-500"
-                            x-transition:leave-start="translate-y-0 opacity-100"
-                            x-transition:leave-end="-translate-y-full opacity-0" x-show="isMobileSubMenuOpen"
-                            @click.away="isMobileSubMenuOpen = false"
-                            class="absolute flex items-center p-4 bg-white rounded-md shadow-lg dark:bg-gray-800 top-16 inset-x-4 md:hidden"
-                            aria-label="Secondary">
-                            <div class="space-x-2">
-                                <!-- Toggle dark theme button -->
-                                <button aria-hidden="true" class="relative focus:outline-none" x-cloak
-                                    @click="toggleTheme">
-                                    <div
-                                        class="w-12 h-6 transition rounded-full outline-none bg-blue-500-100 dark:bg-blue-300">
-                                    </div>
-                                    <div class="absolute top-0 left-0 inline-flex items-center justify-center w-6 h-6 transition-all duration-200 transform scale-110 rounded-full shadow-sm"
-                                        :class="{
-                                            'translate-x-0 -translate-y-px  bg-white text-blue-800': !
-                                                isDark,
-                                            'translate-x-6 text-primary-100 bg-blue-800er': isDark
-                                        }">
-                                        <svg x-show="!isDark" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg"
-                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                                        </svg>
-                                        <svg x-show="isDark" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg"
-                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                                        </svg>
-                                    </div>
-                                </button>
-
-                                <!-- Notification button -->
-                                <button
-                                    @click="openNotificationsPanel(); $nextTick(() => { isMobileSubMenuOpen = false })"
-                                    class="p-2 transition-colors duration-200 rounded-full text-blue-300 bg-blue-500-50 hover:text-primary hover:bg-blue-500-100 dark:hover:text-gray-50 dark:hover:bg-blue-800 dark:bg-gray-900 focus:outline-none focus:bg-blue-500-100 dark:focus:bg-blue-800 focus:ring-blue-800er">
-                                    <span class="sr-only">Open notifications panel</span>
-                                    <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                                    </svg>
-                                </button>
-
-                                <!-- Search button -->
-                                <button
-                                    @click="openSearchPanel(); $nextTick(() => { $refs.searchInput.focus(); setTimeout(() => {isMobileSubMenuOpen= false}, 100) })"
-                                    class="p-2 transition-colors duration-200 rounded-full text-blue-300 bg-blue-500-50 hover:text-primary hover:bg-blue-500-100 dark:hover:text-gray-50 dark:hover:bg-blue-800 dark:bg-gray-900 focus:outline-none focus:bg-blue-500-100 dark:focus:bg-blue-800 focus:ring-blue-800er">
-                                    <span class="sr-only">Open search panel</span>
-                                    <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                    </svg>
-                                </button>
-
-                                <!-- Settings button -->
-                                <button @click="openSettingsPanel(); $nextTick(() => { isMobileSubMenuOpen = false })"
-                                    class="p-2 transition-colors duration-200 rounded-full text-blue-300 bg-blue-500-50 hover:text-primary hover:bg-blue-500-100 dark:hover:text-gray-50 dark:hover:bg-blue-800 dark:bg-gray-900 focus:outline-none focus:bg-blue-500-100 dark:focus:bg-blue-800 focus:ring-blue-800er">
-                                    <span class="sr-only">Open settings panel</span>
-                                    <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    </svg>
-                                </button>
-                            </div>
-
-                            <!-- User avatar button -->
-                            <div class="relative ml-auto" x-data="{ open: false }">
-                                <button @click="open = !open" type="button" aria-haspopup="true"
-                                    :aria-expanded="open ? 'true' : 'false'"
-                                    class="block transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
-                                    <span class="sr-only">User menu</span>
-                                    <img class="w-10 h-10 rounded-full" src="build/images/avatar.jpg"
-                                        alt="Ahmed Kamel" />
-                                </button>
-
-                                <!-- User dropdown menu -->
-                                <div x-show="open" x-transition:enter="transition-all transform ease-out"
-                                    x-transition:enter-start="translate-y-1/2 opacity-0"
-                                    x-transition:enter-end="translate-y-0 opacity-100"
-                                    x-transition:leave="transition-all transform ease-in"
-                                    x-transition:leave-start="translate-y-0 opacity-100"
-                                    x-transition:leave-end="translate-y-1/2 opacity-0" @click.away="open = false"
-                                    class="absolute right-0 w-48 py-1 origin-top-right bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-gray-900"
-                                    role="menu" aria-orientation="vertical" aria-label="User menu">
-                                    <a href="#" role="menuitem"
-                                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-50 dark:hover:bg-blue-500">
-                                        Your Profile
-                                    </a>
-                                    <a href="#" role="menuitem"
-                                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-50 dark:hover:bg-blue-500">
-                                        Settings
-                                    </a>
-                                    <form action="{{ route('logout') }}" method="POST">
-                                        @csrf
-                                        <button type="submit" role="menuitem"
-                                            class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-50 dark:hover:bg-blue-500">
-                                            Logout
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </nav>
-                    </div>
-                    <!-- Mobile main manu -->
-                    <div class="border-b md:hidden dark:border-blue-800er" x-show="isMobileMainMenuOpen"
-                        @click.away="isMobileMainMenuOpen = false">
-                        <nav aria-label="Main" class="px-2 py-4 space-y-2">
-                            <!-- Dashboards links -->
-                            <div x-data="{ isActive: true, open: true }">
-                                <!-- active & hover classes 'bg-blue-500-100 dark:bg-blue-500' -->
-                                <a href="#" @click="$event.preventDefault(); open = !open"
-                                    class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-gray-50 hover:bg-blue-500-100 dark:hover:bg-blue-500"
-                                    :class="{ 'bg-blue-500-100 dark:bg-blue-500': isActive || open }" role="button"
-                                    aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
-                                    <span aria-hidden="true">
-                                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                                        </svg>
-                                    </span>
-                                    <span class="ml-2 text-sm"> Dashboards </span>
-                                    <span class="ml-auto" aria-hidden="true">
-                                        <!-- active class 'rotate-180' -->
-                                        <svg class="w-4 h-4 transition-transform transform"
-                                            :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg"
-                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M19 9l-7 7-7-7" />
-                                        </svg>
-                                    </span>
-                                </a>
-                                <div role="menu" x-show="open" class="mt-2 space-y-2 px-7"
-                                    aria-label="Dashboards">
-                                    <!-- active & hover classes 'text-gray-700 dark:text-gray-50' -->
-                                    <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                    <a href="index.html" role="menuitem"
-                                        class="block p-2 text-sm text-gray-700 transition-colors duration-200 rounded-md dark:text-gray-50 dark:hover:text-gray-50 hover:text-gray-700">
-                                        Default
-                                    </a>
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-gray-50 hover:text-gray-700">
-                                        Project Mangement (soon)
-                                    </a>
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-gray-50 hover:text-gray-700">
-                                        E-Commerce (soon)
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- Components links -->
-                            <div x-data="{ isActive: false, open: false }">
-                                <!-- active classes 'bg-blue-500-100 dark:bg-blue-500' -->
-                                <a href="#" @click="$event.preventDefault(); open = !open"
-                                    class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-gray-50 hover:bg-blue-500-100 dark:hover:bg-blue-500"
-                                    :class="{ 'bg-blue-500-100 dark:bg-blue-500': isActive || open }" role="button"
-                                    aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
-                                    <span aria-hidden="true">
-                                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                                        </svg>
-                                    </span>
-                                    <span class="ml-2 text-sm"> Components </span>
-                                    <span aria-hidden="true" class="ml-auto">
-                                        <!-- active class 'rotate-180' -->
-                                        <svg class="w-4 h-4 transition-transform transform"
-                                            :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg"
-                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M19 9l-7 7-7-7" />
-                                        </svg>
-                                    </span>
-                                </a>
-                                <div x-show="open" class="mt-2 space-y-2 px-7" role="menu"
-                                    arial-label="Components">
-                                    <!-- active & hover classes 'text-gray-700 dark:text-gray-50' -->
-                                    <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-gray-50 hover:text-gray-700">
-                                        Alerts (soon)
-                                    </a>
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-gray-50 hover:text-gray-700">
-                                        Buttons (soon)
-                                    </a>
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-gray-50 hover:text-gray-700">
-                                        Cards (soon)
-                                    </a>
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-gray-50 hover:text-gray-700">
-                                        Dropdowns (soon)
-                                    </a>
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-gray-50 hover:text-gray-700">
-                                        Forms (soon)
-                                    </a>
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-gray-50 hover:text-gray-700">
-                                        Lists (soon)
-                                    </a>
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-gray-50 hover:text-gray-700">
-                                        Modals (soon)
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- Pages links -->
-                            <div x-data="{ isActive: false, open: false }">
-                                <!-- active classes 'bg-blue-500-100 dark:bg-blue-500' -->
-                                <a href="#" @click="$event.preventDefault(); open = !open"
-                                    class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-gray-50 hover:bg-blue-500-100 dark:hover:bg-blue-500"
-                                    :class="{ 'bg-blue-500-100 dark:bg-blue-500': isActive || open }" role="button"
-                                    aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
-                                    <span aria-hidden="true">
-                                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                                        </svg>
-                                    </span>
-                                    <span class="ml-2 text-sm"> Pages </span>
-                                    <span aria-hidden="true" class="ml-auto">
-                                        <!-- active class 'rotate-180' -->
-                                        <svg class="w-4 h-4 transition-transform transform"
-                                            :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg"
-                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M19 9l-7 7-7-7" />
-                                        </svg>
-                                    </span>
-                                </a>
-                                <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
-                                    <!-- active & hover classes 'text-gray-700 dark:text-gray-50' -->
-                                    <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                    <a href="pages/blank.html" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-gray-50 hover:text-gray-700">
-                                        Blank
-                                    </a>
-                                    <a href="pages/404.html" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-gray-50 hover:text-gray-700">
-                                        404
-                                    </a>
-                                    <a href="pages/500.html" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-gray-50 hover:text-gray-700">
-                                        500
-                                    </a>
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-gray-50 hover:text-gray-700">
-                                        Profile (soon)
-                                    </a>
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-gray-50 hover:text-gray-700">
-                                        Pricing (soon)
-                                    </a>
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-gray-50 hover:text-gray-700">
-                                        Kanban (soon)
-                                    </a>
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-gray-50 hover:text-gray-700">
-                                        Feed (soon)
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- Authentication links -->
-                            <div x-data="{ isActive: false, open: false }">
-                                <!-- active & hover classes 'bg-blue-500-100 dark:bg-blue-500' -->
-                                <a href="#" @click="$event.preventDefault(); open = !open"
-                                    class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-gray-50 hover:bg-blue-500-100 dark:hover:bg-blue-500"
-                                    :class="{ 'bg-blue-500-100 dark:bg-blue-500': isActive || open }" role="button"
-                                    aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
-                                    <span aria-hidden="true">
-                                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                        </svg>
-                                    </span>
-                                    <span class="ml-2 text-sm"> Authentication </span>
-                                    <span aria-hidden="true" class="ml-auto">
-                                        <!-- active class 'rotate-180' -->
-                                        <svg class="w-4 h-4 transition-transform transform"
-                                            :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg"
-                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M19 9l-7 7-7-7" />
-                                        </svg>
-                                    </span>
-                                </a>
-                                <div x-show="open" class="mt-2 space-y-2 px-7" role="menu"
-                                    aria-label="Authentication">
-                                    <!-- active & hover classes 'text-gray-700 dark:text-gray-50' -->
-                                    <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                    <a href="auth/register.html" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-gray-50 hover:text-gray-700">
-                                        Register
-                                    </a>
-                                    <a href="auth/login.html" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-gray-50 hover:text-gray-700">
-                                        Login
-                                    </a>
-                                    <a href="auth/forgot-password.html" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-gray-50 hover:text-gray-700">
-                                        Forgot Password
-                                    </a>
-                                    <a href="auth/reset-password.html" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-gray-50 hover:text-gray-700">
-                                        Reset Password
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- Layouts links -->
-                            <div x-data="{ isActive: false, open: false }">
-                                <!-- active & hover classes 'bg-blue-500-100 dark:bg-blue-500' -->
-                                <a href="#" @click="$event.preventDefault(); open = !open"
-                                    class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-gray-50 hover:bg-blue-500-100 dark:hover:bg-blue-500"
-                                    :class="{ 'bg-blue-500-100 dark:bg-blue-500': isActive || open }" role="button"
-                                    aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
-                                    <span aria-hidden="true">
-                                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-                                        </svg>
-                                    </span>
-                                    <span class="ml-2 text-sm"> Layouts </span>
-                                    <span aria-hidden="true" class="ml-auto">
-                                        <!-- active class 'rotate-180' -->
-                                        <svg class="w-4 h-4 transition-transform transform"
-                                            :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg"
-                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M19 9l-7 7-7-7" />
-                                        </svg>
-                                    </span>
-                                </a>
-                                <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" aria-label="Layouts">
-                                    <!-- active & hover classes 'text-gray-700 dark:text-gray-50' -->
-                                    <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                    <a href="layouts/two-columns-sidebar.html" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-gray-50 hover:text-gray-700">
-                                        Two Columns Sidebar
-                                    </a>
-                                    <a href="layouts/mini-plus-one-columns-sidebar.html" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-gray-50 hover:text-gray-700">
-                                        Mini + One Columns Sidebar
-                                    </a>
-                                    <a href="layouts/mini-column-sidebar.html" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-gray-50 hover:text-gray-700">
-                                        Mini Column Sidebar
-                                    </a>
-                                </div>
-                            </div>
-                        </nav>
-                    </div>
-                </header>
-
-                <!-- Main content -->
-                <main>
-                    <!-- Content header -->
-                    <div class="flex items-center justify-between px-4 py-4 border-b lg:py-6 dark:border-blue-800er">
-                        <h1 class="text-2xl font-semibold">Dashboard</h1>
-                        <a href="https://github.com/Kamona-WD/kwd-dashboard" target="_blank"
-                            class="px-4 py-2 text-sm text-white rounded-md bg-blue-500 hover:bg-blue-800 focus:outline-none focus:ring focus:ring-primary focus:ring-offset-1 focus:ring-offset-white dark:focus:ring-offset-dark">
-                            View on github
+                    </li>
+                    <li class="mr-6 my-2 md:my-0">
+                        <a href="#"
+                            class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-100 border-b-2 border-gray-900  hover:border-pink-400">
+                            <i class="fas fa-tasks fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Tasks</span>
                         </a>
-                    </div>
+                    </li>
+                    <li class="mr-6 my-2 md:my-0">
+                        <a href="#"
+                            class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-100 border-b-2 border-gray-900  hover:border-purple-400">
+                            <i class="fa fa-envelope fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Messages</span>
+                        </a>
+                    </li>
+                    <li class="mr-6 my-2 md:my-0">
+                        <a href="#"
+                            class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-100 border-b-2 border-gray-900  hover:border-green-400">
+                            <i class="fas fa-chart-area fa-fw mr-3"></i><span
+                                class="pb-1 md:pb-0 text-sm">Analytics</span>
+                        </a>
+                    </li>
+                    <li class="mr-6 my-2 md:my-0">
+                        <a href="#"
+                            class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-100 border-b-2 border-gray-900  hover:border-red-400">
+                            <i class="fa fa-wallet fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Payments</span>
+                        </a>
+                    </li>
+                </ul>
 
-                    <!-- Content -->
-                    {{ $slot }}
-                </main>
-
-                <!-- Main footer -->
-                <footer
-                    class="flex items-center justify-between p-4 bg-white border-t dark:bg-gray-800 dark:border-blue-800er">
-                    <div>Dermaga Kayu Bangkoa &copy; 2021</div>
-                    <div>
-                        Made by
-                        <a href="https://github.com/Kamona-WD" target="_blank"
-                            class="text-blue-500 hover:underline">Ahmed Kamel</a>
+                <div class="relative pull-right pl-4 pr-4 md:pr-0">
+                    <input type="search" placeholder="Search"
+                        class="w-full bg-gray-900 text-sm text-gray-400 transition border border-gray-800 focus:outline-none focus:border-gray-600 rounded py-1 px-2 pl-10 appearance-none leading-normal">
+                    <div class="absolute search-icon" style="top: 0.375rem;left: 1.75rem;">
+                        <svg class="fill-current pointer-events-none text-gray-500 w-4 h-4"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path
+                                d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z">
+                            </path>
+                        </svg>
                     </div>
-                </footer>
+                </div>
+
             </div>
 
-            <!-- Panels -->
-
-            <!-- Settings Panel -->
-            <!-- Backdrop -->
-            <div x-transition:enter="transition duration-300 ease-in-out" x-transition:enter-start="opacity-0"
-                x-transition:enter-end="opacity-100" x-transition:leave="transition duration-300 ease-in-out"
-                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                x-show="isSettingsPanelOpen" @click="isSettingsPanelOpen = false"
-                class="fixed inset-0 z-10 bg-blue-800er" style="opacity: 0.5" aria-hidden="true"></div>
-            <!-- Panel -->
-            <section x-transition:enter="transition duration-300 ease-in-out transform sm:duration-500"
-                x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
-                x-transition:leave="transition duration-300 ease-in-out transform sm:duration-500"
-                x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
-                x-ref="settingsPanel" tabindex="-1" x-show="isSettingsPanelOpen"
-                @keydown.escape="isSettingsPanelOpen = false"
-                class="fixed inset-y-0 right-0 z-20 w-full max-w-xs bg-white shadow-xl dark:bg-gray-800 dark:text-gray-50 sm:max-w-md focus:outline-none"
-                aria-labelledby="settinsPanelLabel">
-                <div class="absolute left-0 p-2 transform -translate-x-full">
-                    <!-- Close button -->
-                    <button @click="isSettingsPanelOpen = false"
-                        class="p-2 text-white rounded-md focus:outline-none focus:ring">
-                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-                <!-- Panel content -->
-                <div class="flex flex-col h-screen">
-                    <!-- Panel header -->
-                    <div
-                        class="flex flex-col items-center justify-center flex-shrink-0 px-4 py-8 space-y-4 border-b dark:border-blue-800">
-                        <span aria-hidden="true" class="text-gray-500 dark:text-primary">
-                            <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                            </svg>
-                        </span>
-                        <h2 id="settinsPanelLabel" class="text-xl font-medium text-gray-500 dark:text-gray-50">
-                            Settings</h2>
-                    </div>
-                    <!-- Content -->
-                    <div class="flex-1 overflow-hidden hover:overflow-y-auto">
-                        <!-- Theme -->
-                        <div class="p-4 space-y-4 md:p-8">
-                            <h6 class="text-lg font-medium text-gray-400 dark:text-gray-50">Mode</h6>
-                            <div class="flex items-center space-x-8">
-                                <!-- Light button -->
-                                <button @click="setLightTheme"
-                                    class="flex items-center justify-center px-4 py-2 space-x-4 transition-colors border rounded-md hover:text-gray-900 hover:border-gray-900 dark:border-primary dark:hover:text-primary-100 dark:hover:border-primary-light focus:outline-none focus:ring focus:ring-blue-300 focus:ring-offset-2 dark:focus:ring-offset-dark dark:focus:ring-blue-800"
-                                    :class="{
-                                        'border-gray-900 text-gray-900 dark:border-primary-light dark:text-primary-100':
-                                            !
-                                            isDark,
-                                        'text-gray-500 dark:text-blue-400': isDark
-                                    }">
-                                    <span>
-                                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                                        </svg>
-                                    </span>
-                                    <span>Light</span>
-                                </button>
-
-                                <!-- Dark button -->
-                                <button @click="setDarkTheme"
-                                    class="flex items-center justify-center px-4 py-2 space-x-4 transition-colors border rounded-md hover:text-gray-900 hover:border-gray-900 dark:border-primary dark:hover:text-primary-100 dark:hover:border-primary-light focus:outline-none focus:ring focus:ring-blue-300 focus:ring-offset-2 dark:focus:ring-offset-dark dark:focus:ring-blue-800"
-                                    :class="{
-                                        'border-gray-900 text-gray-900 dark:border-primary-light dark:text-primary-100': isDark,
-                                        'text-gray-500 dark:text-blue-400':
-                                            !isDark
-                                    }">
-                                    <span>
-                                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                                        </svg>
-                                    </span>
-                                    <span>Dark</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Colors -->
-                        <div class="p-4 space-y-4 md:p-8">
-                            <h6 class="text-lg font-medium text-gray-400 dark:text-gray-50">Colors</h6>
-                            <div>
-                                <button @click="setColors('cyan')" class="w-10 h-10 rounded-full"
-                                    style="background-color: var(--color-cyan)"></button>
-                                <button @click="setColors('teal')" class="w-10 h-10 rounded-full"
-                                    style="background-color: var(--color-teal)"></button>
-                                <button @click="setColors('green')" class="w-10 h-10 rounded-full"
-                                    style="background-color: var(--color-green)"></button>
-                                <button @click="setColors('fuchsia')" class="w-10 h-10 rounded-full"
-                                    style="background-color: var(--color-fuchsia)"></button>
-                                <button @click="setColors('blue')" class="w-10 h-10 rounded-full"
-                                    style="background-color: var(--color-blue)"></button>
-                                <button @click="setColors('violet')" class="w-10 h-10 rounded-full"
-                                    style="background-color: var(--color-violet)"></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Notification panel -->
-            <!-- Backdrop -->
-            <div x-transition:enter="transition duration-300 ease-in-out" x-transition:enter-start="opacity-0"
-                x-transition:enter-end="opacity-100" x-transition:leave="transition duration-300 ease-in-out"
-                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                x-show="isNotificationsPanelOpen" @click="isNotificationsPanelOpen = false"
-                class="fixed inset-0 z-10 bg-blue-800er" style="opacity: 0.5" aria-hidden="true"></div>
-            <!-- Panel -->
-            <section x-transition:enter="transition duration-300 ease-in-out transform sm:duration-500"
-                x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
-                x-transition:leave="transition duration-300 ease-in-out transform sm:duration-500"
-                x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full"
-                x-ref="notificationsPanel" x-show="isNotificationsPanelOpen"
-                @keydown.escape="isNotificationsPanelOpen = false" tabindex="-1"
-                aria-labelledby="notificationPanelLabel"
-                class="fixed inset-y-0 z-20 w-full max-w-xs bg-white dark:bg-gray-800 dark:text-gray-50 sm:max-w-md focus:outline-none">
-                <div class="absolute right-0 p-2 transform translate-x-full">
-                    <!-- Close button -->
-                    <button @click="isNotificationsPanelOpen = false"
-                        class="p-2 text-white rounded-md focus:outline-none focus:ring">
-                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="flex flex-col h-screen" x-data="{ activeTabe: 'action' }">
-                    <!-- Panel header -->
-                    <div class="flex-shrink-0">
-                        <div class="flex items-center justify-between px-4 pt-4 border-b dark:border-blue-800er">
-                            <h2 id="notificationPanelLabel" class="pb-4 font-semibold">Notifications</h2>
-                            <div class="space-x-2">
-                                <button @click.prevent="activeTabe = 'action'"
-                                    class="px-px pb-4 transition-all duration-200 transform translate-y-px border-b focus:outline-none"
-                                    :class="{
-                                        'border-blue-800 dark:border-primary': activeTabe ==
-                                            'action',
-                                        'border-transparent': activeTabe != 'action'
-                                    }">
-                                    Action
-                                </button>
-                                <button @click.prevent="activeTabe = 'user'"
-                                    class="px-px pb-4 transition-all duration-200 transform translate-y-px border-b focus:outline-none"
-                                    :class="{
-                                        'border-blue-800 dark:border-primary': activeTabe ==
-                                            'user',
-                                        'border-transparent': activeTabe != 'user'
-                                    }">
-                                    User
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Panel content (tabs) -->
-                    <div class="flex-1 pt-4 overflow-y-hidden hover:overflow-y-auto">
-                        <!-- Action tab -->
-                        <div class="space-y-4" x-show.transition.in="activeTabe == 'action'">
-                            <a href="#" class="block">
-                                <div class="flex px-4 space-x-4">
-                                    <div class="relative flex-shrink-0">
-                                        <span
-                                            class="z-10 inline-block p-2 overflow-visible rounded-full bg-blue-500-50 text-blue-400 dark:bg-blue-800er">
-                                            <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                                            </svg>
-                                        </span>
-                                        <div
-                                            class="absolute h-24 p-px -mt-3 -ml-px bg-blue-500-50 left-1/2 dark:bg-blue-800er">
-                                        </div>
-                                    </div>
-                                    <div class="flex-1 overflow-hidden">
-                                        <h5 class="text-sm font-semibold text-gray-600 dark:text-gray-50">
-                                            New project "KWD Dashboard" created
-                                        </h5>
-                                        <p class="text-sm font-normal text-gray-400 truncate dark:text-blue-300">
-                                            Looks like there might be a new theme soon
-                                        </p>
-                                        <span class="text-sm font-normal text-gray-400 dark:text-blue-400"> 9h ago
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="block">
-                                <div class="flex px-4 space-x-4">
-                                    <div class="relative flex-shrink-0">
-                                        <span
-                                            class="inline-block p-2 overflow-visible rounded-full bg-blue-500-50 text-blue-400 dark:bg-blue-800er">
-                                            <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                                            </svg>
-                                        </span>
-                                        <div
-                                            class="absolute h-24 p-px -mt-3 -ml-px bg-blue-500-50 left-1/2 dark:bg-blue-800er">
-                                        </div>
-                                    </div>
-                                    <div class="flex-1 overflow-hidden">
-                                        <h5 class="text-sm font-semibold text-gray-600 dark:text-gray-50">
-                                            KWD Dashboard v0.0.2 was released
-                                        </h5>
-                                        <p class="text-sm font-normal text-gray-400 truncate dark:text-blue-300">
-                                            Successful new version was released
-                                        </p>
-                                        <span class="text-sm font-normal text-gray-400 dark:text-blue-400"> 2d ago
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                            <template x-for="i in 20" x-key="i">
-                                <a href="#" class="block">
-                                    <div class="flex px-4 space-x-4">
-                                        <div class="relative flex-shrink-0">
-                                            <span
-                                                class="inline-block p-2 overflow-visible rounded-full bg-blue-500-50 text-blue-400 dark:bg-blue-800er">
-                                                <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                                                </svg>
-                                            </span>
-                                            <div
-                                                class="absolute h-24 p-px -mt-3 -ml-px bg-blue-500-50 left-1/2 dark:bg-blue-800er">
-                                            </div>
-                                        </div>
-                                        <div class="flex-1 overflow-hidden">
-                                            <h5 class="text-sm font-semibold text-gray-600 dark:text-gray-50">
-                                                New project "KWD Dashboard" created
-                                            </h5>
-                                            <p class="text-sm font-normal text-gray-400 truncate dark:text-blue-300">
-                                                Looks like there might be a new theme soon
-                                            </p>
-                                            <span class="text-sm font-normal text-gray-400 dark:text-blue-400"> 9h ago
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </template>
-                        </div>
-
-                        <!-- User tab -->
-                        <div class="space-y-4" x-show.transition.in="activeTabe == 'user'">
-                            <a href="#" class="block">
-                                <div class="flex px-4 space-x-4">
-                                    <div class="relative flex-shrink-0">
-                                        <span class="relative z-10 inline-block overflow-visible rounded-ful">
-                                            <img class="object-cover rounded-full w-9 h-9"
-                                                src="build/images/avatar.jpg" alt="Ahmed kamel" />
-                                        </span>
-                                        <div
-                                            class="absolute h-24 p-px -mt-3 -ml-px bg-blue-500-50 left-1/2 dark:bg-blue-800er">
-                                        </div>
-                                    </div>
-                                    <div class="flex-1 overflow-hidden">
-                                        <h5 class="text-sm font-semibold text-gray-600 dark:text-gray-50">Ahmed Kamel
-                                        </h5>
-                                        <p class="text-sm font-normal text-gray-400 truncate dark:text-blue-300">
-                                            Shared new project "Dermaga Kayu Bangkoa Dashboard"
-                                        </p>
-                                        <span class="text-sm font-normal text-gray-400 dark:text-blue-400"> 1d ago
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="block">
-                                <div class="flex px-4 space-x-4">
-                                    <div class="relative flex-shrink-0">
-                                        <span class="relative z-10 inline-block overflow-visible rounded-ful">
-                                            <img class="object-cover rounded-full w-9 h-9"
-                                                src="build/images/avatar-1.jpg" alt="Ahmed kamel" />
-                                        </span>
-                                        <div
-                                            class="absolute h-24 p-px -mt-3 -ml-px bg-blue-500-50 left-1/2 dark:bg-blue-800er">
-                                        </div>
-                                    </div>
-                                    <div class="flex-1 overflow-hidden">
-                                        <h5 class="text-sm font-semibold text-gray-600 dark:text-gray-50">John</h5>
-                                        <p class="text-sm font-normal text-gray-400 truncate dark:text-blue-300">
-                                            Commit new changes to Dermaga Kayu Bangkoa Dashboard project.
-                                        </p>
-                                        <span class="text-sm font-normal text-gray-400 dark:text-blue-400"> 10h ago
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="block">
-                                <div class="flex px-4 space-x-4">
-                                    <div class="relative flex-shrink-0">
-                                        <span class="relative z-10 inline-block overflow-visible rounded-ful">
-                                            <img class="object-cover rounded-full w-9 h-9"
-                                                src="build/images/avatar.jpg" alt="Ahmed kamel" />
-                                        </span>
-                                        <div
-                                            class="absolute h-24 p-px -mt-3 -ml-px bg-blue-500-50 left-1/2 dark:bg-blue-800er">
-                                        </div>
-                                    </div>
-                                    <div class="flex-1 overflow-hidden">
-                                        <h5 class="text-sm font-semibold text-gray-600 dark:text-gray-50">Ahmed Kamel
-                                        </h5>
-                                        <p class="text-sm font-normal text-gray-400 truncate dark:text-blue-300">
-                                            Release new version "Dermaga Kayu Bangkoa Dashboard"
-                                        </p>
-                                        <span class="text-sm font-normal text-gray-400 dark:text-blue-400"> 20d ago
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                            <template x-for="i in 10" x-key="i">
-                                <a href="#" class="block">
-                                    <div class="flex px-4 space-x-4">
-                                        <div class="relative flex-shrink-0">
-                                            <span class="relative z-10 inline-block overflow-visible rounded-ful">
-                                                <img class="object-cover rounded-full w-9 h-9"
-                                                    src="build/images/avatar.jpg" alt="Ahmed kamel" />
-                                            </span>
-                                            <div
-                                                class="absolute h-24 p-px -mt-3 -ml-px bg-blue-500-50 left-1/2 dark:bg-blue-800er">
-                                            </div>
-                                        </div>
-                                        <div class="flex-1 overflow-hidden">
-                                            <h5 class="text-sm font-semibold text-gray-600 dark:text-gray-50">Ahmed
-                                                Kamel</h5>
-                                            <p class="text-sm font-normal text-gray-400 truncate dark:text-blue-300">
-                                                Release new version "Dermaga Kayu Bangkoa Dashboard"
-                                            </p>
-                                            <span class="text-sm font-normal text-gray-400 dark:text-blue-400"> 20d
-                                                ago </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </template>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Search panel -->
-            <!-- Backdrop -->
-            <div x-transition:enter="transition duration-300 ease-in-out" x-transition:enter-start="opacity-0"
-                x-transition:enter-end="opacity-100" x-transition:leave="transition duration-300 ease-in-out"
-                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-show="isSearchPanelOpen"
-                @click="isSearchPanelOpen = false" class="fixed inset-0 z-10 bg-blue-800er" style="opacity: 0.5"
-                aria-hidden="ture"></div>
-            <!-- Panel -->
-            <section x-transition:enter="transition duration-300 ease-in-out transform sm:duration-500"
-                x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
-                x-transition:leave="transition duration-300 ease-in-out transform sm:duration-500"
-                x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full"
-                x-show="isSearchPanelOpen" @keydown.escape="isSearchPanelOpen = false"
-                class="fixed inset-y-0 z-20 w-full max-w-xs bg-white shadow-xl dark:bg-gray-800 dark:text-gray-50 sm:max-w-md focus:outline-none">
-                <div class="absolute right-0 p-2 transform translate-x-full">
-                    <!-- Close button -->
-                    <button @click="isSearchPanelOpen = false"
-                        class="p-2 text-white rounded-md focus:outline-none focus:ring">
-                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-
-                <h2 class="sr-only">Search panel</h2>
-                <!-- Panel content -->
-                <div class="flex flex-col h-screen">
-                    <!-- Panel header (Search input) -->
-                    <div
-                        class="relative flex-shrink-0 px-4 py-8 text-gray-400 border-b dark:border-blue-800er dark:focus-within:text-gray-50 focus-within:text-gray-700">
-                        <span class="absolute inset-y-0 inline-flex items-center px-4">
-                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
-                        </span>
-                        <input x-ref="searchInput" type="text"
-                            class="w-full py-2 pl-10 pr-4 border rounded-full dark:bg-gray-900 dark:border-transparent dark:text-gray-50 focus:outline-none focus:ring"
-                            placeholder="Search..." />
-                    </div>
-
-                    <!-- Panel content (Search result) -->
-                    <div class="flex-1 px-4 pb-4 space-y-4 overflow-y-hidden h hover:overflow-y-auto">
-                        <h3 class="py-2 text-sm font-semibold text-gray-600 dark:text-gray-50">History</h3>
-                        <a href="#" class="flex space-x-4">
-                            <div class="flex-shrink-0">
-                                <img class="w-10 h-10 rounded-lg" src="build/images/cover.jpg" alt="Post cover" />
-                            </div>
-                            <div class="flex-1 max-w-xs overflow-hidden">
-                                <h4 class="text-sm font-semibold text-gray-600 dark:text-gray-50">Header</h4>
-                                <p class="text-sm font-normal text-gray-400 truncate dark:text-blue-300">
-                                    Lorem ipsum dolor, sit amet consectetur.
-                                </p>
-                                <span class="text-sm font-normal text-gray-400 dark:text-blue-400"> Post </span>
-                            </div>
-                        </a>
-                        <a href="#" class="flex space-x-4">
-                            <div class="flex-shrink-0">
-                                <img class="w-10 h-10 rounded-lg" src="build/images/avatar.jpg" alt="Ahmed Kamel" />
-                            </div>
-                            <div class="flex-1 max-w-xs overflow-hidden">
-                                <h4 class="text-sm font-semibold text-gray-600 dark:text-gray-50">Ahmed Kamel</h4>
-                                <p class="text-sm font-normal text-gray-400 truncate dark:text-blue-300">
-                                    Last activity 3h ago.
-                                </p>
-                                <span class="text-sm font-normal text-gray-400 dark:text-blue-400"> Offline </span>
-                            </div>
-                        </a>
-                        <a href="#" class="flex space-x-4">
-                            <div class="flex-shrink-0">
-                                <img class="w-10 h-10 rounded-lg" src="build/images/cover-2.jpg"
-                                    alt="Dermaga Kayu Bangkoa Dashboard" />
-                            </div>
-                            <div class="flex-1 max-w-xs overflow-hidden">
-                                <h4 class="text-sm font-semibold text-gray-600 dark:text-gray-50">Dermaga Kayu Bangkoa
-                                </h4>
-                                <p class="text-sm font-normal text-gray-400 truncate dark:text-blue-300">
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                </p>
-                                <span class="text-sm font-normal text-gray-400 dark:text-blue-400"> Updated 3h ago.
-                                </span>
-                            </div>
-                        </a>
-                        <template x-for="i in 10" x-key="i">
-                            <a href="#" class="flex space-x-4">
-                                <div class="flex-shrink-0">
-                                    <img class="w-10 h-10 rounded-lg" src="build/images/cover-3.jpg"
-                                        alt="Dermaga Kayu Bangkoa Dashboard" />
-                                </div>
-                                <div class="flex-1 max-w-xs overflow-hidden">
-                                    <h4 class="text-sm font-semibold text-gray-600 dark:text-gray-50">Dermaga Kayu
-                                        Bangkoa Dashboard</h4>
-                                    <p class="text-sm font-normal text-gray-400 truncate dark:text-blue-300">
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                    </p>
-                                    <span class="text-sm font-normal text-gray-400 dark:text-blue-400"> Updated 3h
-                                        ago. </span>
-                                </div>
-                            </a>
-                        </template>
-                    </div>
-                </div>
-            </section>
         </div>
+    </nav>
+
+    <!--Container-->
+    <div class="container w-full mx-auto pt-20">
+
+        <div class="w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
+
+            <!--Console Content-->
+
+            <div class="flex flex-wrap">
+                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                    <!--Metric Card-->
+                    <div class="bg-gray-900 border border-gray-800 rounded shadow p-2">
+                        <div class="flex flex-row items-center">
+                            <div class="flex-shrink pr-4">
+                                <div class="rounded p-3 bg-green-600"><i
+                                        class="fa fa-wallet fa-2x fa-fw fa-inverse"></i></div>
+                            </div>
+                            <div class="flex-1 text-right md:text-center">
+                                <h5 class="font-bold uppercase text-gray-400">Total Revenue</h5>
+                                <h3 class="font-bold text-3xl text-gray-600">$3249 <span class="text-green-500"><i
+                                            class="fas fa-caret-up"></i></span></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Metric Card-->
+                </div>
+                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                    <!--Metric Card-->
+                    <div class="bg-gray-900 border border-gray-800 rounded shadow p-2">
+                        <div class="flex flex-row items-center">
+                            <div class="flex-shrink pr-4">
+                                <div class="rounded p-3 bg-pink-600"><i
+                                        class="fas fa-users fa-2x fa-fw fa-inverse"></i></div>
+                            </div>
+                            <div class="flex-1 text-right md:text-center">
+                                <h5 class="font-bold uppercase text-gray-400">Total Users</h5>
+                                <h3 class="font-bold text-3xl text-gray-600">249 <span class="text-pink-500"><i
+                                            class="fas fa-exchange-alt"></i></span></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Metric Card-->
+                </div>
+                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                    <!--Metric Card-->
+                    <div class="bg-gray-900 border border-gray-800 rounded shadow p-2">
+                        <div class="flex flex-row items-center">
+                            <div class="flex-shrink pr-4">
+                                <div class="rounded p-3 bg-yellow-600"><i
+                                        class="fas fa-user-plus fa-2x fa-fw fa-inverse"></i></div>
+                            </div>
+                            <div class="flex-1 text-right md:text-center">
+                                <h5 class="font-bold uppercase text-gray-400">New Users</h5>
+                                <h3 class="font-bold text-3xl text-gray-600">2 <span class="text-yellow-600"><i
+                                            class="fas fa-caret-up"></i></span></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Metric Card-->
+                </div>
+                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                    <!--Metric Card-->
+                    <div class="bg-gray-900 border border-gray-800 rounded shadow p-2">
+                        <div class="flex flex-row items-center">
+                            <div class="flex-shrink pr-4">
+                                <div class="rounded p-3 bg-blue-600"><i
+                                        class="fas fa-server fa-2x fa-fw fa-inverse"></i></div>
+                            </div>
+                            <div class="flex-1 text-right md:text-center">
+                                <h5 class="font-bold uppercase text-gray-400">Server Uptime</h5>
+                                <h3 class="font-bold text-3xl text-gray-600">152 days</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Metric Card-->
+                </div>
+                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                    <!--Metric Card-->
+                    <div class="bg-gray-900 border border-gray-800 rounded shadow p-2">
+                        <div class="flex flex-row items-center">
+                            <div class="flex-shrink pr-4">
+                                <div class="rounded p-3 bg-indigo-600"><i
+                                        class="fas fa-tasks fa-2x fa-fw fa-inverse"></i></div>
+                            </div>
+                            <div class="flex-1 text-right md:text-center">
+                                <h5 class="font-bold uppercase text-gray-400">To Do List</h5>
+                                <h3 class="font-bold text-3xl text-gray-600">7 tasks</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Metric Card-->
+                </div>
+                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                    <!--Metric Card-->
+                    <div class="bg-gray-900 border border-gray-800 rounded shadow p-2">
+                        <div class="flex flex-row items-center">
+                            <div class="flex-shrink pr-4">
+                                <div class="rounded p-3 bg-red-600"><i
+                                        class="fas fa-inbox fa-2x fa-fw fa-inverse"></i></div>
+                            </div>
+                            <div class="flex-1 text-right md:text-center">
+                                <h5 class="font-bold uppercase text-gray-400">Issues</h5>
+                                <h3 class="font-bold text-3xl text-gray-600">3 <span class="text-red-500"><i
+                                            class="fas fa-caret-up"></i></span></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Metric Card-->
+                </div>
+            </div>
+
+            <!--Divider-->
+            <hr class="border-b-2 border-gray-600 my-8 mx-4">
+
+            <div class="flex flex-row flex-wrap flex-grow mt-2">
+
+                <div class="w-full md:w-1/2 p-3">
+                    <!--Graph Card-->
+                    <div class="bg-gray-900 border border-gray-800 rounded shadow">
+                        <div class="border-b border-gray-800 p-3">
+                            <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                        </div>
+                        <div class="p-5">
+                            <canvas id="chartjs-7" class="chartjs" width="undefined" height="undefined"></canvas>
+                            <script>
+                                new Chart(document.getElementById("chartjs-7"), {
+                                    "type": "bar",
+                                    "data": {
+                                        "labels": ["January", "February", "March", "April"],
+                                        "datasets": [{
+                                            "label": "Page Impressions",
+                                            "data": [10, 20, 30, 40],
+                                            "borderColor": "rgb(255, 99, 132)",
+                                            "backgroundColor": "rgba(255, 99, 132, 0.2)"
+                                        }, {
+                                            "label": "Adsense Clicks",
+                                            "data": [5, 15, 10, 30],
+                                            "type": "line",
+                                            "fill": false,
+                                            "borderColor": "rgb(54, 162, 235)"
+                                        }]
+                                    },
+                                    "options": {
+                                        "scales": {
+                                            "yAxes": [{
+                                                "ticks": {
+                                                    "beginAtZero": true
+                                                }
+                                            }]
+                                        }
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <!--/Graph Card-->
+                </div>
+
+                <div class="w-full md:w-1/2 p-3">
+                    <!--Graph Card-->
+                    <div class="bg-gray-900 border border-gray-800 rounded shadow">
+                        <div class="border-b border-gray-800 p-3">
+                            <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                        </div>
+                        <div class="p-5">
+                            <canvas id="chartjs-0" class="chartjs" width="undefined" height="undefined"></canvas>
+                            <script>
+                                new Chart(document.getElementById("chartjs-0"), {
+                                    "type": "line",
+                                    "data": {
+                                        "labels": ["January", "February", "March", "April", "May", "June", "July"],
+                                        "datasets": [{
+                                            "label": "Views",
+                                            "data": [65, 59, 80, 81, 56, 55, 40],
+                                            "fill": false,
+                                            "borderColor": "rgb(75, 192, 192)",
+                                            "lineTension": 0.1
+                                        }]
+                                    },
+                                    "options": {}
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <!--/Graph Card-->
+                </div>
+
+                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                    <!--Graph Card-->
+                    <div class="bg-gray-900 border border-gray-800 rounded shadow">
+                        <div class="border-b border-gray-800 p-3">
+                            <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                        </div>
+                        <div class="p-5">
+                            <canvas id="chartjs-1" class="chartjs" width="undefined" height="undefined"></canvas>
+                            <script>
+                                new Chart(document.getElementById("chartjs-1"), {
+                                    "type": "bar",
+                                    "data": {
+                                        "labels": ["January", "February", "March", "April", "May", "June", "July"],
+                                        "datasets": [{
+                                            "label": "Likes",
+                                            "data": [65, 59, 80, 81, 56, 55, 40],
+                                            "fill": false,
+                                            "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)",
+                                                "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)",
+                                                "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"
+                                            ],
+                                            "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)",
+                                                "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)",
+                                                "rgb(201, 203, 207)"
+                                            ],
+                                            "borderWidth": 1
+                                        }]
+                                    },
+                                    "options": {
+                                        "scales": {
+                                            "yAxes": [{
+                                                "ticks": {
+                                                    "beginAtZero": true
+                                                }
+                                            }]
+                                        }
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <!--/Graph Card-->
+                </div>
+
+                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                    <!--Graph Card-->
+                    <div class="bg-gray-900 border border-gray-800 rounded shadow">
+                        <div class="border-b border-gray-800 p-3">
+                            <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                        </div>
+                        <div class="p-5"><canvas id="chartjs-4" class="chartjs" width="undefined"
+                                height="undefined"></canvas>
+                            <script>
+                                new Chart(document.getElementById("chartjs-4"), {
+                                    "type": "doughnut",
+                                    "data": {
+                                        "labels": ["P1", "P2", "P3"],
+                                        "datasets": [{
+                                            "label": "Issues",
+                                            "data": [300, 50, 100],
+                                            "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
+                                        }]
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <!--/Graph Card-->
+                </div>
+
+                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                    <!--Template Card-->
+                    <div class="bg-gray-900 border border-gray-800 rounded shadow">
+                        <div class="border-b border-gray-800 p-3">
+                            <h5 class="font-bold uppercase text-gray-600">Template</h5>
+                        </div>
+                        <div class="p-5">
+
+                        </div>
+                    </div>
+                    <!--/Template Card-->
+                </div>
+
+                <div class="w-full p-3">
+                    <!--Table Card-->
+                    <div class="bg-gray-900 border border-gray-800 rounded shadow">
+                        <div class="border-b border-gray-800 p-3">
+                            <h5 class="font-bold uppercase text-gray-600">Table</h5>
+                        </div>
+                        <div class="p-5">
+                            <table class="w-full p-5 text-gray-700">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left text-gray-600">Name</th>
+                                        <th class="text-left text-gray-600">Side</th>
+                                        <th class="text-left text-gray-600">Role</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>Obi Wan Kenobi</td>
+                                        <td>Light</td>
+                                        <td>Jedi</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Greedo</td>
+                                        <td>South</td>
+                                        <td>Scumbag</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Darth Vader</td>
+                                        <td>Dark</td>
+                                        <td>Sith</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <p class="py-2"><a href="#" class="text-white">See More issues...</a></p>
+
+                        </div>
+                    </div>
+                    <!--/table Card-->
+                </div>
+
+
+            </div>
+
+            <!--/ Console Content-->
+
+        </div>
+
+
     </div>
+    <!--/container-->
+
+    <footer class="bg-gray-900 border-t border-gray-400 shadow">
+        <div class="container max-w-md mx-auto flex py-8">
+
+            <div class="w-full mx-auto flex flex-wrap">
+                <div class="flex w-full md:w-1/2 ">
+                    <div class="px-8">
+                        <h3 class="font-bold font-bold text-gray-100">About</h3>
+                        <p class="py-4 text-gray-600 text-sm">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel mi ut felis tempus
+                            commodo nec id erat. Suspendisse consectetur dapibus velit ut lacinia.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex w-full md:w-1/2">
+                    <div class="px-8">
+                        <h3 class="font-bold font-bold text-gray-100">Social</h3>
+                        <ul class="list-reset items-center text-sm pt-3">
+                            <li>
+                                <a class="inline-block text-gray-600 no-underline hover:text-gray-100 hover:text-underline py-1"
+                                    href="#">Add social link</a>
+                            </li>
+                            <li>
+                                <a class="inline-block text-gray-600 no-underline hover:text-gray-100 hover:text-underline py-1"
+                                    href="#">Add social link</a>
+                            </li>
+                            <li>
+                                <a class="inline-block text-gray-600 no-underline hover:text-gray-100 hover:text-underline py-1"
+                                    href="#">Add social link</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
 
-    <!-- end wrapper -->
-    @stack('modals')
 
-    @livewireScripts
-    <!-- All javascript code in this project for now is just for demo DON'T RELY ON IT  -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
-    <script src="{{ asset('js/script.js') }}"></script>
+        </div>
+    </footer>
+
     <script>
-        const setup = () => {
-            const getTheme = () => {
-                if (window.localStorage.getItem('dark')) {
-                    return JSON.parse(window.localStorage.getItem('dark'))
-                }
+        /*Toggle dropdown list*/
+        /*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
 
-                return !!window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-            }
+        var userMenuDiv = document.getElementById("userMenu");
+        var userMenu = document.getElementById("userButton");
 
-            const setTheme = (value) => {
-                window.localStorage.setItem('dark', value)
-            }
+        var navMenuDiv = document.getElementById("nav-content");
+        var navMenu = document.getElementById("nav-toggle");
 
-            const getColor = () => {
-                if (window.localStorage.getItem('color')) {
-                    return window.localStorage.getItem('color')
-                }
-                return 'cyan'
-            }
+        document.onclick = check;
 
-            const setColors = (color) => {
-                const root = document.documentElement
-                root.style.setProperty('--color-primary', `var(--color-${color})`)
-                root.style.setProperty('--color-primary-50', `var(--color-${color}-50)`)
-                root.style.setProperty('--color-primary-100', `var(--color-${color}-100)`)
-                root.style.setProperty('--color-primary-light', `var(--color-${color}-light)`)
-                root.style.setProperty('--color-blue-300', `var(--color-${color}-lighter)`)
-                root.style.setProperty('--color-blue-800', `var(--color-${color}-dark)`)
-                root.style.setProperty('--color-blue-800er', `var(--color-${color}-darker)`)
-                this.selectedColor = color
-                window.localStorage.setItem('color', color)
-                //
-            }
+        function check(e) {
+            var target = (e && e.target) || (event && event.srcElement);
 
-            const updateBarChart = (on) => {
-                const data = {
-                    data: randomData(),
-                    backgroundColor: 'rgb(207, 250, 254)',
-                }
-                if (on) {
-                    barChart.data.datasets.push(data)
-                    barChart.update()
+            //User Menu
+            if (!checkParent(target, userMenuDiv)) {
+                // click NOT on the menu
+                if (checkParent(target, userMenu)) {
+                    // click on the link
+                    if (userMenuDiv.classList.contains("invisible")) {
+                        userMenuDiv.classList.remove("invisible");
+                    } else {
+                        userMenuDiv.classList.add("invisible");
+                    }
                 } else {
-                    barChart.data.datasets.splice(1)
-                    barChart.update()
+                    // click both outside link and outside menu, hide menu
+                    userMenuDiv.classList.add("invisible");
                 }
             }
 
-            const updateDoughnutChart = (on) => {
-                const data = random()
-                const color = 'rgb(207, 250, 254)'
-                if (on) {
-                    doughnutChart.data.labels.unshift('Seb')
-                    doughnutChart.data.datasets[0].data.unshift(data)
-                    doughnutChart.data.datasets[0].backgroundColor.unshift(color)
-                    doughnutChart.update()
+            //Nav Menu
+            if (!checkParent(target, navMenuDiv)) {
+                // click NOT on the menu
+                if (checkParent(target, navMenu)) {
+                    // click on the link
+                    if (navMenuDiv.classList.contains("hidden")) {
+                        navMenuDiv.classList.remove("hidden");
+                    } else {
+                        navMenuDiv.classList.add("hidden");
+                    }
                 } else {
-                    doughnutChart.data.labels.splice(0, 1)
-                    doughnutChart.data.datasets[0].data.splice(0, 1)
-                    doughnutChart.data.datasets[0].backgroundColor.splice(0, 1)
-                    doughnutChart.update()
+                    // click both outside link and outside menu, hide menu
+                    navMenuDiv.classList.add("hidden");
                 }
             }
 
-            const updateLineChart = () => {
-                lineChart.data.datasets[0].data.reverse()
-                lineChart.update()
-            }
+        }
 
-            return {
-                loading: true,
-                isDark: getTheme(),
-                toggleTheme() {
-                    this.isDark = !this.isDark
-                    setTheme(this.isDark)
-                },
-                setLightTheme() {
-                    this.isDark = false
-                    setTheme(this.isDark)
-                },
-                setDarkTheme() {
-                    this.isDark = true
-                    setTheme(this.isDark)
-                },
-                color: getColor(),
-                selectedColor: 'cyan',
-                setColors,
-                toggleSidbarMenu() {
-                    this.isSidebarOpen = !this.isSidebarOpen
-                },
-                isSettingsPanelOpen: false,
-                openSettingsPanel() {
-                    this.isSettingsPanelOpen = true
-                    this.$nextTick(() => {
-                        this.$refs.settingsPanel.focus()
-                    })
-                },
-                isNotificationsPanelOpen: false,
-                openNotificationsPanel() {
-                    this.isNotificationsPanelOpen = true
-                    this.$nextTick(() => {
-                        this.$refs.notificationsPanel.focus()
-                    })
-                },
-                isSearchPanelOpen: false,
-                openSearchPanel() {
-                    this.isSearchPanelOpen = true
-                    this.$nextTick(() => {
-                        this.$refs.searchInput.focus()
-                    })
-                },
-                isMobileSubMenuOpen: false,
-                openMobileSubMenu() {
-                    this.isMobileSubMenuOpen = true
-                    this.$nextTick(() => {
-                        this.$refs.mobileSubMenu.focus()
-                    })
-                },
-                isMobileMainMenuOpen: false,
-                openMobileMainMenu() {
-                    this.isMobileMainMenuOpen = true
-                    this.$nextTick(() => {
-                        this.$refs.mobileMainMenu.focus()
-                    })
-                },
-                updateBarChart,
-                updateDoughnutChart,
-                updateLineChart,
+        function checkParent(t, elm) {
+            while (t.parentNode) {
+                if (t == elm) {
+                    return true;
+                }
+                t = t.parentNode;
             }
+            return false;
         }
     </script>
+
 </body>
 
 </html>
