@@ -43,7 +43,7 @@
                         <input
                             class="w-full px-4 py-2 border rounded-md dark:bg-darker dark:border-gray-700 focus:outline-none focus:ring focus:ring-blue-500-100 dark:focus:ring-blue-500-darker"
                             type="password" name="password" placeholder="Password" required />
-                        <div class="flex items-center justify-between">
+                        {{-- <div class="flex items-center justify-between">
                             <!-- Remember me toggle -->
                             <label class="flex items-center">
                                 <div class="relative inline-flex items-center">
@@ -56,7 +56,7 @@
 
                             <a href="forgot-password.html" class="text-sm text-blue-600 hover:underline">Forgot
                                 Password?</a>
-                        </div>
+                        </div> --}}
                         <div>
                             <button type="submit"
                                 class="w-full px-4 py-2 font-medium text-center text-white transition-colors duration-200 rounded-md bg-blue-500 hover:bg-blue-500-dark focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 dark:focus:ring-offset-darker">

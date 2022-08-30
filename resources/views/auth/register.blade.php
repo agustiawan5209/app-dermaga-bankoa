@@ -51,23 +51,22 @@
                         <input
                             class="w-full px-4 py-2 border rounded-md dark:bg-gray-800 dark:border-gray-700 focus:outline-none focus:ring focus:ring-blue-400 dark:focus:ring-blue-900"
                             type="password" name="password_confirmation" placeholder="Confirm Password" required />
-                        <div class="flex items-center justify-between">
+                        {{-- <div class="flex items-center justify-between">
                             <!-- Remember me toggle -->
                             <label class="flex items-center">
                                 <div class="relative inline-flex items-center">
                                     <input type="checkbox" name="accept_terms"
                                         class="w-10 h-4 transition bg-gray-200 border-none rounded-full shadow-inner outline-none appearance-none toggle checked:bg-blue-600 disabled:bg-gray-200 focus:outline-none" />
-                                    {{-- <span
-                      class="absolute top-0 left-0 w-4 h-4 transition-all transform scale-150 bg-white rounded-full shadow-sm"
-                    ></span> --}}
+                                    <span
+                                        class="absolute top-0 left-0 w-4 h-4 transition-all transform scale-150 bg-white rounded-full shadow-sm"></span>
                                 </div>
-                                <span class="ml-3 text-sm font-normal text-gray-500 dark:text-gray-400">
+                                {{-- <span class="ml-3 text-sm font-normal text-gray-500 dark:text-gray-400">
                                     I accept the
                                     <a href="#" class="text-sm text-blue-600 hover:underline">Terms and
                                         Conditions</a>
-                                </span>
+                                </span> --}}
                             </label>
-                        </div>
+                        </div> --}}
                         <div>
                             <button type="submit"
                                 class="w-full px-4 py-2 font-medium text-center text-white transition-colors duration-200 rounded-md bg-blue-600 hover:bg-blue-600-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1 dark:focus:ring-offset-darker">
