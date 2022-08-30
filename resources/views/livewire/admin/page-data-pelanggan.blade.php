@@ -4,7 +4,7 @@
             <tr>
                 <th>No</th>
                 <th>Nama</th>
-                <th>password</th>
+                <th>email</th>
             </tr>
         </x-slot>
 
@@ -13,7 +13,7 @@
              <tr>
                 <td>{{$loop->iteration}}</td>
                 <td>{{$item->name}}</td>
-                <td>{{$item->password}}</td>
+                <td>{{$item->email}}</td>
              </tr>
            @endforeach
         </x-slot>
