@@ -107,7 +107,7 @@
     <!--Divider-->
     <hr class="border-b-2 border-gray-600 my-8 mx-4">
 
-    {{-- <div class="flex flex-row flex-wrap flex-grow mt-2">
+    <div class="flex flex-row flex-wrap flex-grow mt-2">
 
         <div class="w-full md:w-1/2 p-3">
             <!--Graph Card-->
@@ -306,7 +306,7 @@
         </div>
 
 
-    </div> --}}
+    </div>
 
     <!--/ Console Content-->
 </section>

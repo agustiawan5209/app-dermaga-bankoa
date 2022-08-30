@@ -2,26 +2,26 @@
 id="nav-content">
 <ul class="list-reset lg:flex flex-1 items-center px-4 md:px-0">
     <li class="mr-6 my-2 md:my-0">
-        <a href="#"
+        <a href="{{route('Admin.Dashboard.Pemilik')}}"
             class="block py-1 md:py-3 pl-1 align-middle text-blue-400 no-underline hover:text-gray-100 border-b-2 border-blue-400 hover:border-blue-400">
             <i class="fas fa-home fa-fw mr-3 text-blue-400"></i><span
                 class="pb-1 md:pb-0 text-sm">Home</span>
         </a>
     </li>
     <li class="mr-6 my-2 md:my-0">
-        <a href="#"
+        <a href="{{route('Admin.Data-Pelanggan')}}"
             class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-100 border-b-2 border-gray-900  hover:border-pink-400">
             <i class="fas fa-tasks fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Data Pelanggan</span>
         </a>
     </li>
     <li class="mr-6 my-2 md:my-0">
-        <a href="#"
+        <a href="{{route('Admin.Data-Tr-Tiket')}}"
             class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-100 border-b-2 border-gray-900  hover:border-purple-400">
             <i class="fa fa-envelope fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Pesanan Tiket</span>
         </a>
     </li>
     <li class="mr-6 my-2 md:my-0">
-        <a href="#"
+        <a href="{{route('Admin.Data-Ulasan')}}"
             class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-100 border-b-2 border-gray-900  hover:border-green-400">
             <i class="fas fa-chart-area fa-fw mr-3"></i><span
                 class="pb-1 md:pb-0 text-sm">Ulasan</span>
