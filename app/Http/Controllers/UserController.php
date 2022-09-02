@@ -20,6 +20,10 @@ class UserController extends Controller
         }
         if($user_id == 3){
             return redirect()->route('Customer.Dashboard.Customer');
+        }else{
+            auth()->logout();
+            abort(401);
         }
+
     }
 }

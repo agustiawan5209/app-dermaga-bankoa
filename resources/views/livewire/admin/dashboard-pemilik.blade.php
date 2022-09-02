@@ -4,7 +4,7 @@
     <div class="flex flex-wrap">
         <div class="w-full md:w-1/2 xl:w-1/3 p-3">
             <!--Metric Card-->
-            <div class="bg-gray-900 border border-gray-800 rounded shadow p-2">
+            <div class="bg-gray-200 border border-gray-800 rounded shadow p-2">
                 <div class="flex flex-row items-center">
                     <div class="flex-shrink pr-4">
                         <div class="rounded p-3 bg-green-600"><i
@@ -21,7 +21,7 @@
         </div>
         <div class="w-full md:w-1/2 xl:w-1/3 p-3">
             <!--Metric Card-->
-            <div class="bg-gray-900 border border-gray-800 rounded shadow p-2">
+            <div class="bg-gray-200 border border-gray-800 rounded shadow p-2">
                 <div class="flex flex-row items-center">
                     <div class="flex-shrink pr-4">
                         <div class="rounded p-3 bg-pink-600"><i
@@ -38,7 +38,7 @@
         </div>
         <div class="w-full md:w-1/2 xl:w-1/3 p-3">
             <!--Metric Card-->
-            <div class="bg-gray-900 border border-gray-800 rounded shadow p-2">
+            <div class="bg-gray-200 border border-gray-800 rounded shadow p-2">
                 <div class="flex flex-row items-center">
                     <div class="flex-shrink pr-4">
                         <div class="rounded p-3 bg-yellow-600"><i
@@ -55,7 +55,7 @@
         </div>
         <div class="w-full md:w-1/2 xl:w-1/3 p-3">
             <!--Metric Card-->
-            <div class="bg-gray-900 border border-gray-800 rounded shadow p-2">
+            <div class="bg-gray-200 border border-gray-800 rounded shadow p-2">
                 <div class="flex flex-row items-center">
                     <div class="flex-shrink pr-4">
                         <div class="rounded p-3 bg-blue-600"><i
@@ -71,7 +71,7 @@
         </div>
         <div class="w-full md:w-1/2 xl:w-1/3 p-3">
             <!--Metric Card-->
-            <div class="bg-gray-900 border border-gray-800 rounded shadow p-2">
+            <div class="bg-gray-200 border border-gray-800 rounded shadow p-2">
                 <div class="flex flex-row items-center">
                     <div class="flex-shrink pr-4">
                         <div class="rounded p-3 bg-indigo-600"><i
@@ -87,7 +87,7 @@
         </div>
         <div class="w-full md:w-1/2 xl:w-1/3 p-3">
             <!--Metric Card-->
-            <div class="bg-gray-900 border border-gray-800 rounded shadow p-2">
+            <div class="bg-gray-200 border border-gray-800 rounded shadow p-2">
                 <div class="flex flex-row items-center">
                     <div class="flex-shrink pr-4">
                         <div class="rounded p-3 bg-red-600"><i
@@ -111,7 +111,7 @@
 
         <div class="w-full md:w-1/2 p-3">
             <!--Graph Card-->
-            <div class="bg-gray-900 border border-gray-800 rounded shadow">
+            <div class="bg-gray-200 border border-gray-800 rounded shadow">
                 <div class="border-b border-gray-800 p-3">
                     <h5 class="font-bold uppercase text-gray-600">Graph</h5>
                 </div>
@@ -153,7 +153,7 @@
 
         <div class="w-full md:w-1/2 p-3">
             <!--Graph Card-->
-            <div class="bg-gray-900 border border-gray-800 rounded shadow">
+            <div class="bg-gray-200 border border-gray-800 rounded shadow">
                 <div class="border-b border-gray-800 p-3">
                     <h5 class="font-bold uppercase text-gray-600">Graph</h5>
                 </div>
@@ -182,7 +182,7 @@
 
         <div class="w-full md:w-1/2 xl:w-1/3 p-3">
             <!--Graph Card-->
-            <div class="bg-gray-900 border border-gray-800 rounded shadow">
+            <div class="bg-gray-200 border border-gray-800 rounded shadow">
                 <div class="border-b border-gray-800 p-3">
                     <h5 class="font-bold uppercase text-gray-600">Graph</h5>
                 </div>
@@ -226,7 +226,7 @@
 
         <div class="w-full md:w-1/2 xl:w-1/3 p-3">
             <!--Graph Card-->
-            <div class="bg-gray-900 border border-gray-800 rounded shadow">
+            <div class="bg-gray-200 border border-gray-800 rounded shadow">
                 <div class="border-b border-gray-800 p-3">
                     <h5 class="font-bold uppercase text-gray-600">Graph</h5>
                 </div>
@@ -252,7 +252,7 @@
 
         <div class="w-full md:w-1/2 xl:w-1/3 p-3">
             <!--Template Card-->
-            <div class="bg-gray-900 border border-gray-800 rounded shadow">
+            <div class="bg-gray-200 border border-gray-800 rounded shadow">
                 <div class="border-b border-gray-800 p-3">
                     <h5 class="font-bold uppercase text-gray-600">Template</h5>
                 </div>
@@ -265,7 +265,7 @@
 
         <div class="w-full p-3">
             <!--Table Card-->
-            <div class="bg-gray-900 border border-gray-800 rounded shadow">
+            <div class="bg-gray-200 border border-gray-800 rounded shadow">
                 <div class="border-b border-gray-800 p-3">
                     <h5 class="font-bold uppercase text-gray-600">Table</h5>
                 </div>

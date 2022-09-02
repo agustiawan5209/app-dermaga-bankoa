@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('destinasis', function (Blueprint $table) {
             $table->id();
             $table->string('lokasi');
-            $table->integer('harga');
             $table->timestamps();
         });
     }

@@ -26,16 +26,16 @@
 
 </head>
 
-<body class="bg-gray-700 font-sans leading-normal tracking-normal">
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
 
-    <nav id="header" class="bg-gray-900 fixed w-full z-10 top-0 shadow">
+    <nav id="header" class="bg-blue-300 fixed w-full z-10 top-0 shadow">
 
 
         <div class="w-full container mx-auto flex flex-wrap items-center mt-0 pt-3 pb-3 md:pb-0">
 
             <div class="w-1/2 pl-2 md:pl-0">
                 <a class="text-gray-100 text-base xl:text-xl no-underline hover:no-underline font-bold" href="#">
-                    <i class="fas fa-moon text-blue-400 pr-3"></i> {{Carbon\Carbon::now()->format('Y M d')}}
+                    <i class="fas fa-moon text-blue-400 pr-3"></i> {{ Carbon\Carbon::now()->format('Y M d') }}
                 </a>
             </div>
             <div class="w-1/2 pr-0">
@@ -43,8 +43,8 @@
 
                     <div class="relative text-sm text-gray-100">
                         <button id="userButton" class="flex items-center focus:outline-none mr-3">
-                            <img class="w-8 h-8 rounded-full mr-4" src="http://i.pravatar.cc/300" alt="Avatar of User">
-                            <span class="hidden md:inline-block text-gray-100">Hi, {{Auth::user()->name}}</span>
+                            <img class="w-8 h-8 rounded-full mr-4" src="{{Auth::user()->profile_photo_url}}" alt="Avatar of User">
+                            <span class="hidden md:inline-block text-gray-100">Hi, {{ Auth::user()->name }}</span>
                             <svg class="pl-2 h-2 fill-current text-gray-100" version="1.1"
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
@@ -55,7 +55,7 @@
                             </svg>
                         </button>
                         <div id="userMenu"
-                            class="bg-gray-900 rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible">
+                            class="bg-blue-300 rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible">
                             <ul class="list-reset">
                                 <li><a href="#"
                                         class="px-4 py-2 block text-gray-100 hover:bg-gray-800 no-underline hover:no-underline">My
@@ -88,7 +88,7 @@
             </div>
 
 
-         @include('navigation-menu')
+            @include('navigation-menu')
 
         </div>
     </nav>
@@ -98,7 +98,7 @@
 
         <div class="w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
 
-            {{$slot}}
+            {{ $slot }}
 
         </div>
 
@@ -106,7 +106,7 @@
     </div>
     <!--/container-->
 
-    <footer class="bg-gray-900 border-t border-gray-400 shadow">
+    <footer class="bg-blue-300 border-t border-gray-400 shadow">
         <div class="container max-w-md mx-auto flex py-8">
 
             <div class="w-full mx-auto flex flex-wrap">
