@@ -36,6 +36,13 @@ return [
             'throw' => false,
         ],
 
+        'upload' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public'),
+            'url' => env('APP_URL').'/upload',
+            'visibility' => 'upload',
+            'throw' => false,
+        ],
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
@@ -71,6 +78,7 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+        public_path('bukti') => storage_path('app/public'),
     ],
 
 ];
