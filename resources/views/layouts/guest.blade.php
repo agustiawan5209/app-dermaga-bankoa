@@ -62,7 +62,8 @@
         {{ $slot }}
     </main>
     @stack('modals')
-    @livewireScripts
+
+        @livewireScripts
     {{-- <footer class="py-12 leading-6 px-4 lg:px-8 fixed bottom-0">
         <div class="flex justify-between mx-auto mb-6 max-w-screen-xl lg:mb-8"><a href="#"
                 class="px-2 space-x-2 flex items-center gap-x-1 text-2xl font-bold text-primary">DERMAGA KAYU
