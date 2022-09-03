@@ -1,4 +1,4 @@
-<div>
+<div class="h-screen">
     <div class="container mx-auto w-full flex justify-center h-64 py-6 bg-white shadow-black shadow-sm">
         {{-- Pemesanan Tiket --}}
         <div class="w-full-h-full bg-white">
