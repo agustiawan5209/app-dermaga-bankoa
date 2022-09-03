@@ -15,7 +15,7 @@
         new WOW().init();
     </script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+    @livewireStyles
 </head>
 
 <body class="font-body antialiased text-[#000] bg-[#f5f5f5] dark:text-[#fff] dark:bg-[#64748b]">
@@ -61,6 +61,8 @@
     <main class="w-full-h-full py-3 my-2">
         {{ $slot }}
     </main>
+    @stack('modals')
+    @livewireScripts
     {{-- <footer class="py-12 leading-6 px-4 lg:px-8 fixed bottom-0">
         <div class="flex justify-between mx-auto mb-6 max-w-screen-xl lg:mb-8"><a href="#"
                 class="px-2 space-x-2 flex items-center gap-x-1 text-2xl font-bold text-primary">DERMAGA KAYU

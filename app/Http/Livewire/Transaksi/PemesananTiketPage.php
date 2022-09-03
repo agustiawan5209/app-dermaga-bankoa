@@ -10,7 +10,8 @@ use Livewire\Component;
 use App\Models\Pemberangkatan;
 use App\Models\TabelKapal;
 use Illuminate\Support\Facades\Auth;
-Use Alert;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class PemesananTiketPage extends Component
 {
