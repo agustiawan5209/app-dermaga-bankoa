@@ -59,11 +59,12 @@ class FormPesanTiket extends Component
         }
     }
     public $CekoutItem = false;
-    // public $pesan;
-    public  $kode_berangkat, $destinasi_id, $harga, $jam, $hari, $kapal_id;
+    public $BayarItem = false;
+    public  $kode_berangkat, $destinasi_id, $harga, $jam, $hari, $kapal_id, $itemID;
     public function pesanTiket($id, $jumlah = 0)
     {
         $pesan = Pemberangkatan::find($id);
+        $this->itemID = $pesan->id;
         $this->kode_berangkat = $pesan->kode_berangkat;
         $this->tgl_berangkat = $pesan->tgl_berangkat;
         $this->harga = $pesan->harga;
@@ -76,15 +77,15 @@ class FormPesanTiket extends Component
     public function SendPembayaran($id)
     {
         $berangkat = Pemberangkatan::find($id);
-        $token = '';
-        $codeAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $codeAlphabet .= 'abcdefghijklmnopqrstuvwxyz';
-        $codeAlphabet .= '0123456789';
-        $kode = str_split(str_shuffle($codeAlphabet), 10);
-        Session::put('TiketItem', [
-            'Item' => $berangkat,
-            'jumlah' => $this->jumlah,
-        ]);
-        $this->CekoutItem = false;
+        // $token = '';
+        // $codeAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        // $codeAlphabet .= 'abcdefghijklmnopqrstuvwxyz';
+        // $codeAlphabet .= '0123456789';
+        // $kode = str_split(str_shuffle($codeAlphabet), 10);
+        // Session::put('TiketItem', [
+        //     'Item' => $berangkat,
+        //     'jumlah' => $this->jumlah,
+        // ]);
+        $this->BayarItem = true;
     }
 }
