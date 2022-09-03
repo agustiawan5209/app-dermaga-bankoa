@@ -10,7 +10,7 @@ class MetodePembayaran extends Model
     use HasFactory;
     protected $table = 'metode_pembayarans';
     protected $fillable= [
-        'user_id','no_rek','bank'
+        'user_id','no_rek','bank','nama'
     ];
     public function user(){
         return $this->hasOne(User::class, 'id', 'user_id');
