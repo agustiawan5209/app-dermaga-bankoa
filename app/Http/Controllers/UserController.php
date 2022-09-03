@@ -7,11 +7,12 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public $app = [];
     public function __construct()
     {
         $this->middleware('auth');
     }
-    public function user()
+    public function user(array $guards = null)
     {
         $user_id = Auth::user()->role->id;
         // dd($user_id);
@@ -21,7 +22,7 @@ class UserController extends Controller
         if($user_id == 3){
             return redirect()->route('Customer.Dashboard.Customer');
         }else{
-            auth()->logout();
+            auth()->guard('web')->logout();
             abort(401);
         }
 

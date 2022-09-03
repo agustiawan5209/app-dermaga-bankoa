@@ -5,6 +5,7 @@ use App\Http\Controllers\TiketController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\Admin\DashboardPemilik;
 use App\Http\Livewire\Admin\PageDataPelanggan;
+use App\Http\Livewire\Admin\PageKapal;
 use App\Http\Livewire\Admin\PageTransaksiPesanan;
 use App\Http\Livewire\Admin\PageUlasan;
 use App\Http\Livewire\Customer\DashboardCustomer;
@@ -24,10 +25,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $destinasi = Destinasi::all();
-    return view('welcome', [
-        'destinasi'=> $destinasi,
-    ]);
+
+    return view('welcome');
 })->name('home');
 
 Route::group(['DermagaBangkoa'=> ['user']], function(){
@@ -47,11 +46,19 @@ Route::group(['middleware' => ['auth']], function () {
     // Akses Pemilik
     Route::group(['middleware' =>  'role:Admin', 'prefix' => 'Admin', 'as' => 'Admin.'], function(){
         Route::get('Dashboard', DashboardPemilik::class)->name('Dashboard.Pemilik');
-        Route::get('Pemesanan/Tiket', PemesananTiketPage::class)->name('Page.Pemesanan.Tiket');
+        Route::get('Pemesanan/Tiket', PageTransaksiPesanan::class)->name('Page.Pemesanan.Tiket');
         Route::get('Data/Pelanggan', PageDataPelanggan::class)->name('Data-Pelanggan');
-        Route::get('Data/Pesanan/Tiket', PageTransaksiPesanan::class)->name('Data-Tr-Tiket');
+        Route::get('Data/Pesanan/Tiket', PemesananTiketPage::class)->name('Data-Tr-Tiket');
         Route::get('Data/Ulasan', PageUlasan::class)->name('Data-Ulasan');
+        Route::get('Data/Kapal/{user_id}', PageKapal::class)->name('Data-Kapal');
     });
+    // Route::group(['middleware' =>  'role:Pemilik', 'prefix' => 'Pemilik', 'as' => 'Pemilik.'], function(){
+    //     Route::get('Dashboard', DashboardPemilik::class)->name('Dashboard.Pemilik');
+    //     Route::get('Pemesanan/Tiket', PemesananTiketPage::class)->name('Page.Pemesanan.Tiket');
+    //     Route::get('Data/Pelanggan', PageDataPelanggan::class)->name('Data-Pelanggan');
+    //     Route::get('Data/Pesanan/Tiket', PageTransaksiPesanan::class)->name('Data-Tr-Tiket');
+    //     Route::get('Data/Ulasan', PageUlasan::class)->name('Data-Ulasan');
+    // });
 
     // Akses Customer
     Route::group(['middleware' =>  'role:Customer', 'prefix' => 'Customer', 'as' => 'Customer.'], function(){

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('pemberangkatans', function (Blueprint $table) {
             $table->id();
             $table->string('kode_berangkat')->unique();
-            $table->foreignId('dekstinasi_id')->constrained('destinasis');
+            $table->foreignId('destinasi_id')->constrained('destinasis');
             $table->integer('harga');
             $table->date('tgl_berangkat');
             $table->string('jam');

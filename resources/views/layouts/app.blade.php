@@ -18,6 +18,9 @@
 
     {{-- <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css"> --}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
+    <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
+
     <!-- Styles -->
     @livewireStyles
 
@@ -28,7 +31,7 @@
 
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
 
-    <nav id="header" class="bg-blue-300 fixed w-full z-10 top-0 shadow">
+    <nav id="header" class=" bg-gradient-to-tr from-blue-500 to-blue-500 fixed w-full z-10 top-0 shadow">
 
 
         <div class="w-full container mx-auto flex flex-wrap items-center mt-0 pt-3 pb-3 md:pb-0">
@@ -55,7 +58,7 @@
                             </svg>
                         </button>
                         <div id="userMenu"
-                            class="bg-blue-300 rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible">
+                            class=" bg-gradient-to-tr from-blue-500 to-blue-500 rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible">
                             <ul class="list-reset">
                                 <li><a href="#"
                                         class="px-4 py-2 block text-gray-100 hover:bg-gray-800 no-underline hover:no-underline">My
@@ -99,14 +102,14 @@
         <div class="w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
 
             {{ $slot }}
-
         </div>
 
 
     </div>
     <!--/container-->
-
-    <footer class="bg-blue-300 border-t border-gray-400 shadow">
+    @stack('modal')
+    @livewireScripts
+    <footer class=" bg-gradient-to-tr from-blue-500 to-blue-500 border-t border-gray-400 shadow">
         <div class="container max-w-md mx-auto flex py-8">
 
             <div class="w-full mx-auto flex flex-wrap">
