@@ -7,6 +7,7 @@ use App\Models\Destinasi;
 use App\Models\Pemberangkatan;
 use App\Models\TabelKapal;
 use App\Models\Tiket;
+use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class FormPesanTiket extends Component
@@ -57,7 +58,22 @@ class FormPesanTiket extends Component
             $this->pemberangkatan = $berangkat;
         }
     }
+    public $CekoutItem = false;
+    // public $pesan;
+    public  $kode_berangkat, $destinasi_id, $harga, $jam, $hari, $kapal_id;
     public function pesanTiket($id, $jumlah = 0)
+    {
+        $pesan = Pemberangkatan::find($id);
+        $this->kode_berangkat = $pesan->kode_berangkat;
+        $this->tgl_berangkat = $pesan->tgl_berangkat;
+        $this->harga = $pesan->harga;
+        $this->jam = $pesan->jam;
+        $this->destinasi_id = $pesan->destinasi->lokasi;
+        $this->kapal_id = $pesan->kapal_id;
+        // dd($this->itemBerangkat->id);
+        $this->CekoutItem = true;
+    }
+    public function SendPembayaran($id)
     {
         $berangkat = Pemberangkatan::find($id);
         $token = '';
@@ -65,14 +81,10 @@ class FormPesanTiket extends Component
         $codeAlphabet .= 'abcdefghijklmnopqrstuvwxyz';
         $codeAlphabet .= '0123456789';
         $kode = str_split(str_shuffle($codeAlphabet), 10);
-        //    dd($kode[0]);
-        for ($i = 0; $i < $jumlah; $i++) {
-            Tiket::create([
-                'kode_berangkat' => $berangkat->id,
-                'kode_tiket' => $kode[$i],
-                'harga'=> $berangkat->harga,
-            ]);
-        }
-
+        Session::put('TiketItem', [
+            'Item' => $berangkat,
+            'jumlah' => $this->jumlah,
+        ]);
+        $this->CekoutItem = false;
     }
 }
