@@ -29,6 +29,8 @@ class PageKapal extends Component
     public function addModal()
     {
         $this->itemAdd = true;
+        // Alert::info('berhasil', 'ya');
+        // dd('a');
     }
     public function editModal($id)
     {

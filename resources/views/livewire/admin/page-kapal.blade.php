@@ -1,6 +1,7 @@
 <div>
     @include('sweetalert::alert')
-    <x-jet-button type='button' wire:click='addModal'>Tambah Kapal</x-jet-button>
+
+    <x-jet-button type='button' onclick="this.preventDefault" wire:click='addModal'>Tambah Kapal</x-jet-button>
     @if ($itemAdd)
         <form action="" class="my-10">
             <div class="flex flex-col space-y-5">

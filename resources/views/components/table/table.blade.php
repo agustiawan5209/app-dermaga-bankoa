@@ -119,12 +119,12 @@
     <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
 
 
-        <table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+        <table class="datatable" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
             <thead>
-                {{$th}}
+                {{ $th }}
             </thead>
             <tbody>
-                {{$td}}
+                {{ $td }}
             </tbody>
 
         </table>
@@ -138,21 +138,7 @@
 
 
     <!-- jQuery -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-    <!--Datatables -->
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    <script>
-        $(document).ready(function() {
-
-            var table = $('#example').DataTable({
-                    responsive: true,
-                })
-                .columns.adjust()
-                .responsive.recalc();
-        });
-    </script>
 
 </body>
 

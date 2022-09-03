@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Destinasi;
 use App\Models\Pemberangkatan;
+use App\Models\StatusMuatan;
 use App\Models\TabelKapal;
 use App\Models\Tiket;
 use Illuminate\Support\Facades\Session;
@@ -65,7 +66,7 @@ class FormPesanTiket extends Component
     }
     public $CekoutItem = false;
     public $BayarItem = false;
-    public  $kode_berangkat, $destinasi_id, $harga, $jam, $hari, $kapal_id, $itemID;
+    public $kode_berangkat, $destinasi_id, $harga, $jam, $hari, $kapal_id, $itemID;
     /**
      * pesanTiket
      *  Fungsi Menampilkan Halamb Cekout
@@ -104,17 +105,27 @@ class FormPesanTiket extends Component
         //     'Item' => $berangkat,
         //     'jumlah' => $this->jumlah,
         // ]);
-        for ($i=0; $i < $this->jumlah; $i++) {
+
+        $statusMuatan = StatusMuatan::where('kode_berangkat', '=', $berangkat->kode_berangkat)->first();
+        if ($statusMuatan->batas_muatan <= $statusMuatan->jumlah_tiket) {
+            for ($i = 0; $i < $this->jumlah; $i++) {
                 Tiket::create([
-                    'kode_berangkat'=> $berangkat->kode_berangkat,
-                    'kode_tiket'=> $kode[$i],
-                    'harga'=> $berangkat->harga,
+                    'kode_berangkat' => $berangkat->kode_berangkat,
+                    'kode_tiket' => $kode[$i],
+                    'harga' => $berangkat->harga,
                 ]);
+            }
+            $statusMuatan->update([
+                'jumlah_tiket' => $this->jumlah + $statusMuatan->jumlah_tiket,
+            ]);
+        } else {
+            Alert::warning('Info', 'Maaf Jumlah Muatan Yang Tersedia Kurang');
         }
         // $this->BayarItem = true;
         $this->clearAll();
     }
-    public function clearAll(){
+    public function clearAll()
+    {
         $this->BayarItem = false;
         $this->Cari = false;
         $this->CekoutItem = false;
@@ -126,6 +137,5 @@ class FormPesanTiket extends Component
         $this->jumlah = '';
         $this->jam = '';
         $this->destinasi_id = '';
-
     }
 }

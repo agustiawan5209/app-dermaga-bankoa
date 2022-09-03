@@ -8,6 +8,7 @@ use App\Models\Destinasi;
 use Livewire\Component;
 // use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Pemberangkatan;
+use App\Models\StatusMuatan;
 use App\Models\TabelKapal;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -15,7 +16,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class PemesananTiketPage extends Component
 {
-    public $pemberangkatan, $kode_berangkat, $destinasi_id, $harga, $tgl_berangkat, $jam, $hari, $kapal_id;
+    public $pemberangkatan, $kode_berangkat, $destinasi_id, $harga, $tgl_berangkat, $jam, $hari, $kapal_id, $batas_muatan;
+    public $itemID;
     public function render()
     {
         $berangkat = Pemberangkatan::all();
@@ -35,6 +37,7 @@ class PemesananTiketPage extends Component
     public function editKeberankatan($id)
     {
         $berangkat = Pemberangkatan::find($id);
+        $this->itemID = $berangkat->id;
         $this->kode_berangkat = $berangkat->kode_berangkat;
         $this->destinasi_id = $berangkat->destinasi_id;
         $this->harga = $berangkat->harga;
@@ -57,6 +60,13 @@ class PemesananTiketPage extends Component
         $berangkat->jam = $this->jam;
         $berangkat->kapal_id = $this->kapal_id;
         $berangkat->save();
+        $kapal = TabelKapal::find($this->kapal_id);
+        $statusMuatan = StatusMuatan::create([
+            'kapal_id'=> $this->kapal_id,
+            'batas_muatan'=> $kapal->jumlah_muatan,
+            'jumlah_tiket'=> '0',
+            'kode_berangkat'=> $this->kode_berangkat,
+        ]);
         $this->itemTambahBerangkat = false;
         Alert::success('Info', 'Berhasil');
     }
