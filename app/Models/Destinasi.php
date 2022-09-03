@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Destinasi extends Model
 {
     protected $table = 'destinasis';
-    protected $fillable = ['lokasi', 'harga'];
-    protected $hidden = 'harga';
+    protected $fillable = ['lokasi'];
+    // protected $hidden = 'harga';
     use HasFactory;
+
+    public function pemberangkatan(){
+        return $this->belongsTo(Pemberangkatan::class);
+    }
 }
