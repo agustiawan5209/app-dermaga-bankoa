@@ -7,9 +7,9 @@
                 DERMAGA KAYU BANGKOA</h2>
         </div>
     </div>
-    <div class="container mx-auto w-full flex justify-center h-64 py-6 bg-white shadow-black shadow-sm">
+    <div class="container mx-auto w-full flex justify-center py-6 bg-white shadow-black shadow-sm">
         {{-- Pemesanan Tiket --}}
-        <div class="w-full-h-full bg-white">
+        <div class="w-full h-full bg-white">
             <livewire:form-pesan-tiket>
         </div>
     </div>
