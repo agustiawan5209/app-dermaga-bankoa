@@ -100,7 +100,7 @@
             Apakah Anda Yakin?
         </x-slot>
         <x-slot name='footer'>
-            <x-jet-danger-button wire:click="delete({{$itemID}})" >Batalkan</x-jet-danger-button>
+            <x-jet-button wire:click="delete({{$itemID}})" >Hapus</x-jet-button>
             <x-jet-danger-button wire:click="$toggle('itemDelete')" wire:loading.attr='disabled'>Batalkan</x-jet-danger-button>
         </x-slot>
     </x-jet-confirmation-modal>
