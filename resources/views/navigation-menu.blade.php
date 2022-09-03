@@ -1,33 +1,33 @@
-<div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-white z-20"
+<div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-blue-500 z-20"
     id="nav-content">
     <ul class="list-reset lg:flex flex-1 items-center px-4 md:px-0">
         <li class="mr-6 my-2 md:my-0">
             <a href="{{ route('Admin.Dashboard.Pemilik') }}"
-                class="block py-1 md:py-3 pl-1 align-middle text-black no-underline hover:text-gray-100 border-b-2 border-blue-400 hover:border-blue-400">
+                class="block py-2 pl-1 align-middle text-black no-underline  border-b-2 border-blue-400 hover:border-blue-400 hover:bg-white hover:text-black px-3  rounded-lg">
                 <i class="fas fa-home fa-fw mr-3 text-black"></i><span class="pb-1 md:pb-0 text-sm">Home</span>
             </a>
         </li>
         <li class="mr-6 my-2 md:my-0">
             <a href="{{ route('Admin.Data-Pelanggan') }}"
-                class="block py-1 md:py-3 pl-1 align-middle text-gray-800 font-semibold no-underline hover:text-gray-100 border-b-2 border-gray-900  hover:border-pink-400">
+                class="block py-2 pl-1 align-middle text-black no-underline  border-b-2 border-blue-400 hover:border-blue-400 hover:bg-white hover:text-black px-3  rounded-lg">
                 <i class="fas fa-tasks fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Data Pelanggan</span>
             </a>
         </li>
         <li class="mr-6 my-2 md:my-0">
             <a href="{{ route('Admin.Data-Tr-Pemberangkatan') }}"
-                class="block py-1 md:py-3 pl-1 align-middle text-gray-800 font-semibold no-underline hover:text-gray-100 border-b-2 border-gray-900  hover:border-purple-400">
+                class="blo block py-2 pl-1 align-middle text-black no-underline  border-b-2 border-blue-400 hover:border-blue-400 hover:bg-white hover:text-black px-3  rounded-lg">
                 <i class="fa fa-envelope fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Transaksi</span>
             </a>
         </li>
         <li class="mr-6 my-2 md:my-0">
             <a href="{{ route('Admin.Data-Ulasan') }}"
-                class="block py-1 md:py-3 pl-1 align-middle text-gray-800 font-semibold no-underline hover:text-gray-100 border-b-2 border-gray-900  hover:border-green-400">
+                class="bl block py-2 pl-1 align-middle text-black no-underline  border-b-2 border-blue-400 hover:border-blue-400 hover:bg-white hover:text-black px-3  rounded-lg">
                 <i class="fas fa-chart-area fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Ulasan</span>
             </a>
         </li>
         <li class="mr-6 my-2 md:my-0">
             <a href="{{route('Admin.Metode-Pembayaran')}}"
-                class="block py-1 md:py-3 pl-1 align-middle text-gray-800 font-semibold no-underline hover:text-gray-100 border-b-2 border-gray-900  hover:border-red-400">
+                class=" block py-2 pl-1 align-middle text-black no-underline  border-b-2 border-blue-400 hover:border-blue-400 hover:bg-white hover:text-black px-3  rounded-lg">
                 <i class="fa fa-wallet fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Metode Pembayaran</span>
             </a>
         </li>
