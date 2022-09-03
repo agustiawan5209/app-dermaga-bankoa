@@ -51,6 +51,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('Data/Pesanan/Tiket', PemesananTiketPage::class)->name('Data-Tr-Pemberangkatan');
         Route::get('Data/Ulasan', PageUlasan::class)->name('Data-Ulasan');
         Route::get('Data/Kapal/{user_id}', PageKapal::class)->name('Data-Kapal');
+
     });
     // Route::group(['middleware' =>  'role:Pemilik', 'prefix' => 'Pemilik', 'as' => 'Pemilik.'], function(){
     //     Route::get('Dashboard', DashboardPemilik::class)->name('Dashboard.Pemilik');
