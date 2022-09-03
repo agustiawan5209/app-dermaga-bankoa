@@ -75,6 +75,6 @@ class PageKapal extends Component
     public function delete($id){
         TabelKapal::where('id',$id)->delete();
         $this->itemDelete = false;
-        Alert::success('Info', 'Berhasil Di Hapus');
+        Alert::info('Info', 'Berhasil Di Hapus');
     }
 }

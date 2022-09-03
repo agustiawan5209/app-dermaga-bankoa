@@ -1,5 +1,5 @@
 <div>
-
+@include('sweetalert::alert')
 
     <x-jet-button type='button' wire:click='toPageKapal'>Kapal</x-jet-button>
     <x-jet-button type='button' wire:click='buatKeberankatan'>Tambah Berangkat</x-jet-button>

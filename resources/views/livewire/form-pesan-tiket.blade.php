@@ -1,4 +1,5 @@
 <div class="h-screen">
+    @include('sweetalert::alert')
     <div class="container mx-auto w-full flex justify-center h-64 py-6 bg-white shadow-black shadow-sm">
         {{-- Pemesanan Tiket --}}
         <div class="w-full-h-full bg-white">
@@ -43,7 +44,7 @@
                     <label for="tanggal_keberangkatan" class="text-gray-500 ">Tanggal Keberangkatan</label>
                     <input type="date"
                         class="w-full @error('tgl_berangkat'){{ $message }} @enderror border border-gray-300 rounded-lg text-gray-500"
-                        min="27-07-2022" wire:model="tgl_berangkat">
+                        min="27-07-2022" wire:model="tgl_berangkat" id='tgl_berangkat'>
                 </div>
                 <div class=" col-span-1 flex flex-wrap ">
                     <label for="jumlah" class="w-full">Jumlah</label>

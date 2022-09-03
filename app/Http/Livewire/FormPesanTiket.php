@@ -30,6 +30,11 @@ class FormPesanTiket extends Component
             'kapal' => $kapal,
         ]);
     }
+    /**
+     * CariKapal
+     * FUngsi Pencarian Kapal Untuk User
+     * @return void
+     */
     public function CariKapal()
     {
         // dd('1');
@@ -61,6 +66,13 @@ class FormPesanTiket extends Component
     public $CekoutItem = false;
     public $BayarItem = false;
     public  $kode_berangkat, $destinasi_id, $harga, $jam, $hari, $kapal_id, $itemID;
+    /**
+     * pesanTiket
+     *  Fungsi Menampilkan Halamb Cekout
+     * @param  mixed $id
+     * @param  mixed $jumlah
+     * @return void
+     */
     public function pesanTiket($id, $jumlah = 0)
     {
         $pesan = Pemberangkatan::find($id);
@@ -74,6 +86,12 @@ class FormPesanTiket extends Component
         // dd($this->itemBerangkat->id);
         $this->CekoutItem = true;
     }
+    /**
+     * SendPembayaran
+     * Fungsi Mengirim Data Pembayaran
+     * @param  mixed $id
+     * @return void
+     */
     public function SendPembayaran($id)
     {
         $berangkat = Pemberangkatan::find($id);

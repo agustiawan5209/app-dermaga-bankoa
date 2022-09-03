@@ -1,4 +1,5 @@
 <div>
+    @include('sweetalert::alert')
     <x-jet-button type='button' wire:click='addModal'>Tambah Kapal</x-jet-button>
     @if ($itemAdd)
         <form action="" class="my-10">

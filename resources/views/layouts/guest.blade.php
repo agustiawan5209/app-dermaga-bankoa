@@ -11,6 +11,7 @@
         media="all" />
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <script src="{{ asset('js/wow.min.js') }}"></script>
+    <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
     <script>
         new WOW().init();
     </script>
@@ -64,6 +65,7 @@
             </div>
         </div>
     </header>
+
     <main class="w-full-h-full py-3 my-2">
         {{ $slot }}
     </main>
@@ -101,13 +103,6 @@
 
     </footer> --}}
     <script>
-        for (let i = 1; i < 11; i++) {
-            var option = document.createElement('option');
-            // console.log(i)
-            option.value = i;
-            option.innerText = i;
-            document.getElementById('penumpang').append(option)
-        }
         // Use Javascript
         var today = new Date();
         var dd = today.getDate();
@@ -121,7 +116,7 @@
         }
 
         today = yyyy + '-' + mm + '-' + dd;
-        document.getElementById("tgl_keberangkatan").setAttribute("min", today);
+        document.getElementById("tgl_berangkat").setAttribute("min", today);
     </script>
 </body>
 
