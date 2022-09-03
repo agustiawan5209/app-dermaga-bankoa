@@ -111,25 +111,24 @@
                     </div>
                 </div>
             </div>
-            <x-jet-button wire:click='SendPembayaran({{ $itemID }})'>Lanjutkan Pembelian</x-jet-button>
+            <x-jet-button wire:click='cekout()'>Lanjutkan Pembelian</x-jet-button>
         @endif
 
         <x-jet-dialog-modal wire:model='BayarItem'>
             <x-slot name='title'></x-slot>
             <x-slot name='content'>
-                <div
+                <form  enctype="multipart/form-data"
                     class="relative py-8 px-5 md:px-10 bg-white dark:bg-gray-800 dark:border-gray-700 shadow-md rounded border border-gray-400">
                     <div class="w-full flex justify-start text-gray-600 mb-3">
                         <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left_aligned_form-svg1.svg"
                             alt="icon" />
-
                     </div>
                     <h1 class="text-gray-800 dark:text-white  font-lg font-bold tracking-normal leading-tight mb-4">
                         Masukkan Detail Pembayaran</h1>
                     <label for="name"
                         class="text-gray-800 dark:text-white  text-sm font-bold leading-tight tracking-normal">Nama
                         Pengirim</label>
-                    <input id="name" type="text"
+                    <input id="name" type="text" value="{{Auth::user()->name}}"
                         class="mb-5 mt-2 text-gray-600 dark:bg-gray-900 dark:text-white dark:placeholder-gray-200 dark:border-gray-700 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                         placeholder="James" />
                     <label for="email2"
@@ -141,7 +140,7 @@
                                 alt="icon" />
 
                         </div>
-                        <input id="file" type="file"
+                        <input id="file" type="file" wire:model='bukti_transaksi'
                             class="text-gray-600 dark:bg-gray-900 dark:text-white dark:placeholder-gray-200 dark:border-gray-700 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-16 text-sm border-gray-300 rounded border"
                             placeholder="XXXX - XXXX - XXXX - XXXX" />
                     </div>
@@ -149,16 +148,11 @@
                         class="text-gray-800 dark:text-white  text-sm font-bold leading-tight tracking-normal">Tanggal
                         Transaksi</label>
                     <div class="relative mb-5 mt-2">
-                        <div class="absolute right-0 text-gray-600 flex items-center pr-3 h-full cursor-pointer">
-                            <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left_aligned_form-svg3.svg"
-                                alt="icon" />
-
-                        </div>
-                        <input id="expiry"  type='date'
+                        <input  type='date' wire:model='tgl_transaksi'
                             class="text-gray-600 dark:bg-gray-900 dark:text-white dark:placeholder-gray-200 dark:border-gray-700 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                             placeholder="MM/YY">
                     </div>
-                    <label for="cvc"
+                    {{-- <label for="cvc"
                         class="text-gray-800 dark:text-white  text-sm font-bold leading-tight tracking-normal">Keterangan</label>
                     <div class="relative mb-5 mt-2">
                         <div class="absolute right-0 text-gray-600 flex items-center pr-3 h-full cursor-pointer">
@@ -169,13 +163,13 @@
                         <textarea id="cvc"
                             class="mb-8 text-gray-600 dark:bg-gray-900 dark:text-white dark:placeholder-gray-200 dark:border-gray-700 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                             placeholder="MM/YY" ></textarea>
-                    </div>
+                    </div> --}}
                     <div class="flex items-center justify-start w-full">
-                        <button wire:click='SendPembayaran({{$itemID}})'
+                        <button type="button" wire:click='SendPembayaran({{$itemID}})'
                             class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Submit</button>
                         <button
                             class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm"
-                            onclick="modalHandler()">Cancel</button>
+                            wire:click='clearAll'>Batalkan</button>
                     </div>
                     <button
                         class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600"
@@ -188,7 +182,7 @@
                             <line x1="6" y1="6" x2="18" y2="18" />
                         </svg>
                     </button>
-                </div>
+                </form>
             </x-slot>
             <x-slot name='footer'></x-slot>
         </x-jet-dialog-modal>

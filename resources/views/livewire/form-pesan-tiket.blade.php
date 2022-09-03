@@ -65,6 +65,7 @@
         </div>
     </div>
 
+    @if ($Cari)
     <div aria-label="group of cards" tabindex="0" class="focus:outline-none py-8 w-full">
         <div class="lg:flex items-center justify-center w-full" wire:loading.class='opacity-50' wire:target='CariKapal'>
             @if ($pemberangkatan->count() > 0)
@@ -123,4 +124,5 @@
         </x-slot>
         <x-slot name='footer'></x-slot>
     </x-jet-dialog-modal>
+    @endif
 </div>
