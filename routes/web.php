@@ -46,9 +46,9 @@ Route::group(['middleware' => ['auth']], function () {
     // Akses Pemilik
     Route::group(['middleware' =>  'role:Admin', 'prefix' => 'Admin', 'as' => 'Admin.'], function(){
         Route::get('Dashboard', DashboardPemilik::class)->name('Dashboard.Pemilik');
-        Route::get('Pemesanan/Tiket', PageTransaksiPesanan::class)->name('Page.Pemesanan.Tiket');
+        Route::get('Pemesanan/Tiket/{Kode}/Kode', PageTransaksiPesanan::class)->name('Page.Pemesanan.Tiket');
         Route::get('Data/Pelanggan', PageDataPelanggan::class)->name('Data-Pelanggan');
-        Route::get('Data/Pesanan/Tiket', PemesananTiketPage::class)->name('Data-Tr-Tiket');
+        Route::get('Data/Pesanan/Tiket', PemesananTiketPage::class)->name('Data-Tr-Pemberangkatan');
         Route::get('Data/Ulasan', PageUlasan::class)->name('Data-Ulasan');
         Route::get('Data/Kapal/{user_id}', PageKapal::class)->name('Data-Kapal');
     });

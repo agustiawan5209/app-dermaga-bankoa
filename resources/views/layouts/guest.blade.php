@@ -29,10 +29,15 @@
                 <a href="{{ route('Layanan-page') }}" class="cursor-pointer">Layanan</a>
                 <a href="{{ route('logistik-page') }}" class="cursor-pointer">Jasa
                     Logistik</a>
-                <a href="{{ route('login') }}" class="cursor-pointer">Login</a>
-                <a
-                    href="{{ route('register') }}"class="inline-block py-3 px-5 text-sm leading-5 text-black rounded-lg cursor-pointer ">
-                    Register</a>
+                @if (Route::has('login'))
+                    @auth
+                        <a href="{{ route('dashboard') }}"class="cursor-pointer ">
+                        @else
+                            <a href="{{ route('login') }}" class="cursor-pointer">Login</a>
+                            <a href="{{ route('register') }}"class="cursor-pointer ">
+                                Register</a>
+                        @endauth
+                @endif
             </nav><button id="cAzqws"
                 class="block relative z-30 p-2 mx-0 mt-1 mb-0 w-8 text-center text-gray-300 normal-case bg-none rounded-md cursor-pointer bg-blue-500-500 md:hidden "><span><svg
                         class="block align-middle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
@@ -50,10 +55,11 @@
                         class="block py-3 px-6 font-semibold border-t-0 border-r-0 border-l-0 border-b border-blue-100  border-solid cursor-pointer box-border">Layanan</a><a
                         href="#"
                         class="block py-3 px-6 font-semibold border-t-0 border-r-0 border-l-0 border-b border-blue-100  border-solid cursor-pointer box-border">Jasa
-                        Logistik</a><a href="#"
+                        Logistik</a>
+                    <a href="#"
                         class="block py-3 px-6 font-semibold border-t-0 border-r-0 border-l-0 border-b border-blue-100  border-solid cursor-pointer box-border">Login</a>
                     <a href="#"
-                        class="block py-3 text-sm font-semibold leading-5 text-center text-white bg-blue-300 rounded-lg cursor-pointer">Login/Register</a>
+                        class="block py-3 text-sm font-semibold leading-5 text-center text-white bg-blue-300 rounded-lg cursor-pointer">Register</a>
                 </nav>
             </div>
         </div>
@@ -63,7 +69,7 @@
     </main>
     @stack('modals')
 
-        @livewireScripts
+    @livewireScripts
     {{-- <footer class="py-12 leading-6 px-4 lg:px-8 fixed bottom-0">
         <div class="flex justify-between mx-auto mb-6 max-w-screen-xl lg:mb-8"><a href="#"
                 class="px-2 space-x-2 flex items-center gap-x-1 text-2xl font-bold text-primary">DERMAGA KAYU

@@ -78,14 +78,36 @@ class FormPesanTiket extends Component
     {
         $berangkat = Pemberangkatan::find($id);
         // $token = '';
-        // $codeAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        // $codeAlphabet .= 'abcdefghijklmnopqrstuvwxyz';
-        // $codeAlphabet .= '0123456789';
-        // $kode = str_split(str_shuffle($codeAlphabet), 10);
+        $codeAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $codeAlphabet .= 'abcdefghijklmnopqrstuvwxyz';
+        $codeAlphabet .= '0123456789';
+        $kode = str_split(str_shuffle($codeAlphabet), 10);
         // Session::put('TiketItem', [
         //     'Item' => $berangkat,
         //     'jumlah' => $this->jumlah,
         // ]);
-        $this->BayarItem = true;
+        for ($i=0; $i < $this->jumlah; $i++) {
+                Tiket::create([
+                    'kode_berangkat'=> $berangkat->kode_berangkat,
+                    'kode_tiket'=> $kode[$i],
+                    'harga'=> $berangkat->harga,
+                ]);
+        }
+        // $this->BayarItem = true;
+        $this->clearAll();
+    }
+    public function clearAll(){
+        $this->BayarItem = false;
+        $this->Cari = false;
+        $this->CekoutItem = false;
+        $this->BayarItem = false;
+        $this->kode_berangkat = '';
+        $this->tgl_berangkat = '';
+        $this->itemID = '';
+        $this->harga = '';
+        $this->jumlah = '';
+        $this->jam = '';
+        $this->destinasi_id = '';
+
     }
 }

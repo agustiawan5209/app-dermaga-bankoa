@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('tikets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('kode_berangkat')->constrained('pemberangkatans')->onDelete('cascade');
+            $table->string('kode_berangkat');
+            $table->foreign('kode_berangkat')->references('kode_berangkat')->on('pemberangkatans')->onDelete('cascade')->onUpdate('cascade');
             $table->string('kode_tiket')->unique();
             $table->bigInteger('harga');
             $table->timestamps();
