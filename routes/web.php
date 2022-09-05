@@ -9,6 +9,7 @@ use App\Http\Livewire\Admin\PageDataPelanggan;
 use App\Http\Livewire\Admin\PageKapal;
 use App\Http\Livewire\Admin\PageTransaksiPesanan;
 use App\Http\Livewire\Admin\PageUlasan;
+use App\Http\Livewire\Customer\Cekout;
 use App\Http\Livewire\Customer\DashboardCustomer;
 use App\Http\Livewire\Transaksi\PemesananTiketPage;
 use App\Models\Destinasi;
@@ -66,5 +67,6 @@ Route::group(['middleware' => ['auth']], function () {
     // Akses Customer
     Route::group(['middleware' =>  'role:Customer', 'prefix' => 'Customer', 'as' => 'Customer.'], function(){
         Route::get('Dashboard', DashboardCustomer::class)->name('Dashboard.Customer');
+        Route::get('Cekout/Kapal/{item}', Cekout::class)->name('Cekout-Page');
     });
 });

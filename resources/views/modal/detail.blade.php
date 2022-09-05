@@ -24,14 +24,16 @@
                     <span class="ml-auto text-gray-900">Medium</span>
                 </div>
                 <div  class="flex border-t border-b mb-6 border-gray-200 py-2">
-                    <span class="text-gray-500">Tiket Tersisa :</span>
-                    <span class="ml-auto text-gray-900">4</span>
+                    <span class="text-gray-500">Tiket Tersisa : </span>
+                    <span class="ml-auto text-gray-900">{{$tiket_tersisa}}</span>
                 </div>
                 <div class="flex">
-                    <span class="title-font font-medium text-2xl text-gray-900">Harga</span>
-                    <button
+                    <span class="title-font font-medium text-2xl text-gray-900">Harga Tiket : Rp. {{number_format($harga,0,2)}}</span>
+                    <a href="{{route('Customer.Cekout-Page', ['item'=> $itemID])}}">
+                        <button type="button"
                         class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Pesan
                         Tiket</button>
+                    </a>
                     <button
                         class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                         <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -44,7 +46,7 @@
                 </div>
             </div>
             <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
-                src="https://dummyimage.com/400x400">
+                src="{{asset('storage/kapal/'. $gambar)}}">
         </div>
         <section class="text-gray-600 body-font overflow-hidden" x-show="Tabs == 1">
             <div class="container px-5 py-24 mx-auto">
@@ -113,5 +115,4 @@
             </div>
         </section>
     </div>
-
 </section>

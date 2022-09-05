@@ -38,20 +38,7 @@ class FormPesanTiket extends Component
             'kapal' => $kapal,
         ]);
     }
-    public function transaksiKode()
-    {
-        $transaksi = Transaksi::select('ID_transaksi')->get();
-        $codeAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $codeAlphabet .= 'abcdefghijklmnopqrstuvwxyz';
-        $codeAlphabet .= '0123456789';
-        $kode = substr(str_shuffle($codeAlphabet), 0, 10);
-        foreach ($transaksi as $key => $value) {
-            if ($kode == $value->ID_transaksi) {
-                $kode = substr(str_shuffle($codeAlphabet), 0, 10);
-            }
-        }
-        return $kode;
-    }
+
     /**
      * CariKapal
      * FUngsi Pencarian Kapal Untuk User
@@ -94,7 +81,7 @@ class FormPesanTiket extends Component
      * @return void
      */
     public $detailKapalItem = false;
-    public $pemilik_kapal, $deskripsi, $batas_muatan;
+    public $pemilik_kapal, $deskripsi, $batas_muatan, $tiket_tersisa, $gambar;
     public function DetailKapal($id, $jumlah = 0)
     {
         $pesan = Pemberangkatan::find($id);
@@ -108,8 +95,11 @@ class FormPesanTiket extends Component
         $this->pemilik_kapal = $pesan->kapal->user->name;
         $this->deskripsi = $pesan->deskripsi;
         $this->batas_muatan = $pesan->kapal->jumlah_muatan;
+        $this->gambar = $pesan->kapal->gambar;
+
         // dd($this->itemBerangkat->id);
         $statusMuatan = StatusMuatan::where('kode_berangkat', '=', $pesan->kode_berangkat)->first();
+        $this->tiket_tersisa = abs($statusMuatan->jumlah_tiket - $statusMuatan->batas_muatan);
         if ($statusMuatan->batas_muatan <= intval($statusMuatan->jumlah_tiket + $this->jumlah)) {
             Alert::warning('Transaksi Gagal', 'Batas Muatan Tercapai, Transaksi Gagal');
         }else{
@@ -119,67 +109,7 @@ class FormPesanTiket extends Component
     public function cekout(){
         $this->BayarItem = true;
     }
-    /**
-     * SendPembayaran
-     * Fungsi Mengirim Data Pembayaran
-     * @param  mixed $id
-     * @return void
-     */
-    public $bukti_transaksi, $tgl_transaksi, $id_transaksi;
-    public function SendPembayaran($id)
-    {
-        $this->validate([
-            'bukti_transaksi' => 'required',
-            'tgl_transaksi' => 'required',
-        ]);
-        $berangkat = Pemberangkatan::find($id);
-        // $token = '';
-        $codeAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $codeAlphabet .= 'abcdefghijklmnopqrstuvwxyz';
-        $codeAlphabet .= '0123456789';
-        $kode = str_split(str_shuffle($codeAlphabet), 10);
-        // Session::put('TiketItem', [
-        //     'Item' => $berangkat,
-        //     'jumlah' => $this->jumlah,
-        // ]);
-        $randonBukti = '';
-        $namaFile = $this->bukti_transaksi->getClientOriginalName();
-        $extFile = $this->bukti_transaksi->getClientOriginalExtension();
-        $randonBukti = md5($namaFile) . '.' . $extFile;
-        $this->bukti_transaksi->storeAs('upload', $randonBukti);
 
-        // Membuat Transaksi
-        $transaksi = Transaksi::create([
-            'user_id'=> Auth::user()->id,
-            'ID_transaksi' => $this->transaksiKode(),
-            'bukti' => $randonBukti,
-            'tgl_transaksi' => $this->tgl_transaksi,
-        ]);
-        // if ($transaksi) {
-            $statusMuatan = StatusMuatan::where('kode_berangkat', '=', $berangkat->kode_berangkat)->first();
-            if ($statusMuatan->batas_muatan >= $statusMuatan->jumlah_tiket) {
-                // Melakukan Perulangan Untuk Tiket
-                for ($i = 0; $i < $this->jumlah; $i++) {
-                    Tiket::create([
-                        'kode_berangkat' => $berangkat->kode_berangkat,
-                        'kode_tiket' => $kode[$i],
-                        'harga' => $berangkat->harga,
-                    ]);
-                }
-                // Mengupdate Jumlah Tiket Pada Tabel Status Muatan
-                $statusMuatan->update([
-                    'jumlah_tiket' => $this->jumlah + $statusMuatan->jumlah_tiket,
-                ]);
-                Alert::success('Info', 'Pemesanan Berhasil');
-            } else {
-                Alert::warning('Info', 'Maaf Jumlah Muatan Yang Tersedia Kurang');
-            }
-        // } else {
-            // Alert::warning('Info', 'Maaf Terjadi Kesalahan');
-        // }
-        // $this->BayarItem = true;
-        $this->clearAll();
-    }
     public function clearAll()
     {
         $this->BayarItem = false;
