@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('ulasans', function (Blueprint $table) {
             $table->id();
-            $table->string('user');
+            $table->foreignId('kapal_id')->constrained('tabel_kapals')->onDelete('cascade');
+            $table->string('user_name');
+            $table->string('email');
             $table->string('ket');
             $table->timestamps();
         });
