@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ config('APP_NAME', 'Dermaga_Bangkoa') }}</title>
+    <title>{{ config('APP_NAME', 'Dermaga Bangkoa') }}</title>
 
     <link id="heading-font" rel="stylesheet" type="text/css"
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800;900&display=swap"
