@@ -22,9 +22,10 @@
 
     <!-- Styles -->
     @livewireStyles
-
+    <link rel="stylesheet" href="{{asset('build/assets/app.e2fa75b7.css')}}">
+    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
     <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
 

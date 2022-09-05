@@ -194,6 +194,10 @@ class Cekout extends Component
             Alert::warning('info', 'Jumlah Tiket Kosong');
         }
     }
+    public $bayar =false;
+    public function bayar(){
+        $this->bayar = true;
+    }
     public function render()
     {
         $this->jumlah = $this->count;

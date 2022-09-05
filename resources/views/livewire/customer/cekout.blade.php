@@ -101,7 +101,7 @@
                                     {{ number_format($sub_total, 0, 2) }}</p>
                             </div>
                             <div class="w-full flex justify-center items-center">
-                                <x-jet-secondary-button
+                                <x-jet-secondary-button wire:click='bayar'
                                     class="bg-blue-500 w-full text-white text-center hover:bg-blue-400 hover:text-gray-100">
                                     Lakukan Pembayaran</x-jet-secondary-button>
                             </div>
@@ -113,123 +113,125 @@
     </div>
     <!-- component -->
     <!-- This is an example component -->
-    <div class='flex items-center justify-center min-h-screen from-teal-100 via-teal-300 to-teal-500 bg-gradient-to-br'>
-        <div class="flex flex-row items-center justify-center relative">
+    @if ($bayar)
+        <div class='flex items-center justify-center min-h-screen bg-gradient-to-br'>
+            <div class="flex flex-row items-center justify-center relative">
 
-            <div id="partnerCard"
-                class="bg-[#1c1c1c] text-gray-50 overflow-hidden rounded-md max-w-md p-2 min-h-[500px] flex flex-col">
-                <div>
-                    <h3 class="text-left pl-8 pb-4 pt-2 text-xl">
-                        Pilih Pembayaran Anda
-                    </h3>
-                </div>
-                <div x-data="{ bankID: 0 }">
-                    @php
-                        $idbank = 1;
-                    @endphp
-                    @foreach ($bank as $item)
-                        <div class=" text-lg col-span-3 border-b border-b-white" >
-                            <h4 class="font-bold flex justify-between">
-                                <strong>{{ $item->bank }}</strong>
-                                <span class="cursor-pointer">
-                                    <svg  x-show="bankID != {{$item->id}}" x-on:click="bankID = {{ $item->id }}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M3.75 9h16.5m-16.5 6.75h16.5" />
-                                    </svg>
-                                    <svg x-show="bankID == {{ $item->id }}" x-on:click="bankID = 0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </span>
-                            </h4>
-                            <p>
-                            <div class="py-3 sm:py-4 bg-white rounded-md" x-show="bankID == {{ $item->id }}"
-                                 x-transition:enter="transition ease-out duration-300"
-                                x-transition:enter-start="opacity-0 scale-90"
-                                x-transition:enter-end="opacity-100 scale-100"
-                                x-transition:leave="transition ease-in duration-300"
-                                x-transition:leave-start="opacity-100 scale-100"
-                                x-transition:leave-end="opacity-0 scale-90">
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                        Nama Pemilik : <strong>{{ $item->nama }}</strong>
-                                    </p>
-                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                        Nomor Rekening : <strong>{{ $item->no_rek }}</strong>
-                                    </p>
+                <div id="partnerCard"
+                    class="bg-[#1c1c1c] text-gray-50 overflow-hidden rounded-md max-w-md p-2 min-h-[500px] flex flex-col">
+                    <div>
+                        <h3 class="text-left pl-8 pb-4 pt-2 text-xl">
+                            Pilih Pembayaran Anda
+                        </h3>
+                    </div>
+                    <div x-data="{ bankID: 0 }">
+                        @php
+                            $idbank = 1;
+                        @endphp
+                        @foreach ($bank as $item)
+                            <div class=" text-lg col-span-3 border-b border-b-white" >
+                                <h4 class="font-bold flex justify-between">
+                                    <strong>{{ $item->bank }}</strong>
+                                    <span class="cursor-pointer">
+                                        <svg  x-show="bankID != {{$item->id}}" x-on:click="bankID = {{ $item->id }}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M3.75 9h16.5m-16.5 6.75h16.5" />
+                                        </svg>
+                                        <svg x-show="bankID == {{ $item->id }}" x-on:click="bankID = 0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </span>
+                                </h4>
+                                <p>
+                                <div class="py-3 sm:py-4 bg-white rounded-md" x-show="bankID == {{ $item->id }}"
+                                     x-transition:enter="transition ease-out duration-300"
+                                    x-transition:enter-start="opacity-0 scale-90"
+                                    x-transition:enter-end="opacity-100 scale-100"
+                                    x-transition:leave="transition ease-in duration-300"
+                                    x-transition:leave-start="opacity-100 scale-100"
+                                    x-transition:leave-end="opacity-0 scale-90">
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                            Nama Pemilik : <strong>{{ $item->nama }}</strong>
+                                        </p>
+                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                            Nomor Rekening : <strong>{{ $item->no_rek }}</strong>
+                                        </p>
+                                    </div>
                                 </div>
+                                </p>
                             </div>
-                            </p>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
+                    <div class="mt-auto pl-4">
+                        <p>Estimasi Pembayaran</p>
+                    </div>
                 </div>
-                <div class="mt-auto pl-4">
-                    <p>Estimasi Pembayaran</p>
-                </div>
-            </div>
 
-            <form enctype="multipart/form-data"
-                class="relative py-8 px-5 md:px-10 bg-white   shadow-md rounded border border-gray-400">
-                <div class="w-full flex justify-start text-gray-600 mb-3">
-                    <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left_aligned_form-svg1.svg"
-                        alt="icon" />
-                </div>
-                <h1 class="text-gray-800   font-lg font-bold tracking-normal leading-tight mb-4">
-                    Masukkan Detail Pembayaran</h1>
-                <label for="name" class="text-gray-800   text-sm font-bold leading-tight tracking-normal">Nama
-                    Pengirim</label>
-                <input id="name" type="text" value="{{ Auth::user()->name }}"
-                    class="mb-5 mt-2 text-gray-600     focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
-                    placeholder="James" />
-                <label for="email2" class="text-gray-800   text-sm font-bold leading-tight tracking-normal">Bukti
-                    Transaksi</label>
-                <div class="relative mb-5 mt-2">
-                    <div class="absolute text-gray-600 flex items-center px-4  border-r h-full">
-                        <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left_aligned_form-svg2.svg"
+                <form enctype="multipart/form-data"
+                    class="relative py-8 px-5 md:px-10 bg-white   shadow-md rounded border border-gray-400">
+                    <div class="w-full flex justify-start text-gray-600 mb-3">
+                        <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left_aligned_form-svg1.svg"
                             alt="icon" />
                     </div>
-                    <input id="file" type="file" wire:model='bukti_transaksi'
-                        class="text-gray-600     focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-16 text-sm border-gray-300 rounded border"
-                        placeholder="XXXX - XXXX - XXXX - XXXX" />
-                    @error('bukti_transaksi')
-                    <span class="text-red-500 text-sm font-semibold">{{$message}}</span>
-                    @enderror
-                </div>
-                <label for="expiry" class="text-gray-800   text-sm font-bold leading-tight tracking-normal">Tanggal
-                    Transaksi</label>
-                <div class="relative mb-5 mt-2">
-                    <input type='date' wire:model='tgl_transaksi'
-                        class="text-gray-600     focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
-                        placeholder="MM/YY">
-                        @error('tgl_transaksi')
-                    <span class="text-red-500 text-sm font-semibold">{{$message}}</span>
-                    @enderror
-                </div>
-                <div class="flex items-center justify-start w-full">
-                    <button type="button" wire:click='SendPembayaran({{ $itemID }})'
-                        class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Submit</button>
+                    <h1 class="text-gray-800   font-lg font-bold tracking-normal leading-tight mb-4">
+                        Masukkan Detail Pembayaran</h1>
+                    <label for="name" class="text-gray-800   text-sm font-bold leading-tight tracking-normal">Nama
+                        Pengirim</label>
+                    <input id="name" type="text" value="{{ Auth::user()->name }}"
+                        class="mb-5 mt-2 text-gray-600     focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
+                        placeholder="James" />
+                    <label for="email2" class="text-gray-800   text-sm font-bold leading-tight tracking-normal">Bukti
+                        Transaksi</label>
+                    <div class="relative mb-5 mt-2">
+                        <div class="absolute text-gray-600 flex items-center px-4  border-r h-full">
+                            <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left_aligned_form-svg2.svg"
+                                alt="icon" />
+                        </div>
+                        <input id="file" type="file" wire:model='bukti_transaksi'
+                            class="text-gray-600     focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-16 text-sm border-gray-300 rounded border"
+                            placeholder="XXXX - XXXX - XXXX - XXXX" />
+                        @error('bukti_transaksi')
+                        <span class="text-red-500 text-sm font-semibold">{{$message}}</span>
+                        @enderror
+                    </div>
+                    <label for="expiry" class="text-gray-800   text-sm font-bold leading-tight tracking-normal">Tanggal
+                        Transaksi</label>
+                    <div class="relative mb-5 mt-2">
+                        <input type='date' wire:model='tgl_transaksi'
+                            class="text-gray-600     focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
+                            placeholder="MM/YY">
+                            @error('tgl_transaksi')
+                        <span class="text-red-500 text-sm font-semibold">{{$message}}</span>
+                        @enderror
+                    </div>
+                    <div class="flex items-center justify-start w-full">
+                        <button type="button" wire:click='SendPembayaran({{ $itemID }})'
+                            class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Submit</button>
+                        <button
+                            class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm"
+                            wire:click='clearAll'>Batalkan</button>
+                    </div>
                     <button
-                        class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm"
-                        wire:click='clearAll'>Batalkan</button>
-                </div>
-                <button
-                    class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600"
-                    onclick="modalHandler()" aria-label="close modal" role="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20"
-                        height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" />
-                        <line x1="18" y1="6" x2="6" y2="18" />
-                        <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
-                </button>
-            </form>
-            @if ($bukti_transaksi)
-            <img src="{{$bukti_transaksi->temporaryUrl()}}" class="max-w-md" alt="" srcset="">
-        @endif
+                        class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600"
+                        onclick="modalHandler()" aria-label="close modal" role="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20"
+                            height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" />
+                            <line x1="18" y1="6" x2="6" y2="18" />
+                            <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg>
+                    </button>
+                </form>
+                @if ($bukti_transaksi)
+                <img src="{{$bukti_transaksi->temporaryUrl()}}" class="max-w-md" alt="" srcset="">
+            @endif
+            </div>
         </div>
-    </div>
+    @endif
 
 
 </div>
