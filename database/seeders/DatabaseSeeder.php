@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \App\Models\Role::insert([['name_role' => 'Admin'], ['name_role' => 'Pemilik'], ['name_role' => 'Customer']]);
-        \App\Models\User::factory(50)->create();
+        // \App\Models\User::factory(50)->create();
         \App\Models\User::insert([
             [
                 'name' => 'Admin',
@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Pemilik',
                 'email' => 'Pemilik@gmail.com',
                 'password' => bcrypt('12345678'),
-                'role_id' => '2',
+                'role_id' => '1',
                 'created_at' => Carbon::now(),
             ],
             [
