@@ -9,13 +9,16 @@
         </x-slot>
 
         <x-slot name="td">
-           @foreach ($user as $item)
-             <tr>
-                <td>{{$loop->iteration}}</td>
-                <td>{{$item->name}}</td>
-                <td>{{$item->email}}</td>
-             </tr>
-           @endforeach
+           @for ($i = 0; $i < count($tiket); $i++)
+            @foreach ($tiket[$i] as $item)
+              <tr>
+                 <td>{{$loop->iteration}}</td>
+                 <td>{{$item->user->name}}</td>
+                 <td>{{$item->user->email}}</td>
+                 {{-- <td>{{$item}}</td> --}}
+              </tr>
+            @endforeach
+           @endfor
         </x-slot>
 
     </x-table.table>

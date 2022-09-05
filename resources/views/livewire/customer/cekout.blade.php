@@ -57,7 +57,7 @@
                                                         </svg>
 
                                                     </x-jet-button>
-                                                    <x-jet-input type="text" wire:model='count'
+                                                    <x-jet-input type="number" readonly wire:model='count'
                                                         class="w-20 text-center" />
                                                     <x-jet-button wire:click="plus"
                                                         class="bg-blue-600 hover:bg-indigo-700 rounded-full px-1 py-1">

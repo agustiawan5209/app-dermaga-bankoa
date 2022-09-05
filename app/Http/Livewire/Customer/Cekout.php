@@ -32,13 +32,14 @@ class Cekout extends Component
     public function mount($item)
     {
         $this->itemID = $item;
-        if(session()->has('itemCek')){
+        if (session()->has('itemCek')) {
             $this->itemID = $item;
-        }else{
+        } else {
             abort(401);
         }
     }
-    public function kartu(){
+    public function kartu()
+    {
         $pesan = Pemberangkatan::find($this->itemID);
         $pemilik = $pesan->kapal->user->bank;
         return $pemilik;
@@ -152,53 +153,54 @@ class Cekout extends Component
         //     'Item' => $berangkat,
         //     'jumlah' => $this->jumlah,
         // ]);
-      if($this->jumlah > 0){
-        $randonBukti = '';
-        $namaFile = $this->bukti_transaksi->getClientOriginalName();
-        $extFile = $this->bukti_transaksi->getClientOriginalExtension();
-        $randonBukti = md5($namaFile) . '.' . $extFile;
+        if ($this->jumlah > 0) {
+            $randonBukti = '';
+            $namaFile = $this->bukti_transaksi->getClientOriginalName();
+            $extFile = $this->bukti_transaksi->getClientOriginalExtension();
+            $randonBukti = md5($namaFile) . '.' . $extFile;
+            $kode_transaksi = $this->transaksiKode();
 
-
-        // Membuat Transaksi
-        $transaksi = Transaksi::create([
-            'user_id' => Auth::user()->id,
-            'ID_transaksi' => $this->transaksiKode(),
-            'bukti' => $randonBukti,
-            'tgl_transaksi' => $this->tgl_transaksi,
-        ]);
-        $this->bukti_transaksi->storeAs('upload', $randonBukti);
-        // Cek Status Dari Muatan Kapal
-        $statusMuatan = StatusMuatan::where('kode_berangkat', '=', $berangkat->kode_berangkat)->first();
-        if ($statusMuatan->batas_muatan >= $statusMuatan->jumlah_tiket) {
-            // Melakukan Perulangan Untuk Tiket
-            for ($i = 0; $i < $this->jumlah; $i++) {
-                Tiket::create([
-                    'kode_berangkat' => $berangkat->kode_berangkat,
-                    'kode_tiket' => $kode[$i],
-                    'harga' => $berangkat->harga,
-                ]);
-            }
-            // Mengupdate Jumlah Tiket Pada Tabel Status Muatan
-            $statusMuatan->update([
-                'jumlah_tiket' => $this->jumlah + $statusMuatan->jumlah_tiket,
+            // Membuat Transaksi
+            $transaksi = Transaksi::create([
+                'user_id' => Auth::user()->id,
+                'ID_transaksi' => $kode_transaksi,
+                'bukti' => $randonBukti,
+                'tgl_transaksi' => $this->tgl_transaksi,
             ]);
-            Alert::success('Info', 'Pemesanan Berhasil');
-            session()->forget('itemCek');
-            return redirect()->route('home');
+            $this->bukti_transaksi->storeAs('upload', $randonBukti);
+            // Cek Status Dari Muatan Kapal
+            $statusMuatan = StatusMuatan::where('kode_berangkat', '=', $berangkat->kode_berangkat)->first();
+            if ($statusMuatan->batas_muatan >= $statusMuatan->jumlah_tiket) {
+                // Melakukan Perulangan Untuk Tiket
+                for ($i = 0; $i < $this->jumlah; $i++) {
+                    Tiket::create([
+                        'kode_berangkat' => $berangkat->kode_berangkat,
+                        'kode_tiket' => $kode[$i],
+                        'harga' => $berangkat->harga,
+                        'ID_transaksi' => $kode_transaksi,
+                    ]);
+                }
+                // Mengupdate Jumlah Tiket Pada Tabel Status Muatan
+                $statusMuatan->update([
+                    'jumlah_tiket' => $this->jumlah + $statusMuatan->jumlah_tiket,
+                ]);
+                Alert::success('Info', 'Pemesanan Berhasil');
+                session()->forget('itemCek');
+                return redirect()->route('home');
+            } else {
+                Alert::warning('Info', 'Maaf Jumlah Muatan Yang Tersedia Kurang');
+            }
         } else {
-            Alert::warning('Info', 'Maaf Jumlah Muatan Yang Tersedia Kurang');
+            Alert::warning('info', 'Jumlah Tiket Kosong');
         }
-      }else{
-        Alert::warning('info', 'Jumlah Tiket Kosong');
-      }
     }
     public function render()
     {
         $this->jumlah = $this->count;
-        $this->sub_total = $this->jumlah * $this->harga;
+        $this->sub_total = intval($this->jumlah * $this->harga);
         $this->DetailKapal($this->itemID, 0);
-        return view('livewire.customer.cekout',[
-            'bank'=> $this->kartu(),
+        return view('livewire.customer.cekout', [
+            'bank' => $this->kartu(),
         ])->layout('layouts.guest');
     }
 }

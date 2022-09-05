@@ -15,11 +15,19 @@ return new class extends Migration
     {
         Schema::create('tikets', function (Blueprint $table) {
             $table->id();
+            $table->string('ID_transaksi');
             $table->string('kode_berangkat');
-            $table->foreign('kode_berangkat')->references('kode_berangkat')->on('pemberangkatans')->onDelete('cascade')->onUpdate('cascade');
             $table->string('kode_tiket')->unique();
             $table->bigInteger('harga');
             $table->timestamps();
+
+        });
+        Schema::table('tikets', function (Blueprint $table) {
+
+            $table->foreign('ID_transaksi')->references('ID_transaksi')->on('transaksis');
+
+            $table->foreign('kode_berangkat')->references('kode_berangkat')->on('pemberangkatans')->onDelete('cascade')->onUpdate('cascade');
+
         });
     }
 

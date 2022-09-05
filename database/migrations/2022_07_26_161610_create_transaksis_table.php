@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->string('ID_transaksi', 30);
+            $table->string('ID_transaksi', 30)->unique();
             $table->date('tgl_transaksi');
             $table->string('bukti',100);
             $table->timestamps();
