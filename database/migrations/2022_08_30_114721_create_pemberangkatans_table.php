@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('jam');
             $table->foreignId('kapal_id')->constrained('tabel_kapals');
             $table->enum('status', ['bersandar', 'full', 'berangkat']);
+            $table->string('deskripsi')->nullable();
             $table->timestamps();
         });
     }

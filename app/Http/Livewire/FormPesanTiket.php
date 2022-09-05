@@ -20,7 +20,9 @@ class FormPesanTiket extends Component
     public $tujuan, $lokasi, $tgl_berangkat, $jumlah;
     public $pemberangkatan;
     public $Cari = false;
-
+    public $CekoutItem = false;
+    public $BayarItem = false;
+    public $kode_berangkat, $destinasi_id, $harga, $jam, $hari, $kapal_id, $itemID;
     public function mount()
     {
         $this->lokasi = 'Dermaga Bangkoa';
@@ -83,9 +85,7 @@ class FormPesanTiket extends Component
             $this->pemberangkatan = $berangkat;
         }
     }
-    public $CekoutItem = false;
-    public $BayarItem = false;
-    public $kode_berangkat, $destinasi_id, $harga, $jam, $hari, $kapal_id, $itemID;
+
     /**
      * pesanTiket
      *  Fungsi Menampilkan Halamb Cekout
@@ -93,7 +93,9 @@ class FormPesanTiket extends Component
      * @param  mixed $jumlah
      * @return void
      */
-    public function pesanTiket($id, $jumlah = 0)
+    public $detailKapalItem = false;
+    public $pemilik_kapal, $deskripsi, $batas_muatan;
+    public function DetailKapal($id, $jumlah = 0)
     {
         $pesan = Pemberangkatan::find($id);
         $this->itemID = $pesan->id;
@@ -103,12 +105,15 @@ class FormPesanTiket extends Component
         $this->jam = $pesan->jam;
         $this->destinasi_id = $pesan->destinasi->lokasi;
         $this->kapal_id = $pesan->kapal_id;
+        $this->pemilik_kapal = $pesan->kapal->user->name;
+        $this->deskripsi = $pesan->deskripsi;
+        $this->batas_muatan = $pesan->kapal->jumlah_muatan;
         // dd($this->itemBerangkat->id);
         $statusMuatan = StatusMuatan::where('kode_berangkat', '=', $pesan->kode_berangkat)->first();
         if ($statusMuatan->batas_muatan <= intval($statusMuatan->jumlah_tiket + $this->jumlah)) {
             Alert::warning('Transaksi Gagal', 'Batas Muatan Tercapai, Transaksi Gagal');
         }else{
-            $this->CekoutItem = true;
+            $this->detailKapalItem = true;
         }
     }
     public function cekout(){

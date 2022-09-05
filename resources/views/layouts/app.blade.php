@@ -26,6 +26,8 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
+    <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
+
 
 </head>
 
@@ -116,41 +118,9 @@
 
     <footer class=" bg-gradient-to-tr from-blue-500 to-blue-500 border-t border-gray-400 shadow">
         <div class="container max-w-md mx-auto flex py-8">
-
-            <div class="w-full mx-auto flex flex-wrap">
-                <div class="flex w-full md:w-1/2 ">
-                    <div class="px-8">
-                        <h3 class="font-bold font-bold text-gray-100">About</h3>
-                        <p class="py-4 text-gray-600 text-sm">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel mi ut felis tempus
-                            commodo nec id erat. Suspendisse consectetur dapibus velit ut lacinia.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="flex w-full md:w-1/2">
-                    <div class="px-8">
-                        <h3 class="font-bold font-bold text-gray-100">Social</h3>
-                        <ul class="list-reset items-center text-sm pt-3">
-                            <li>
-                                <a class="inline-block text-gray-600 no-underline hover:text-gray-100 hover:text-underline py-1"
-                                    href="#">Add social link</a>
-                            </li>
-                            <li>
-                                <a class="inline-block text-gray-600 no-underline hover:text-gray-100 hover:text-underline py-1"
-                                    href="#">Add social link</a>
-                            </li>
-                            <li>
-                                <a class="inline-block text-gray-600 no-underline hover:text-gray-100 hover:text-underline py-1"
-                                    href="#">Add social link</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="w-full text-center">
+                <span class="text-white font-semibold leading-3">&copy;Copyright 2022</span>
             </div>
-
-
-
         </div>
     </footer>
     @stack('modals')
@@ -164,11 +134,7 @@
     <script>
         $(document).ready(function() {
             $('.datatable').dataTable();
-        });
-        /*Toggle dropdown list*/
-        /*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
-
-        var userMenuDiv = document.getElementById("userMenu");
+            var userMenuDiv = document.getElementById("userMenu");
         var userMenu = document.getElementById("userButton");
 
         var navMenuDiv = document.getElementById("nav-content");
@@ -222,6 +188,12 @@
             }
             return false;
         }
+        CKEDITOR.replace( 'editor1' );
+        });
+        /*Toggle dropdown list*/
+        /*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
+
+
     </script>
 
 </body>

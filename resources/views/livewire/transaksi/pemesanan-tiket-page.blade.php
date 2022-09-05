@@ -48,7 +48,7 @@
                     @enderror
                 </label>
                 <label for="email">
-                    <p class="font-medium text-slate-700 pb-2">Jam</p>
+                    <p class="font-medium text-slate-700 pb-2">Jam Berangkat</p>
                     <input id="jam" wire:model="jam" type="time"
                         class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
                         placeholder="..........">
@@ -56,6 +56,7 @@
                         <span class="text-red-500 font-semibold">{{ $message }}</span>
                     @enderror
                 </label>
+
                 <label for="email">
                     <p class="font-medium text-slate-700 pb-2">Kapal</p>
                     <select id="des" wire:model="kapal_id" type="text"
@@ -68,6 +69,15 @@
                         @endforeach
                     </select>
                     @error('kapal_id')
+                        <span class="text-red-500 font-semibold">{{ $message }}</span>
+                    @enderror
+                </label>
+                <label for="email">
+                    <p class="font-medium text-slate-700 pb-2">Keterangan</p>
+                    <textarea id="deskripsi" wire:model="deskripsi"
+                        class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+                        placeholder=".........."></textarea>
+                    @error('deskripsi')
                         <span class="text-red-500 font-semibold">{{ $message }}</span>
                     @enderror
                 </label>

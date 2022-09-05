@@ -79,6 +79,7 @@ return [
     'links' => [
         public_path('storage') => storage_path('app/public'),
         public_path('bukti') => storage_path('app/public'),
+        // public_path('kapal') => storage_path('app/public'),
     ],
 
 ];

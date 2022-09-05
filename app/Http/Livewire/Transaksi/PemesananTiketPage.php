@@ -16,7 +16,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class PemesananTiketPage extends Component
 {
-    public $pemberangkatan, $kode_berangkat, $destinasi_id, $harga, $tgl_berangkat, $jam, $hari, $kapal_id, $batas_muatan;
+    public $pemberangkatan, $kode_berangkat, $destinasi_id, $harga, $tgl_berangkat, $jam, $hari, $kapal_id, $batas_muatan, $deskripsi;
     public $itemID;
     public function render()
     {
@@ -44,6 +44,7 @@ class PemesananTiketPage extends Component
         $this->tgl_berangkat = $berangkat->tgl_berangkat;
         $this->jam = $berangkat->jam;
         $this->kapal_id = $berangkat->kapal_id;
+        $this->deskripsi = $berangkat->deskripsi;
         $this->itemTambahBerangkat = true;
     }
     public function deleteKapal()
@@ -59,6 +60,7 @@ class PemesananTiketPage extends Component
         $berangkat->tgl_berangkat = $this->tgl_berangkat;
         $berangkat->jam = $this->jam;
         $berangkat->kapal_id = $this->kapal_id;
+        $berangkat->deskripsi = $this->deskripsi;
         $berangkat->save();
         $kapal = TabelKapal::find($this->kapal_id);
         $statusMuatan = StatusMuatan::create([
@@ -79,6 +81,7 @@ class PemesananTiketPage extends Component
         $berangkat->tgl_berangkat = $this->tgl_berangkat;
         $berangkat->jam = $this->jam;
         $berangkat->kapal_id = $this->kapal_id;
+        $berangkat->deskripsi = $this->deskripsi;
         $berangkat->update();
         $this->itemTambahBerangkat = false;
         Alert::success('Info', 'Berhasil');

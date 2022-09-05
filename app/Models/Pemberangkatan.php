@@ -10,7 +10,7 @@ class Pemberangkatan extends Model
     use HasFactory;
     protected $table = 'pemberangkatans';
     protected $fillable = [
-       'user_id', 'kode_berangkat','tgl_berangkat','harga','destinasi_id','jam','kapal_id','status'
+       'user_id', 'kode_berangkat','tgl_berangkat','harga','destinasi_id','jam','kapal_id','status','deskripsi'
     ];
     protected $hidden = [
         'kapal_id','destinasi_id'

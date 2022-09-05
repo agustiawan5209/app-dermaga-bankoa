@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('tabel_kapals', function (Blueprint $table) {
             $table->id();
+            $table->string('gambar')->nullable();
             $table->string('nama_kapal', 30);
             $table->string('jenis_kapal', 20);
             $table->string('pemilik', 40);
