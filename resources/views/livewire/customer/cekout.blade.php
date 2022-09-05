@@ -1,7 +1,7 @@
 <div>
     <div class="">
         @include('sweetalert::alert')
-        <div class="py-14 px-4 md:px-12 2xl:px-20 2xl:container 2xl:mx-auto">
+        <div class="py-2 px-4 md:px-12 2xl:px-20 2xl:container 2xl:mx-auto">
             <div
                 class="mt-10 flex flex-col xl:flex-row jusitfy-center items-stretch w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">
                 <div
@@ -166,7 +166,7 @@
                         @endforeach
                     </div>
                     <div class="mt-auto pl-4">
-                        <p>Estimasi Pembayaran</p>
+                        <p>Estimasi Pembayaran : {{$utctime}}</p>
                     </div>
                 </div>
 
