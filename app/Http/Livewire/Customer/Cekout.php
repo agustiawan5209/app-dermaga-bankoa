@@ -32,10 +32,9 @@ class Cekout extends Component
     public function mount($item)
     {
         $this->itemID = $item;
-        if($item == null){
-            abort(401);
-        }
-        if(Auth::check() == false){
+        if(session()->has('itemCek')){
+            $this->itemID = $item;
+        }else{
             abort(401);
         }
     }
@@ -184,6 +183,7 @@ class Cekout extends Component
                 'jumlah_tiket' => $this->jumlah + $statusMuatan->jumlah_tiket,
             ]);
             Alert::success('Info', 'Pemesanan Berhasil');
+            session()->forget('itemCek');
             return redirect()->route('home');
         } else {
             Alert::warning('Info', 'Maaf Jumlah Muatan Yang Tersedia Kurang');
