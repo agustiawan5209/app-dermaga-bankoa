@@ -2,16 +2,17 @@
 
 namespace App\Http\Livewire;
 
+use Carbon\Carbon;
+use App\Models\Tiket;
 use Livewire\Component;
 use App\Models\Destinasi;
-use App\Models\Pemberangkatan;
-use App\Models\StatusMuatan;
-use App\Models\TabelKapal;
-use App\Models\Tiket;
 use App\Models\Transaksi;
+use App\Models\TabelKapal;
+use App\Models\StatusMuatan;
+use Livewire\WithFileUploads;
+use App\Models\Pemberangkatan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Livewire\WithFileUploads;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class FormPesanTiket extends Component
@@ -124,6 +125,7 @@ class FormPesanTiket extends Component
     public function KirimPembayaran($id)
     {
         session()->put('itemCek', $id);
+
         return redirect()->route('Customer.Cekout-Page', ['item'=> $id]);
     }
 }

@@ -207,24 +207,29 @@ class Cekout extends Component
         Alert::warning('maaf', 'Jumlah Kosong');
        }else{
         $this->bayar = true;
+        $carbon_n = Carbon::now()->add('10', 'minutes')->toTimeString();
+        session()->put('estimasi', $carbon_n);
        }
 
     }
     public $utctime;
     public function render()
     {
-        $this->estimasiWaktu();
+        $this->cekwaktu();
         $this->jumlah = $this->count;
         $this->sub_total = intval($this->jumlah * $this->harga);
         $this->DetailKapal($this->itemID, 0);
+
+        $this->utctime = session('estimasi');
         return view('livewire.customer.cekout', [
             'bank' => $this->kartu(),
         ])->layout('layouts.guest');
     }
-    public function estimasiWaktu(){
-        if(session()->has('itemCek')){
-            $carbon = Carbon::now()->format('H:i');
-            $this->utctime = Carbon::now()->toTimeString();
+    public function cekwaktu(){
+        $carbon_now = Carbon::now()->toTimeString();
+        if( (string) $carbon_now == (string) session('estimasi')){
+            session()->forget('itemCek');
+            session()->forget('estimasi');
         }
     }
 }
