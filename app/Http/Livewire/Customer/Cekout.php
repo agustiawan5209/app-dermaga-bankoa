@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Models\Transaksi;
 use App\Models\StatusMuatan;
 use App\Models\Pemberangkatan;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -38,6 +39,12 @@ class Cekout extends Component
             abort(401);
         }
     }
+    /**
+     * kartu
+     *  Tampilkan Pemilik Dari Kapal
+     *  View Metode Pembayaran
+     * @return void
+     */
     public function kartu()
     {
         $pesan = Pemberangkatan::find($this->itemID);
@@ -196,15 +203,28 @@ class Cekout extends Component
     }
     public $bayar =false;
     public function bayar(){
+       if($this->jumlah == 0){
+        Alert::warning('maaf', 'Jumlah Kosong');
+       }else{
         $this->bayar = true;
+       }
+
     }
+    public $utctime;
     public function render()
     {
+        $this->estimasiWaktu();
         $this->jumlah = $this->count;
         $this->sub_total = intval($this->jumlah * $this->harga);
         $this->DetailKapal($this->itemID, 0);
         return view('livewire.customer.cekout', [
             'bank' => $this->kartu(),
         ])->layout('layouts.guest');
+    }
+    public function estimasiWaktu(){
+        if(session()->has('itemCek')){
+            $carbon = Carbon::now()->format('H:i');
+            $this->utctime = Carbon::now()->toTimeString();
+        }
     }
 }
