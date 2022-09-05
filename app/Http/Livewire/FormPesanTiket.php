@@ -124,4 +124,9 @@ class FormPesanTiket extends Component
         $this->jam = '';
         $this->destinasi_id = '';
     }
+    public function KirimPembayaran($id)
+    {
+        session()->put('itemCek', $id);
+        return redirect()->route('Customer.Cekout-Page', ['item'=> $id]);
+    }
 }
