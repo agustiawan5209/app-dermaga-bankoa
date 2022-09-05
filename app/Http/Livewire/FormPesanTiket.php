@@ -32,7 +32,7 @@ class FormPesanTiket extends Component
     {
         $destinasi = Destinasi::all();
         $kapal = TabelKapal::all();
-        // $this->CariKapal();
+        $this->CariKapal();
         return view('livewire.form-pesan-tiket', [
             'destinasi' => $destinasi,
             'kapal' => $kapal,
@@ -63,13 +63,10 @@ class FormPesanTiket extends Component
                     'jumlah.required' => 'border-red-500 shadow',
                 ],
             );
-            $berangkat = Pemberangkatan::where('destinasi_id', '=', $this->tujuan)
+            $this->pemberangkatan = Pemberangkatan::where('destinasi_id', '=', $this->tujuan)
                 ->WhereDate('tgl_berangkat', $this->tgl_berangkat)
                 ->Where('status', '=', 'bersandar')
                 ->get();
-
-            // dd($berangkat);
-            $this->pemberangkatan = $berangkat;
         }
     }
 

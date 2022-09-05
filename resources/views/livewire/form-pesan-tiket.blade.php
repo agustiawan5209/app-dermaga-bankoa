@@ -4,7 +4,7 @@
      <div class="container mx-auto w-full flex justify-center h-64 py-6 bg-white shadow-black shadow-sm">
          {{-- Pemesanan Tiket --}}
          <div class="w-full-h-full bg-white">
-             <form action="#"
+             <form onload="this.preventDefault"
                  class=" relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-5 px-20 mx-auto">
                  <div class="col-span-2">
                      <h3 class=" row-start-1 col-span-2 text-base text-gray-500">Dari</h3>
@@ -107,9 +107,9 @@
                              </p>
                              <div tabindex="0" class="focus:outline-none flex">
                                  @if ($Cari)
-                                 <x-jet-button type='button'
+                                 <x-jet-secondary-button type='button'
                                      wire:click='DetailKapal({{ $item->id }}, {{ $jumlah }})'>Detail
-                                 </x-jet-button>
+                                 </x-jet-secondary-button>
                                  @endif
                              </div>
                          </div>
