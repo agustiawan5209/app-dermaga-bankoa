@@ -22,7 +22,4 @@ class TabelKapal extends Model
     public function ulasan(){
         return $this->belongsTo(Ulasan::class, 'kapal_id','id');
     }
-    protected $appends = [
-        'image_url',
-    ];
 }
