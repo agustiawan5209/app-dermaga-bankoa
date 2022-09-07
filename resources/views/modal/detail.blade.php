@@ -12,7 +12,7 @@
                     <a :class="Tabs == 1 ?
                         'flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1 cursor-pointer' :
                         'flex-grow border-b-2 border-gray-300 py-2 text-lg px-1 cursor-pointer'"
-                        x-on:click="Tabs = 1">Ulasan</a>
+                        x-on:click="Tabs = 1" wire:click='showUlasan({{$itemID}})'>Ulasan</a>
                 </div>
                 <p  class="leading-relaxed mb-4">{{$deskripsi}}</p>
                 <div  class="flex border-t border-gray-200 py-2">
@@ -50,69 +50,28 @@
         <section class="text-gray-600 body-font overflow-hidden" x-show="Tabs == 1">
             <section class="text-gray-600 body-font relative">
                 <div class="container px-5 py-12 mx-auto flex sm:flex-nowrap flex-wrap">
-                  <div class="lg:w-2/3 md:w-1/2 bg-gray-300 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative">
+                  <div class="lg:w-2/3 md:w-1/2 bg-gray-100 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative">
                     <div class="container px-5 py-12 mx-auto">
                         <div class="-my-8 divide-y-2 divide-gray-100">
-                            <div class="py-8 flex flex-wrap md:flex-nowrap">
-                                <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                                    <span class="font-semibold title-font text-gray-700">CATEGORY</span>
-                                    <span class="mt-1 text-gray-500 text-sm">12 Jun 2019</span>
+                            @foreach ($ulasanItem as $item)
+                                <div class="py-8 px-3 flex flex-wrap md:flex-nowrap bg-white shadow-md">
+                                    <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+                                        <span class="font-semibold title-font text-gray-700">Tanggal</span>
+                                        <span class="mt-1 text-gray-500 text-sm">{{$item->created_at}}</span>
+                                    </div>
+                                    <div class="md:flex-grow">
+                                        <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">{{$item->user_name}}</h2>
+                                        <p class="leading-relaxed">{{$item->ket}}</p>
+                                        {{-- <a class="text-indigo-500 inline-flex items-center mt-4">Learn More
+                                            <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+                                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14"></path>
+                                                <path d="M12 5l7 7-7 7"></path>
+                                            </svg>
+                                        </a> --}}
+                                    </div>
                                 </div>
-                                <div class="md:flex-grow">
-                                    <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">Bitters hashtag waistcoat fashion
-                                        axe chia unicorn</h2>
-                                    <p class="leading-relaxed">Glossier echo park pug, church-key sartorial biodiesel vexillologist
-                                        pop-up snackwave ramps cornhole. Marfa 3 wolf moon party messenger bag selfies, poke
-                                        vaporware kombucha lumbersexual pork belly polaroid hoodie portland craft beer.</p>
-                                    <a class="text-indigo-500 inline-flex items-center mt-4">Learn More
-                                        <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M5 12h14"></path>
-                                            <path d="M12 5l7 7-7 7"></path>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="py-8 flex flex-wrap md:flex-nowrap">
-                                <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                                    <span class="font-semibold title-font text-gray-700">CATEGORY</span>
-                                    <span class="mt-1 text-gray-500 text-sm">12 Jun 2019</span>
-                                </div>
-                                <div class="md:flex-grow">
-                                    <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">Meditation bushwick direct trade
-                                        taxidermy shaman</h2>
-                                    <p class="leading-relaxed">Glossier echo park pug, church-key sartorial biodiesel vexillologist
-                                        pop-up snackwave ramps cornhole. Marfa 3 wolf moon party messenger bag selfies, poke
-                                        vaporware kombucha lumbersexual pork belly polaroid hoodie portland craft beer.</p>
-                                    <a class="text-indigo-500 inline-flex items-center mt-4">Learn More
-                                        <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M5 12h14"></path>
-                                            <path d="M12 5l7 7-7 7"></path>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="py-8 flex flex-wrap md:flex-nowrap">
-                                <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                                    <span class="font-semibold title-font text-gray-700">CATEGORY</span>
-                                    <span class="text-sm text-gray-500">12 Jun 2019</span>
-                                </div>
-                                <div class="md:flex-grow">
-                                    <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">Woke master cleanse drinking
-                                        vinegar salvia</h2>
-                                    <p class="leading-relaxed">Glossier echo park pug, church-key sartorial biodiesel vexillologist
-                                        pop-up snackwave ramps cornhole. Marfa 3 wolf moon party messenger bag selfies, poke
-                                        vaporware kombucha lumbersexual pork belly polaroid hoodie portland craft beer.</p>
-                                    <a class="text-indigo-500 inline-flex items-center mt-4">Learn More
-                                        <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M5 12h14"></path>
-                                            <path d="M12 5l7 7-7 7"></path>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                   </div>

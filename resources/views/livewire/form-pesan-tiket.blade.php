@@ -73,9 +73,9 @@
                  @foreach ($pemberangkatan as $item)
                      <div tabindex="0" aria-label="card 1"
                          class="focus:outline-none lg:w-4/12 lg:mr-7 lg:mb-0 mb-7 bg-white dark:bg-gray-800  p-6 shadow rounded">
-                         <div class="flex items-center border-b border-gray-200 dark:border-gray-700  pb-6">
-                             {{-- <img src="https://cdn.tuk.dev/assets/components/misc/doge-coin.png" alt="coin avatar"
-                              class="w-12 h-12 rounded-full" /> --}}
+                         <div class="block items-center border-b border-gray-200 dark:border-gray-700  pb-6">
+                             <img src="{{asset('storage/kapal/'. $item->kapal->gambar)}}" alt="coin avatar"
+                              class="w-full h-max bg-cover rounded-sm" />
                              <div class="flex items-start justify-between w-full">
                                  <div class="pl-3 w-full">
                                      <p tabindex="0"
