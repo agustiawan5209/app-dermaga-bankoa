@@ -210,7 +210,6 @@ class Cekout extends Component
         $carbon_n = Carbon::now()->add('10', 'minutes')->toTimeString();
         session()->put('estimasi', $carbon_n);
        }
-
     }
     public $utctime;
     public function render()
@@ -231,5 +230,10 @@ class Cekout extends Component
             session()->forget('itemCek');
             session()->forget('estimasi');
         }
+    }
+    public function batalkan(){
+        session()->forget('itemCek');
+        session()->forget('estimasi');
+        return redirect()->route('home');
     }
 }
