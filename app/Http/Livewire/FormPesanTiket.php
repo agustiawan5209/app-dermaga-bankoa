@@ -11,6 +11,7 @@ use App\Models\TabelKapal;
 use App\Models\StatusMuatan;
 use Livewire\WithFileUploads;
 use App\Models\Pemberangkatan;
+use App\Models\Ulasan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -29,16 +30,7 @@ class FormPesanTiket extends Component
         $this->lokasi = 'Dermaga Bangkoa';
         $this->pemberangkatan = Pemberangkatan::all();
     }
-    public function render()
-    {
-        $destinasi = Destinasi::all();
-        $kapal = TabelKapal::all();
-        $this->CariKapal();
-        return view('livewire.form-pesan-tiket', [
-            'destinasi' => $destinasi,
-            'kapal' => $kapal,
-        ]);
-    }
+
 
     /**
      * CariKapal
@@ -127,5 +119,21 @@ class FormPesanTiket extends Component
         session()->put('itemCek', $id);
 
         return redirect()->route('Customer.Cekout-Page', ['item'=> $id]);
+    }
+    public $ulasanItem;
+    public function showUlasan($id){
+        $this->ulasanItem = Ulasan::where('kapal_id', $id)->get();
+    }
+
+    public function render()
+    {
+        $destinasi = Destinasi::all();
+        $kapal = TabelKapal::all();
+        $this->CariKapal();
+        $this->ulasanItem = Ulasan::all();
+        return view('livewire.form-pesan-tiket', [
+            'destinasi' => $destinasi,
+            'kapal' => $kapal,
+        ]);
     }
 }
