@@ -5,10 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dermaga Kayu Bangkoa Dashboard | Login</title>
+    @vite(['resources/js/app.js'])
+    <!-- Styles -->
     @livewireStyles
-
-    <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{asset('build/assets/app.25240557.css')}}">
 </head>
 
 <body>
