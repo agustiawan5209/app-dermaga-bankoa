@@ -38,7 +38,7 @@
             @endforeach
         </x-slot>
     </x-table.table>
-    <x-jet-dialog-modal wire:model='itemAdd' maxWidth='sm'>
+    <x-jet-dialog-modal wire:model='itemAdd'>
         <x-slot name="title">
             Tambah Metode Pembayaran
         </x-slot>

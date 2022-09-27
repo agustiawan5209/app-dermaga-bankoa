@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('batas_muatan');
             $table->integer('jumlah_tiket');
             $table->string('kode_berangkat');
-            $table->foreign('kode_berangkat')->references('kode_berangkat')->on('pemberangkatans')->onUpdate('cascade');
+            $table->foreign('kode_berangkat')->references('kode_berangkat')->on('pemberangkatans')->onDelete('cascade');
             $table->timestamps();
         });
     }

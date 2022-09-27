@@ -15,15 +15,16 @@
     {{-- <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
 
-    {{-- <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css"> --}}
+    <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('css/animate.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     {{-- <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script> --}}
-
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
     <!-- Styles -->
     @livewireStyles
-    <link rel="stylesheet" href="{{asset('build/assets/app.62525639.css')}}">
-    <script src="{{asset('build/assets/app.e8b13026.js')}}"></script>
+    {{-- <link rel="stylesheet" href="{{asset('build/assets/app.62525639.css')}}"> --}}
+    {{-- <script src="{{asset('build/assets/app.e8b13026.js')}}"></script> --}}
+
     <!-- Scripts -->
 
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
@@ -124,9 +125,7 @@
             </div>
         </div>
     </footer>
-    @stack('modals')
 
-    @livewireScripts
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
     <!--Datatables -->
@@ -196,7 +195,9 @@
 
 
     </script>
+@stack('modals')
 
+@livewireScripts
 </body>
 
 </html>

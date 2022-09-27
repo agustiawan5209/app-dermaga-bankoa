@@ -25,6 +25,7 @@ class MetodePembayaran extends Component
 
 
     public function addModal(){
+        // dd("1");
         $this->itemAdd = true;
     }
     public function editModal($id){
