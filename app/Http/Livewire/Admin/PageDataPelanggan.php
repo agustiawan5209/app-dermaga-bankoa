@@ -37,10 +37,13 @@ class PageDataPelanggan extends Component
                 $arr[] = $item->kode_berangkat;
             }
         }
+        // dd($arr);
         // Mendapatkan Data Tiket Dari Berangkat
         for ($i=0; $i < count($arr); $i++) {
-            $kode = Tiket::where('kode_berangkat' ,'=', $arr[$i])->first();
-            $tiket[]= $kode->ID_transaksi;
+            $kode = Tiket::where('kode_berangkat' ,'=', $arr[$i])->get();
+            if($kode->count() > 0){
+                $tiket[]= $kode->ID_transaksi;
+            }
         }
         for ($i=0; $i < count($tiket); $i++) {
             $tr[] = Transaksi::where('ID_transaksi', $tiket[$i])->get();
