@@ -34,7 +34,7 @@
                     Logistik</a>
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ route('dashboard') }}"class="cursor-pointer ">
+                        <a href="{{ route('dashboard') }}"class="cursor-pointer ">Dashboard</a>
                         @else
                             <a href="{{ route('login') }}" class="cursor-pointer">Login</a>
                             <a href="{{ route('register') }}"class="cursor-pointer ">
