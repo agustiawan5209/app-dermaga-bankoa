@@ -22,10 +22,8 @@
 
     <!-- Styles -->
     @livewireStyles
-    <link rel="stylesheet" href="{{asset('build/assets/app.62525639.css')}}">
-    <script src="{{asset('build/assets/app.e8b13026.js')}}"></script>
+
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
     <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
