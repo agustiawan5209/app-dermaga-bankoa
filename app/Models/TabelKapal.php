@@ -22,4 +22,7 @@ class TabelKapal extends Model
     public function ulasan(){
         return $this->belongsTo(Ulasan::class, 'kapal_id','id');
     }
+    public function pemberangkatan(){
+        return $this->hasMany(Pemberangkatan::class, 'kapal_id', 'id');
+    }
 }

@@ -151,60 +151,34 @@ class Cekout extends Component
             'tgl_transaksi' => 'required',
         ]);
         $berangkat = Pemberangkatan::find($id);
-        // $token = '';
-        $codeAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $codeAlphabet .= 'abcdefghijklmnopqrstuvwxyz';
-        $codeAlphabet .= '0123456789';
-        $kode = str_split(str_shuffle($codeAlphabet), 10);
-        // Session::put('TiketItem', [
-        //     'Item' => $berangkat,
-        //     'jumlah' => $this->jumlah,
-        // ]);
         if ($this->jumlah > 0) {
             $randonBukti = '';
             $namaFile = $this->bukti_transaksi->getClientOriginalName();
             $extFile = $this->bukti_transaksi->getClientOriginalExtension();
             $randonBukti = md5($namaFile) . '.' . $extFile;
             $kode_transaksi = $this->transaksiKode();
-
-            // Membuat Transaksi
-            $transaksi = Transaksi::create([
-                'kode_berangkat'=>  $berangkat->kode_berangkat ,
-                'user_id' => Auth::user()->id,
-                'ID_transaksi' => $kode_transaksi,
-                'bukti' => $randonBukti,
-                'tgl_transaksi' => $this->tgl_transaksi,
-            ]);
-            $this->bukti_transaksi->storeAs('upload', $randonBukti);
             // Cek Status Dari Muatan Kapal
             $statusMuatan = StatusMuatan::where('kode_berangkat', '=', $berangkat->kode_berangkat)->first();
             if ($statusMuatan->batas_muatan >= $statusMuatan->jumlah_tiket) {
-                // Melakukan Perulangan Untuk Tiket
-                for ($i = 0; $i < $this->jumlah; $i++) {
-                    $codeAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                    $codeAlphabet .= 'abcdefghijklmnopqrstuvwxyz';
-                    $codeAlphabet .= '0123456789';
-                    $kode = str_split(str_shuffle($codeAlphabet),7);
-                    // dd($kode);
-                    Tiket::create([
-                        'kode_berangkat' => $berangkat->kode_berangkat,
-                        'kode_tiket' => $kode[0],
-                        'harga' => $berangkat->harga,
-                        'ID_transaksi' => $kode_transaksi,
-                    ]);
-                }
-                // Mengupdate Jumlah Tiket Pada Tabel Status Muatan
-                $statusMuatan->update([
-                    'jumlah_tiket' => $this->jumlah + $statusMuatan->jumlah_tiket,
+                session()->put('data', [
+                    'id' => $id,
+                    'berangkat' => $berangkat,
+                    'kode_berangkat' => $berangkat->kode_berangkat,
+                    'user_id' => Auth::user()->id,
+                    'ID_transaksi' => $kode_transaksi,
+                    'tgl_transaksi' => $this->tgl_transaksi,
+                    'jumlah'=> $this->jumlah,
                 ]);
-                Alert::success('Info', 'Pemesanan Berhasil');
-                session()->forget('itemCek');
-                return redirect()->route('home');
-            } else {
-                Alert::warning('Info', 'Maaf Jumlah Muatan Yang Tersedia Kurang');
+                session()->put('tiket', [
+                    'kode_berangkat' => $berangkat->kode_berangkat,
+                    'harga' => $berangkat->harga,
+                    'ID_transaksi' => $kode_transaksi,
+                ]);
+            }else {
+                Alert::warning('info', 'Sisa Tiket Kosong');
             }
-        } else {
-            Alert::warning('info', 'Jumlah Tiket Kosong');
+        }else {
+            Alert::warning('info', 'Sisa Tiket Kosong');
         }
     }
     public $bayar = false;

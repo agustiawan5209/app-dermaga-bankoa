@@ -12,7 +12,7 @@ use App\Models\StatusMuatan;
 use App\Models\TabelKapal;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
-
+use Illuminate\Database\Eloquent\Builder;
 
 class PemesananTiketPage extends Component
 {
@@ -20,7 +20,9 @@ class PemesananTiketPage extends Component
     public $itemID;
     public function render()
     {
-        $berangkat = Pemberangkatan::all();
+        $berangkat = Pemberangkatan::whereHas('kapal', function(Builder $query){
+            return $query->where('pemilik', Auth::user()->id);
+        })->get();
         $destinasi = Destinasi::all();
         $kapal = TabelKapal::where('pemilik', Auth::user()->id)->get();
         return view('livewire.transaksi.pemesanan-tiket-page', compact('berangkat', 'destinasi', 'kapal'));

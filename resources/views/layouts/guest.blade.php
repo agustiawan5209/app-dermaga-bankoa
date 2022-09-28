@@ -15,10 +15,10 @@
     <script>
         new WOW().init();
     </script>
-    @vite(['resources/js/app.js', 'resources/css/app.css'])
-    <!-- Styles -->
-    @livewireStyles
-    <link rel="stylesheet" href="{{ asset('build/assets/app.25240557.css') }}">
+     @vite(['resources/js/app.js'])
+     <!-- Styles -->
+     @livewireStyles
+     <link rel="stylesheet" href="{{asset('build/assets/app.1e2fbcac.css')}}">
 </head>
 
 <body class="font-body antialiased text-[#000] bg-[#f5f5f5] dark:text-[#fff] dark:bg-[#64748b]">

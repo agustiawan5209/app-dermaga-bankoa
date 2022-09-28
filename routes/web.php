@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PemberangkatanController;
 use App\Http\Controllers\TiketController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\Admin\DashboardPemilik;
@@ -74,6 +75,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('Cekout/Kapal/{item}', Cekout::class)->name('Cekout-Page');
 
     });
+    Route::post('Cekout-Pesanan', [PemberangkatanController::class, 'bayar'])->name('Kirim-Bayar');
 });
 Route::post('Kirim-Ulasan/{kapal_id}', function(Request $request, $kapal_id){
     try{

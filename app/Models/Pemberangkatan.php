@@ -16,7 +16,7 @@ class Pemberangkatan extends Model
         'kapal_id','destinasi_id'
     ];
     public function kapal(){
-        return $this->hasOne(TabelKapal::class, 'id','kapal_id');
+        return $this->hasOne(TabelKapal::class, 'id', 'kapal_id');
     }
     public function destinasi(){
         return $this->hasOne(Destinasi::class,'id','destinasi_id');

@@ -21,7 +21,7 @@
                     <td class=" border border-gray-500 text-center">{{$item->tiket->count()}}</td>
 
                     <td class=" border border-gray-500 text-center">Rp .{{$item->tiket->sum('harga')}}</td>
-                    <td>Invoice</td>
+                    <td><a href="{{ asset('bukti/'. $item->bukti) }}">detail</a></td>
                 </tr>
                 @php
                     $total[] = $item->tiket->sum('harga');

@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Carbon\Carbon;
 use App\Models\Tiket;
+use App\Models\Ulasan;
 use Livewire\Component;
 use App\Models\Destinasi;
 use App\Models\Transaksi;
@@ -11,10 +12,10 @@ use App\Models\TabelKapal;
 use App\Models\StatusMuatan;
 use Livewire\WithFileUploads;
 use App\Models\Pemberangkatan;
-use App\Models\Ulasan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class FormPesanTiket extends Component
 {
@@ -31,7 +32,6 @@ class FormPesanTiket extends Component
         $this->pemberangkatan = Pemberangkatan::all();
     }
 
-
     /**
      * CariKapal
      * FUngsi Pencarian Kapal Untuk User
@@ -39,26 +39,24 @@ class FormPesanTiket extends Component
      */
     public function CariKapal()
     {
+        $valid = Validator::make(
+            [
+                'tujuan' => 'required',
+                'lokasi' => 'required',
+                'tgl_berangkat' => 'required',
+                'jumlah' => 'required',
+            ],
+            ['required' => 'The :attribute field is required'],
+        );
         // dd('1');
+        // dd($valid);
         $this->pemberangkatan = Pemberangkatan::all();
-        if ($this->tujuan != null && $this->tgl_berangkat != null && $this->jumlah != null && $this->Cari == true) {
-            $valid = $this->validate(
-                [
-                    'tujuan' => 'required',
-                    'lokasi' => 'required',
-                    'tgl_berangkat' => 'required',
-                    'jumlah' => 'required',
-                ],
-                [
-                    'tujuan.required' => 'border-red-500 shadow',
-                    'tgl_berangkat.required' => 'border-red-500 shadow',
-                    'jumlah.required' => 'border-red-500 shadow',
-                ],
-            );
+        if ($this->tujuan != null && $this->tgl_berangkat != null && $this->jumlah != null ) {
             $this->pemberangkatan = Pemberangkatan::where('destinasi_id', '=', $this->tujuan)
                 ->WhereDate('tgl_berangkat', $this->tgl_berangkat)
                 ->Where('status', '=', 'bersandar')
                 ->get();
+            $this->Cari = true;
         }
     }
 
@@ -91,11 +89,12 @@ class FormPesanTiket extends Component
         $this->tiket_tersisa = abs(intval($statusMuatan->jumlah_tiket) - intval($statusMuatan->batas_muatan));
         if ($statusMuatan->batas_muatan <= intval($statusMuatan->jumlah_tiket + $this->jumlah)) {
             Alert::warning('Transaksi Gagal', 'Batas Muatan Tercapai, Transaksi Gagal');
-        }else{
+        } else {
             $this->detailKapalItem = true;
         }
     }
-    public function cekout(){
+    public function cekout()
+    {
         $this->BayarItem = true;
     }
 
@@ -117,10 +116,11 @@ class FormPesanTiket extends Component
     {
         session()->put('itemCek', $id);
 
-        return redirect()->route('Customer.Cekout-Page', ['item'=> $id]);
+        return redirect()->route('Customer.Cekout-Page', ['item' => $id]);
     }
     public $ulasanItem;
-    public function showUlasan($id){
+    public function showUlasan($id)
+    {
         $this->ulasanItem = Ulasan::where('kapal_id', $id)->get();
     }
 
@@ -134,7 +134,7 @@ class FormPesanTiket extends Component
         return view('livewire.form-pesan-tiket', [
             'destinasi' => $destinasi,
             'kapal' => $kapal,
-            'berangkat'=> $pemberangkatan,
+            'berangkat' => $pemberangkatan,
         ]);
     }
 }

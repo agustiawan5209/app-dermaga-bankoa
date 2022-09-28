@@ -7,10 +7,10 @@
     <title>Dermaga Kayu Bangkoa Dashboard | Register</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
         rel="stylesheet" />
-        @vite(['resources/js/app.js'])
-        <!-- Styles -->
-        @livewireStyles
-        <link rel="stylesheet" href="{{asset('build/assets/app.25240557.css')}}">
+    @vite(['resources/js/app.js'])
+    <!-- Styles -->
+    @livewireStyles
+    <link rel="stylesheet" href="{{ asset('build/assets/app.1e2fbcac.css') }}">
 </head>
 
 <body>
@@ -51,9 +51,10 @@
                         <input
                             class="w-full px-4 py-2 border rounded-md dark:bg-gray-800 dark:border-gray-700 focus:outline-none focus:ring focus:ring-blue-400 dark:focus:ring-blue-900"
                             type="password" name="password_confirmation" placeholder="Confirm Password" required />
-                        <select name="role" id="role"  class="w-full px-4 py-2 border rounded-md dark:bg-gray-800 dark:border-gray-700 focus:outline-none focus:ring focus:ring-blue-400 dark:focus:ring-blue-900">
-                                <option value="1">Pemilik Kapal</option>
-                                <option value="3">Pengguna</option>
+                        <select name="role" id="role"
+                            class="w-full px-4 py-2 border rounded-md dark:bg-gray-800 dark:border-gray-700 focus:outline-none focus:ring focus:ring-blue-400 dark:focus:ring-blue-900">
+                            <option value="1">Pemilik Kapal</option>
+                            <option value="3">Pengguna</option>
                         </select>
                         <div>
                             <button type="submit"

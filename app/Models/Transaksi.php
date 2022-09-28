@@ -18,5 +18,9 @@ class Transaksi extends Model
     public function tiket(){
         return $this->hasMany(Tiket::class, 'ID_transaksi', 'ID_transaksi');
     }
+    public function pemberangkatan()
+    {
+        return $this->hasOne(Pemberangkatan::class, 'kode_berangkat', 'kode_berangkat');
+    }
 
 }
