@@ -34,7 +34,7 @@
                     Logistik</a>
                 @if (Route::has('login'))
                     @auth
-                        @can ('Manage-Customer', User::class)
+                        @can ('managed-Customer', User::class)
                             <a href="{{ route('Customer.Customer') }}"class="cursor-pointer ">Dashboard</a>
                         @endcan
                         <form action="{{route('logout')}}" method="post">

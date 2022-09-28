@@ -2,12 +2,15 @@
 
 namespace App\Http\Livewire\Customer;
 
+use App\Models\Transaksi;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class DashboardCustomer extends Component
 {
     public function render()
     {
-        return view('livewire.customer.dashboard-customer');
+        $tr  = Transaksi::where('user_id', Auth::user()->id)->get();
+        return view('livewire.customer.dashboard-customer', compact('tr'));
     }
 }
