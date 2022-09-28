@@ -13,16 +13,17 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
         integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     {{-- <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/> --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"
+        integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     {{-- <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script> --}}
-    @vite(['resources/js/app.js'])
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
     <!-- Styles -->
     @livewireStyles
-    <link rel="stylesheet" href="{{asset('build/assets/app.25240557.css')}}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app.25240557.css') }}">
     {{-- <script src="{{asset('build/assets/app.e8b13026.js')}}"></script> --}}
 
     <!-- Scripts -->
@@ -35,14 +36,14 @@
 
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
 
-    <nav id="header" class=" bg-gradient-to-tr from-blue-700 to-indigo-700 fixed w-full z-10 top-0 shadow">
+    <nav id="header" class=" bg-gray-900   fixed w-full z-10 top-0 shadow">
 
 
         <div class="w-full container mx-auto flex flex-wrap items-center mt-0 pt-3 pb-3 md:pb-0">
 
             <div class="w-1/2 pl-2 md:pl-0">
                 <a class="text-gray-100 text-base xl:text-xl no-underline hover:no-underline font-bold" href="#">
-                    <i class="fas fa-moon text-blue-400 pr-3"></i> {{ Carbon\Carbon::now()->format('Y M d') }}
+                    KOPERASI
                 </a>
             </div>
             <div class="w-1/2 pr-0">
@@ -63,20 +64,20 @@
                             </svg>
                         </button>
                         <div id="userMenu"
-                            class=" bg-gradient-to-tr from-blue-500 to-blue-500 rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible">
+                            class=" bg-black text-white rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible">
                             <ul class="list-reset">
                                 <li><a href="#"
-                                        class="px-4 py-2 block text-gray-100 hover:bg-gray-800 no-underline hover:no-underline">My
+                                        class="px-4 py-2 block text-gray-100 no-underline hover:no-underline">My
                                         account</a></li>
                                 <li><a href="#"
-                                        class="px-4 py-2 block text-gray-100 hover:bg-gray-800 no-underline hover:no-underline">Notifications</a>
+                                        class="px-4 py-2 block text-gray-100 no-underline hover:no-underline">Notifications</a>
                                 </li>
                                 <li>
                                     <hr class="border-t mx-2 border-gray-400">
                                 </li>
                                 <li>
                                     <form action="{{ route('logout') }}" method="post"
-                                        class="px-4 py-2 block text-gray-100 hover:bg-gray-800 no-underline hover:no-underline cursor-pointer">
+                                        class="px-4 py-2 block text-gray-100 no-underline hover:no-underline cursor-pointer">
                                         @csrf
                                         @method('POST')
                                         <button type="submit" class="">Logout</button>
@@ -107,7 +108,7 @@
     </nav>
 
     <!--Container-->
-    <div class="container w-full mx-auto pt-20">
+    <div class="container w-full mx-auto pt-20 ">
 
         <div class="w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
 
@@ -118,7 +119,7 @@
     </div>
     <!--/container-->
 
-    <footer class=" bg-gradient-to-tr from-blue-500 to-blue-500 border-t border-gray-400 shadow">
+    <footer class=" bg-gray-900  bottom-0 border-t border-gray-400 shadow">
         <div class="container max-w-md mx-auto flex py-8">
             <div class="w-full text-center">
                 <span class="text-white font-semibold leading-3">&copy;Copyright 2022</span>
@@ -135,69 +136,67 @@
         $(document).ready(function() {
             $('.datatable').dataTable();
             var userMenuDiv = document.getElementById("userMenu");
-        var userMenu = document.getElementById("userButton");
+            var userMenu = document.getElementById("userButton");
 
-        var navMenuDiv = document.getElementById("nav-content");
-        var navMenu = document.getElementById("nav-toggle");
+            var navMenuDiv = document.getElementById("nav-content");
+            var navMenu = document.getElementById("nav-toggle");
 
-        document.onclick = check;
+            document.onclick = check;
 
-        function check(e) {
-            var target = (e && e.target) || (event && event.srcElement);
+            function check(e) {
+                var target = (e && e.target) || (event && event.srcElement);
 
-            //User Menu
-            if (!checkParent(target, userMenuDiv)) {
-                // click NOT on the menu
-                if (checkParent(target, userMenu)) {
-                    // click on the link
-                    if (userMenuDiv.classList.contains("invisible")) {
-                        userMenuDiv.classList.remove("invisible");
+                //User Menu
+                if (!checkParent(target, userMenuDiv)) {
+                    // click NOT on the menu
+                    if (checkParent(target, userMenu)) {
+                        // click on the link
+                        if (userMenuDiv.classList.contains("invisible")) {
+                            userMenuDiv.classList.remove("invisible");
+                        } else {
+                            userMenuDiv.classList.add("invisible");
+                        }
                     } else {
+                        // click both outside link and outside menu, hide menu
                         userMenuDiv.classList.add("invisible");
                     }
-                } else {
-                    // click both outside link and outside menu, hide menu
-                    userMenuDiv.classList.add("invisible");
                 }
-            }
 
-            //Nav Menu
-            if (!checkParent(target, navMenuDiv)) {
-                // click NOT on the menu
-                if (checkParent(target, navMenu)) {
-                    // click on the link
-                    if (navMenuDiv.classList.contains("hidden")) {
-                        navMenuDiv.classList.remove("hidden");
+                //Nav Menu
+                if (!checkParent(target, navMenuDiv)) {
+                    // click NOT on the menu
+                    if (checkParent(target, navMenu)) {
+                        // click on the link
+                        if (navMenuDiv.classList.contains("hidden")) {
+                            navMenuDiv.classList.remove("hidden");
+                        } else {
+                            navMenuDiv.classList.add("hidden");
+                        }
                     } else {
+                        // click both outside link and outside menu, hide menu
                         navMenuDiv.classList.add("hidden");
                     }
-                } else {
-                    // click both outside link and outside menu, hide menu
-                    navMenuDiv.classList.add("hidden");
                 }
+
             }
 
-        }
-
-        function checkParent(t, elm) {
-            while (t.parentNode) {
-                if (t == elm) {
-                    return true;
+            function checkParent(t, elm) {
+                while (t.parentNode) {
+                    if (t == elm) {
+                        return true;
+                    }
+                    t = t.parentNode;
                 }
-                t = t.parentNode;
+                return false;
             }
-            return false;
-        }
-        CKEDITOR.replace( 'editor1' );
+            CKEDITOR.replace('editor1');
         });
         /*Toggle dropdown list*/
         /*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
-
-
     </script>
-@stack('modals')
+    @stack('modals')
 
-@livewireScripts
+    @livewireScripts
 </body>
 
 </html>

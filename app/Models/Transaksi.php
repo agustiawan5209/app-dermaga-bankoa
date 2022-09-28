@@ -10,9 +10,13 @@ class Transaksi extends Model
     use HasFactory;
     protected $table = 'transaksis';
     protected $fillable = [
-        'user_id','ID_transaksi','tgl_transaksi','bukti'
+        'user_id','ID_transaksi','tgl_transaksi','bukti' ,'kode_berangkat'
     ];
     public function user(){
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+    public function tiket(){
+        return $this->hasMany(Tiket::class, 'ID_transaksi', 'ID_transaksi');
+    }
+
 }

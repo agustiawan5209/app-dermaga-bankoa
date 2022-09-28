@@ -89,7 +89,7 @@ class FormPesanTiket extends Component
 
         // dd($this->itemBerangkat->id);
         $statusMuatan = StatusMuatan::where('kode_berangkat', '=', $pesan->kode_berangkat)->first();
-        $this->tiket_tersisa = abs($statusMuatan->jumlah_tiket - $statusMuatan->batas_muatan);
+        $this->tiket_tersisa = abs(intval($statusMuatan->jumlah_tiket) - intval($statusMuatan->batas_muatan));
         if ($statusMuatan->batas_muatan <= intval($statusMuatan->jumlah_tiket + $this->jumlah)) {
             Alert::warning('Transaksi Gagal', 'Batas Muatan Tercapai, Transaksi Gagal');
         }else{

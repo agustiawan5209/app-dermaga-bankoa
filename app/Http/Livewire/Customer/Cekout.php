@@ -169,6 +169,7 @@ class Cekout extends Component
 
             // Membuat Transaksi
             $transaksi = Transaksi::create([
+                'kode_berangkat'=>  $berangkat->kode_berangkat ,
                 'user_id' => Auth::user()->id,
                 'ID_transaksi' => $kode_transaksi,
                 'bukti' => $randonBukti,
@@ -180,9 +181,14 @@ class Cekout extends Component
             if ($statusMuatan->batas_muatan >= $statusMuatan->jumlah_tiket) {
                 // Melakukan Perulangan Untuk Tiket
                 for ($i = 0; $i < $this->jumlah; $i++) {
+                    $codeAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                    $codeAlphabet .= 'abcdefghijklmnopqrstuvwxyz';
+                    $codeAlphabet .= '0123456789';
+                    $kode = str_split(str_shuffle($codeAlphabet),7);
+                    // dd($kode);
                     Tiket::create([
                         'kode_berangkat' => $berangkat->kode_berangkat,
-                        'kode_tiket' => $kode[$i],
+                        'kode_tiket' => $kode[0],
                         'harga' => $berangkat->harga,
                         'ID_transaksi' => $kode_transaksi,
                     ]);
@@ -201,15 +207,18 @@ class Cekout extends Component
             Alert::warning('info', 'Jumlah Tiket Kosong');
         }
     }
-    public $bayar =false;
-    public function bayar(){
-       if($this->jumlah == 0){
-        Alert::warning('maaf', 'Jumlah Kosong');
-       }else{
-        $this->bayar = true;
-        $carbon_n = Carbon::now()->add('10', 'minutes')->toTimeString();
-        session()->put('estimasi', $carbon_n);
-       }
+    public $bayar = false;
+    public function bayar()
+    {
+        if ($this->jumlah == 0) {
+            Alert::warning('maaf', 'Jumlah Kosong');
+        } else {
+            $this->bayar = true;
+            $carbon_n = Carbon::now()
+                ->add('10', 'minutes')
+                ->toTimeString();
+            session()->put('estimasi', $carbon_n);
+        }
     }
     public $utctime;
     public function render()
@@ -224,14 +233,16 @@ class Cekout extends Component
             'bank' => $this->kartu(),
         ])->layout('layouts.guest');
     }
-    public function cekwaktu(){
+    public function cekwaktu()
+    {
         $carbon_now = Carbon::now()->toTimeString();
-        if( (string) $carbon_now == (string) session('estimasi')){
+        if ((string) $carbon_now == (string) session('estimasi')) {
             session()->forget('itemCek');
             session()->forget('estimasi');
         }
     }
-    public function batalkan(){
+    public function batalkan()
+    {
         session()->forget('itemCek');
         session()->forget('estimasi');
         return redirect()->route('home');

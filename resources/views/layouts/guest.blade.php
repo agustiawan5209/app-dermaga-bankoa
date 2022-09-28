@@ -11,14 +11,14 @@
         media="all" />
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <script src="{{ asset('js/wow.min.js') }}"></script>
-    <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
+    <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
     <script>
         new WOW().init();
     </script>
-      @vite(['resources/js/app.js'])
-      <!-- Styles -->
-      @livewireStyles
-      <link rel="stylesheet" href="{{asset('build/assets/app.25240557.css')}}">
+    @vite(['resources/js/app.js'])
+    <!-- Styles -->
+    @livewireStyles
+    <link rel="stylesheet" href="{{ asset('build/assets/app.25240557.css') }}">
 </head>
 
 <body class="font-body antialiased text-[#000] bg-[#f5f5f5] dark:text-[#fff] dark:bg-[#64748b]">
@@ -35,11 +35,15 @@
                 @if (Route::has('login'))
                     @auth
                         <a href="{{ route('dashboard') }}"class="cursor-pointer ">Dashboard</a>
-                        @else
-                            <a href="{{ route('login') }}" class="cursor-pointer">Login</a>
-                            <a href="{{ route('register') }}"class="cursor-pointer ">
-                                Register</a>
-                        @endauth
+                        <form action="{{route('logout')}}" method="post">
+                            @csrf
+                            <button type="button" class="cursor-pointer ">Logout</button>
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}" class="cursor-pointer">Login</a>
+                        <a href="{{ route('register') }}"class="cursor-pointer ">
+                            Register</a>
+                    @endauth
                 @endif
             </nav><button id="cAzqws"
                 class="block relative z-30 p-2 mx-0 mt-1 mb-0 w-8 text-center text-gray-300 normal-case bg-none rounded-md cursor-pointer bg-blue-500-500 md:hidden "><span><svg

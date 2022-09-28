@@ -14,4 +14,8 @@ class Tiket extends Model
     public function berangkat(){
         return $this->hasOne(Pemberangkatan::class, 'kode_berangkat', 'kode_berangkat');
     }
+
+    public function transaksi(){
+        return $this->hasOne(Transaksi::class, 'ID_transaksi','ID_transaksi');
+    }
 }
