@@ -15,7 +15,7 @@
     <script>
         new WOW().init();
     </script>
-    @vite(['resources/js/app.js'])
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
     <!-- Styles -->
     @livewireStyles
     <link rel="stylesheet" href="{{ asset('build/assets/app.25240557.css') }}">
@@ -34,10 +34,12 @@
                     Logistik</a>
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ route('dashboard') }}"class="cursor-pointer ">Dashboard</a>
+                        @can ('Manage-Customer', User::class)
+                            <a href="{{ route('Customer.Customer') }}"class="cursor-pointer ">Dashboard</a>
+                        @endcan
                         <form action="{{route('logout')}}" method="post">
                             @csrf
-                            <button type="button" class="cursor-pointer ">Logout</button>
+                            <button type="submit" class="cursor-pointer ">Logout</button>
                         </form>
                     @else
                         <a href="{{ route('login') }}" class="cursor-pointer">Login</a>

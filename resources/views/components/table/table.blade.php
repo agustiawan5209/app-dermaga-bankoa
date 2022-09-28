@@ -97,10 +97,10 @@
                 /*bg-indigo-500*/
             }
         </style>
-    <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+    <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white overflow-x-auto">
 
 
-        <table {{$attributes->merge(['class'=> 'datatable stripe hover'])}}  style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+        <table {{$attributes->merge(['class'=> 'datatable stripe hover overflow-x-auto'])}}  style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
             <thead>
                 {{ $th }}
             </thead>

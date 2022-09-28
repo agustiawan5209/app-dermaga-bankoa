@@ -30,9 +30,7 @@ class PemesananTiketPage extends Component
     public function buatKeberankatan()
     {
         // dd('i');
-        Alert::alert('Title', 'Message', 'Type');
-        alert()->success('berhasil', 'yes');
-        $this->itemTambahBerangkat = true;
+        $this->itemTambahBerangkat == true ? $this->itemTambahBerangkat = false : $this->itemTambahBerangkat = true;
     }
     public function editKeberankatan($id)
     {

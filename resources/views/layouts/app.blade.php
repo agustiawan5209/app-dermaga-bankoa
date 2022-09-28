@@ -23,7 +23,7 @@
     @vite(['resources/js/app.js', 'resources/css/app.css'])
     <!-- Styles -->
     @livewireStyles
-    <link rel="stylesheet" href="{{ asset('build/assets/app.25240557.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('build/assets/app.25240557.css') }}"> --}}
     {{-- <script src="{{asset('build/assets/app.e8b13026.js')}}"></script> --}}
 
     <!-- Scripts -->
@@ -34,98 +34,146 @@
 
 </head>
 
+<style>
+    tr td {
+        text-align: center;
+        border: 1px solid #ddd;
+    }
+</style>
+
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
 
-    <nav id="header" class=" bg-gray-900   fixed w-full z-10 top-0 shadow">
 
-
-        <div class="w-full container mx-auto flex flex-wrap items-center mt-0 pt-3 pb-3 md:pb-0">
-
-            <div class="w-1/2 pl-2 md:pl-0">
-                <a class="text-gray-100 text-base xl:text-xl no-underline hover:no-underline font-bold" href="#">
-                    KOPERASI
-                </a>
-            </div>
-            <div class="w-1/2 pr-0">
-                <div class="flex relative inline-block float-right">
-
-                    <div class="relative text-sm text-gray-100">
-                        <button id="userButton" class="flex items-center focus:outline-none mr-3">
-                            <img class="w-8 h-8 rounded-full mr-4" src="{{ Auth::user()->profile_photo_url }}"
-                                alt="Avatar of User">
-                            <span class="hidden md:inline-block text-gray-100">Hi, {{ Auth::user()->name }}</span>
-                            <svg class="pl-2 h-2 fill-current text-gray-100" version="1.1"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
-                                <g>
-                                    <path
-                                        d="m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z" />
-                                </g>
-                            </svg>
-                        </button>
-                        <div id="userMenu"
-                            class=" bg-black text-white rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible">
-                            <ul class="list-reset">
-                                <li><a href="#"
-                                        class="px-4 py-2 block text-gray-100 no-underline hover:no-underline">My
-                                        account</a></li>
-                                <li><a href="#"
-                                        class="px-4 py-2 block text-gray-100 no-underline hover:no-underline">Notifications</a>
-                                </li>
-                                <li>
-                                    <hr class="border-t mx-2 border-gray-400">
-                                </li>
-                                <li>
-                                    <form action="{{ route('logout') }}" method="post"
-                                        class="px-4 py-2 block text-gray-100 no-underline hover:no-underline cursor-pointer">
-                                        @csrf
-                                        @method('POST')
-                                        <button type="submit" class="">Logout</button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-
-                    <div class="block lg:hidden pr-4">
-                        <button id="nav-toggle"
-                            class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-gray-100 hover:border-teal-500 appearance-none focus:outline-none">
-                            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <title>Menu</title>
-                                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-                            </svg>
-                        </button>
+    <div class="flex flex-no-wrap">
+        <!-- Sidebar starts -->
+        <!-- Remove class [ hidden ] and replace [ sm:flex ] with [ flex ] -->
+        <div
+            class="md:w-1/4 lg:w-1/5 overflow-y-auto sm:relative bg-gray-800 shadow h-screen flex-col justify-between hidden md:flex">
+            <div class="px-8 ">
+                <div class="h-16 w-full flex items-center">
+                    <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom-svg1.svg"
+                        alt="Logo">
+                </div>
+                @include('navigation-menu')
+                <div class="flex mt-48 mb-4 w-full">
+                    <div class="relative w-full bg-gray-300 py-3 px-1 rounded-md ">
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="text-lg w-full">Logout</button>
+                        </form>
                     </div>
                 </div>
-
             </div>
-
-
-            @include('navigation-menu')
-
+            {{-- <div class="px-8 border-t border-gray-700">
+                <ul class="w-full flex items-center justify-between bg-gray-800">
+                    <li class="cursor-pointer text-white pt-5 pb-3">
+                        <button aria-label="show notifications"
+                            class="focus:outline-none focus:ring-2 rounded focus:ring-gray-300">
+                            <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom-svg3.svg"
+                                alt="notifications">
+                        </button>
+                    </li>
+                    <li class="cursor-pointer text-white pt-5 pb-3">
+                        <button aria-label="open chats"
+                            class="focus:outline-none focus:ring-2 rounded focus:ring-gray-300">
+                            <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom-svg4.svg"
+                                alt="chat">
+                        </button>
+                    </li>
+                    <li class="cursor-pointer text-white pt-5 pb-3">
+                        <button aria-label="open settings"
+                            class="focus:outline-none focus:ring-2 rounded focus:ring-gray-300">
+                            <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom-svg5.svg"
+                                alt="settings">
+                        </button>
+                    </li>
+                    <li class="cursor-pointer text-white pt-5 pb-3">
+                        <button aria-label="open logs"
+                            class="focus:outline-none focus:ring-2 rounded focus:ring-gray-300">
+                            <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom-svg6.svg"
+                                alt="drawer">
+                        </button>
+                    </li>
+                </ul>
+            </div> --}}
         </div>
-    </nav>
-
-    <!--Container-->
-    <div class="container w-full mx-auto pt-20 ">
-
-        <div class="w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
-
-            {{ $slot }}
+        <div class="w-64 z-40 absolute bg-gray-800 shadow md:h-full flex-col justify-between block md:hidden transition duration-150 ease-in-out"
+            id="mobile-nav">
+            <button aria-label="toggle sidebar" id="openSideBar"
+                class="h-10 w-10 bg-gray-800 absolute right-0 mt-16 -mr-10 flex items-center shadow rounded-tr rounded-br justify-center cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 rounded focus:ring-gray-800"
+                onclick="sidebarHandler(true)">
+                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom-svg7.svg"
+                    alt="toggler">
+            </button>
+            <button aria-label="Close sidebar" id="closeSideBar"
+                class="hidden h-10 w-10 bg-gray-800 absolute right-0 mt-16 -mr-10 flex items-center shadow rounded-tr rounded-br justify-center cursor-pointer text-white"
+                onclick="sidebarHandler(false)">
+                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom-svg8.svg"
+                    alt="cross">
+            </button>
+            <div class="px-8">
+                <div class="h-16 w-full flex items-center">
+                    <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom-svg1.svg"
+                        alt="Logo">
+                </div>
+                @include('navigation-menu')
+                <div class="flex justify-center mt-48 mb-4 w-full">
+                    <div class="relative">
+                        <div class="text-gray-300 absolute ml-4 inset-0 m-auto w-4 h-4">
+                            <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom-svg2.svg"
+                                alt="Search">
+                        </div>
+                        <input
+                            class="bg-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-100  rounded w-full text-sm text-gray-300 placeholder-gray-400 bg-gray-100 pl-10 py-2"
+                            type="text" placeholder="Search" />
+                    </div>
+                </div>
+            </div>
+            {{-- <div class="px-8 border-t border-gray-700">
+                <ul class="w-full flex items-center justify-between bg-gray-800">
+                    <li class="cursor-pointer text-white pt-5 pb-3">
+                        <button aria-label="show notifications"
+                            class="focus:outline-none focus:ring-2 rounded focus:ring-gray-300">
+                            <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom-svg3.svg"
+                                alt="notifications">
+                        </button>
+                    </li>
+                    <li class="cursor-pointer text-white pt-5 pb-3">
+                        <button aria-label="open chats"
+                            class="focus:outline-none focus:ring-2 rounded focus:ring-gray-300">
+                            <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom-svg4.svg"
+                                alt="chat">
+                        </button>
+                    </li>
+                    <li class="cursor-pointer text-white pt-5 pb-3">
+                        <button aria-label="open settings"
+                            class="focus:outline-none focus:ring-2 rounded focus:ring-gray-300">
+                            <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom-svg5.svg"
+                                alt="settings">
+                        </button>
+                    </li>
+                    <li class="cursor-pointer text-white pt-5 pb-3">
+                        <button aria-label="open logs"
+                            class="focus:outline-none focus:ring-2 rounded focus:ring-gray-300">
+                            <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom-svg6.svg"
+                                alt="drawer">
+                        </button>
+                    </li>
+                </ul>
+            </div> --}}
         </div>
-
-
+        <!-- Sidebar ends -->
+        <!-- Remove class [ h-64 ] when adding a card block -->
+        <div class="container mx-auto py-10  md:w-4/5 w-11/12 px-6 h-screen overflow-y-auto">
+            <!-- Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border -->
+            <div class="w-full h-full rounded border-dashed border-2 border-gray-300">
+                {{ $slot }}
+            </div>
+        </div>
     </div>
-    <!--/container-->
 
-    <footer class=" bg-gray-900  bottom-0 border-t border-gray-400 shadow">
-        <div class="container max-w-md mx-auto flex py-8">
-            <div class="w-full text-center">
-                <span class="text-white font-semibold leading-3">&copy;Copyright 2022</span>
-            </div>
-        </div>
-    </footer>
+
+
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
@@ -135,62 +183,24 @@
     <script>
         $(document).ready(function() {
             $('.datatable').dataTable();
-            var userMenuDiv = document.getElementById("userMenu");
-            var userMenu = document.getElementById("userButton");
 
-            var navMenuDiv = document.getElementById("nav-content");
-            var navMenu = document.getElementById("nav-toggle");
-
-            document.onclick = check;
-
-            function check(e) {
-                var target = (e && e.target) || (event && event.srcElement);
-
-                //User Menu
-                if (!checkParent(target, userMenuDiv)) {
-                    // click NOT on the menu
-                    if (checkParent(target, userMenu)) {
-                        // click on the link
-                        if (userMenuDiv.classList.contains("invisible")) {
-                            userMenuDiv.classList.remove("invisible");
-                        } else {
-                            userMenuDiv.classList.add("invisible");
-                        }
-                    } else {
-                        // click both outside link and outside menu, hide menu
-                        userMenuDiv.classList.add("invisible");
-                    }
-                }
-
-                //Nav Menu
-                if (!checkParent(target, navMenuDiv)) {
-                    // click NOT on the menu
-                    if (checkParent(target, navMenu)) {
-                        // click on the link
-                        if (navMenuDiv.classList.contains("hidden")) {
-                            navMenuDiv.classList.remove("hidden");
-                        } else {
-                            navMenuDiv.classList.add("hidden");
-                        }
-                    } else {
-                        // click both outside link and outside menu, hide menu
-                        navMenuDiv.classList.add("hidden");
-                    }
-                }
-
-            }
-
-            function checkParent(t, elm) {
-                while (t.parentNode) {
-                    if (t == elm) {
-                        return true;
-                    }
-                    t = t.parentNode;
-                }
-                return false;
-            }
-            CKEDITOR.replace('editor1');
         });
+        var sideBar = document.getElementById("mobile-nav");
+        var openSidebar = document.getElementById("openSideBar");
+        var closeSidebar = document.getElementById("closeSideBar");
+        sideBar.style.transform = "translateX(-260px)";
+
+        function sidebarHandler(flag) {
+            if (flag) {
+                sideBar.style.transform = "translateX(0px)";
+                openSidebar.classList.add("hidden");
+                closeSidebar.classList.remove("hidden");
+            } else {
+                sideBar.style.transform = "translateX(-260px)";
+                closeSidebar.classList.add("hidden");
+                openSidebar.classList.remove("hidden");
+            }
+        }
         /*Toggle dropdown list*/
         /*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
     </script>

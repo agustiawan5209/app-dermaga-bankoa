@@ -40,7 +40,6 @@ class FormPesanTiket extends Component
     public function CariKapal()
     {
         // dd('1');
-        $this->Cari = true;
         $this->pemberangkatan = Pemberangkatan::all();
         if ($this->tujuan != null && $this->tgl_berangkat != null && $this->jumlah != null && $this->Cari == true) {
             $valid = $this->validate(
@@ -129,11 +128,13 @@ class FormPesanTiket extends Component
     {
         $destinasi = Destinasi::all();
         $kapal = TabelKapal::all();
+        $pemberangkatan = Pemberangkatan::all();
         $this->CariKapal();
         $this->ulasanItem = Ulasan::all();
         return view('livewire.form-pesan-tiket', [
             'destinasi' => $destinasi,
             'kapal' => $kapal,
+            'berangkat'=> $pemberangkatan,
         ]);
     }
 }

@@ -4,7 +4,7 @@
     <x-jet-button type='button' wire:click='toPageKapal'>Kapal</x-jet-button>
     <x-jet-button type='button' wire:click='buatKeberankatan'>Tambah Berangkat</x-jet-button>
     @if ($itemTambahBerangkat)
-        <form action="" class="my-10">
+        <form action="" class="bg-white p-5 w-1/2">
             <div class="flex flex-col space-y-5">
                 <label for="email">
                     <p class="font-medium text-slate-700 pb-2">Kode Berangkat</p>

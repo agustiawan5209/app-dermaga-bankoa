@@ -21,4 +21,7 @@ class Pemberangkatan extends Model
     public function destinasi(){
         return $this->hasOne(Destinasi::class,'id','destinasi_id');
     }
+    public function statusmuatan(){
+        return $this->hasOne(StatusMuatan::class , 'kode_berangkat', 'kode_berangkat');
+    }
 }

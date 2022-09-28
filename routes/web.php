@@ -70,7 +70,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Akses Customer
     Route::group(['middleware' =>  'role:Customer', 'prefix' => 'Customer', 'as' => 'Customer.'], function(){
-        Route::get('Dashboard', DashboardCustomer::class)->name('Dashboard.Customer');
+        Route::get('Dashboard', DashboardCustomer::class)->name('Customer');
         Route::get('Cekout/Kapal/{item}', Cekout::class)->name('Cekout-Page');
 
     });
