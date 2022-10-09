@@ -20,7 +20,8 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     {{-- <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script> --}}
-    @vite(['resources/css/app.css','resources/js/app.js'])
+    @vite(['resources/js/app.js'])
+    <link rel="stylesheet" href="{{asset('build/assets/app.4d1a4c05.css')}}">
     <!-- Styles -->
     @livewireStyles
 

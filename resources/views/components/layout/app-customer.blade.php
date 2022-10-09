@@ -15,7 +15,8 @@
     <script>
         new WOW().init();
     </script>
-    @vite(['resources/js/app.js', 'resources/css/app.css'])
+    @vite(['resources/js/app.js'])
+    <link rel="stylesheet" href="{{asset('build/assets/app.4d1a4c05.css')}}">
     <!-- Styles -->
     @livewireStyles
 </head>
