@@ -59,6 +59,7 @@
         <tr>
             <th>Nama</th>
             <th>ID Pesanan</th>
+            <th>Bank Tujuan</th>
             <th>Jumlah Pesanan</th>
             <th>Harga</th>
         </tr>
@@ -68,6 +69,7 @@
         <tr>
             <td>{{$user->name}}</td>
             <td>{{$transaksi['ID_transaksi']}}</td>
+            <td>{{$bank}}</td>
             <td>{{$transaksi['jumlah']}}</td>
             <td>{{$total}}</td>
         </tr>
@@ -77,6 +79,7 @@
             <td colspan="1">{{$total}}</td>
         </tr>
     </table>
+    <img src="{{public_path('upload/'. $file)}}" alt="" width="300">
 </body>
 
 </html>

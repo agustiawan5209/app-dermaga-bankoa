@@ -18,16 +18,16 @@ class PemberangkatanController extends Controller
 {
     public function bayar(Request $request)
     {
+        $this->validate($request, [
+            'file' => ['required', 'image'],
+            'tgl_transaksi' => ['required', 'date'],
+            'nama_bank' => ['required', 'string'],
+        ]);
         $transaksi = Transaksi::find(1);
         $file = $request->file->getContent();
         $name = $request->file->getClientOriginalName();
-        Storage::put('upload/' . $name, $file);
-        $this->dataPembayaran($request, $name);
-        Alert::success('Info', 'Pembayaran berhasil');
-        return redirect()->route('home')->with('info', 'berhasil');
-    }
-    public function dataPembayaran($request, $nama_file)
-    {
+        $name_file_image = '1' . $request->file->getClientOriginalName();
+        Storage::put('upload/' . $name_file_image, $file);
         $data = session('data');
         $tiket = session('tiket');
         // dd($data);
@@ -39,11 +39,11 @@ class PemberangkatanController extends Controller
         $kode = str_split(str_shuffle($codeAlphabet), 10);
 
         // Membuat Transaksi
-        $name = $nama_file . '.pdf';
+        $name = $name . '.pdf';
         $transaksi = Transaksi::create([
             'kode_berangkat' => $data['kode_berangkat'],
             'user_id' => Auth::user()->id,
-            'ID_transaksi' => $data['ID_transaksi'],
+            'ID_transaksi' => $data['ID_transaksi'] . '/1p',
             'bukti' => $name,
             'tgl_transaksi' => $data['tgl_transaksi'],
         ]);
@@ -61,18 +61,21 @@ class PemberangkatanController extends Controller
                 'kode_berangkat' => $tiket['kode_berangkat'],
                 'kode_tiket' => $kode[0],
                 'harga' => $tiket['harga'],
-                'ID_transaksi' => $tiket['ID_transaksi'],
+                'ID_transaksi' => $tiket['ID_transaksi'] . '/1p',
             ]);
         }
         // Mengupdate Jumlah Tiket Pada Tabel Status Muatan
         $statusMuatan->update([
             'jumlah_tiket' => intval($data['jumlah']) + $statusMuatan->jumlah_tiket,
         ]);
-        // dd($data);
-        $pdf = Pdf::loadView('pdf.invoice2', ['transaksi' => $data, 'file' => $name, 'user'=> Auth::user()]);
+        $pdf = Pdf::loadView('pdf.invoice2', ['transaksi' => $data, 'file' => $name_file_image, 'user' => Auth::user(), 'bukti' => $request->nama_bank, 'bank' => $request->nama_bank]);
         // Storage::disk('bukti')->put($nama_file, );
         Storage::put('bukti/' . $name, $pdf->download()->getOriginalContent());
         Alert::success('Info', 'Pemesanan Berhasil');
-        session()->forget('itemCek');
+        // session()->forget('itemCek');
+        return $pdf->stream($name);
+    }
+    public function dataPembayaran($request, $nama_file, $bukti)
+    {
     }
 }

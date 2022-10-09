@@ -143,12 +143,13 @@ class Cekout extends Component
      * @param  mixed $id
      * @return void
      */
-    public $bukti_transaksi, $tgl_transaksi, $id_transaksi;
+    public $bukti_transaksi, $tgl_transaksi, $id_transaksi, $nama_bank;
     public function SendPembayaran($id)
     {
         $this->validate([
-            'bukti_transaksi' => 'required',
-            'tgl_transaksi' => 'required',
+            'bukti_transaksi' => ['required', 'image'],
+            'tgl_transaksi' => ['required','date'],
+            'nama_bank' => ['required', 'string'],
         ]);
         $berangkat = Pemberangkatan::find($id);
         if ($this->jumlah > 0) {
@@ -168,6 +169,7 @@ class Cekout extends Component
                     'ID_transaksi' => $kode_transaksi,
                     'tgl_transaksi' => $this->tgl_transaksi,
                     'jumlah'=> $this->jumlah,
+                    'bank'=> $this->nama_bank,
                 ]);
                 session()->put('tiket', [
                     'kode_berangkat' => $berangkat->kode_berangkat,
@@ -201,10 +203,11 @@ class Cekout extends Component
         $this->jumlah = $this->count;
         $this->sub_total = intval($this->jumlah * $this->harga);
         $this->DetailKapal($this->itemID, 0);
-
+        $bank = $this->kartu();
+        // dd($bank);
         $this->utctime = session('estimasi');
         return view('livewire.customer.cekout', [
-            'bank' => $this->kartu(),
+            'bank' => $bank,
         ])->layout('layouts.guest');
     }
     public function cekwaktu()

@@ -173,6 +173,7 @@
 
                 <form enctype="multipart/form-data" action="{{ route('Kirim-Bayar') }}" method="POST"
                     class="relative py-8 px-5 md:px-10 bg-white   shadow-md rounded border border-gray-400">
+                    <x-jet-validation-errors />
                     @csrf
                     <div class="w-full flex justify-start text-gray-600 mb-3">
                         <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left_aligned_form-svg1.svg"
@@ -180,6 +181,15 @@
                     </div>
                     <h1 class="text-gray-800   font-lg font-bold tracking-normal leading-tight mb-4">
                         Masukkan Detail Pembayaran</h1>
+                    <label for="name"
+                        class="text-gray-800   text-sm font-bold leading-tight tracking-normal">Bank</label>
+                    <select name="nama_bank" wire:model="nama_bank"
+                        class="mb-5 mt-2 text-gray-600     focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
+                        <option value="">----</option>
+                        @foreach ($bank as $item)
+                            <option value="{{ $item->bank }}">{{ $item->bank }}</option>
+                        @endforeach
+                    </select>
                     <label for="name" class="text-gray-800   text-sm font-bold leading-tight tracking-normal">Nama
                         Pengirim</label>
                     <input id="name" type="text" name="nama" value="{{ Auth::user()->name }}"
@@ -196,9 +206,7 @@
                         <input id="file" type="file" wire:model='bukti_transaksi' name="file"
                             class="text-gray-600     focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-16 text-sm border-gray-300 rounded border"
                             placeholder="XXXX - XXXX - XXXX - XXXX" />
-                        @error('bukti_transaksi')
-                            <span class="text-red-500 text-sm font-semibold">{{ $message }}</span>
-                        @enderror
+
                     </div>
                     <label for="expiry"
                         class="text-gray-800   text-sm font-bold leading-tight tracking-normal">Tanggal
@@ -207,9 +215,6 @@
                         <input type='date' wire:model='tgl_transaksi' name="tgl_transaksi"
                             class="text-gray-600     focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                             placeholder="MM/YY">
-                        @error('tgl_transaksi')
-                            <span class="text-red-500 text-sm font-semibold">{{ $message }}</span>
-                        @enderror
                     </div>
                     <div class="flex items-center justify-start w-full">
                         <button type="submit" wire:click='SendPembayaran({{ $itemID }})'
