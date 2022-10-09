@@ -21,12 +21,7 @@ class PemberangkatanController extends Controller
         $transaksi = Transaksi::find(1);
         $file = $request->file->getContent();
         $name = $request->file->getClientOriginalName();
-        $name_file = explode('.', $name);
-        $name = $name_file[0];
         Storage::put('upload/' . $name, $file);
-        $pdf = Pdf::loadView('pdf.invoice2', ['transaksi' => $transaksi, 'file' => $name]);
-        // Storage::disk('bukti')->put($name, );
-        Storage::put('bukti/' . $name . '.pdf', $pdf->download()->getOriginalContent());
         $this->dataPembayaran($request, $name);
         Alert::success('Info', 'Pembayaran berhasil');
         return redirect()->route('home')->with('info', 'berhasil');
@@ -44,13 +39,15 @@ class PemberangkatanController extends Controller
         $kode = str_split(str_shuffle($codeAlphabet), 10);
 
         // Membuat Transaksi
+        $name = $nama_file . '.pdf';
         $transaksi = Transaksi::create([
             'kode_berangkat' => $data['kode_berangkat'],
             'user_id' => Auth::user()->id,
             'ID_transaksi' => $data['ID_transaksi'],
-            'bukti' => $nama_file,
+            'bukti' => $name,
             'tgl_transaksi' => $data['tgl_transaksi'],
         ]);
+
         // Cek Status Dari Muatan Kapal
         $statusMuatan = StatusMuatan::where('kode_berangkat', '=', $data['kode_berangkat'])->first();
         // Melakukan Perulangan Untuk Tiket
@@ -71,8 +68,11 @@ class PemberangkatanController extends Controller
         $statusMuatan->update([
             'jumlah_tiket' => intval($data['jumlah']) + $statusMuatan->jumlah_tiket,
         ]);
+        // dd($data);
+        $pdf = Pdf::loadView('pdf.invoice2', ['transaksi' => $data, 'file' => $name, 'user'=> Auth::user()]);
+        // Storage::disk('bukti')->put($nama_file, );
+        Storage::put('bukti/' . $name, $pdf->download()->getOriginalContent());
         Alert::success('Info', 'Pemesanan Berhasil');
         session()->forget('itemCek');
-        return redirect()->route('home');
     }
 }

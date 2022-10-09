@@ -28,19 +28,19 @@
                 </tr>
                 <tr>
                     <td>Pembeli</td>
-                    <td>:{{ Auth::user()->name }}</td>
+                    <td>:{{ $user->name }}</td>
                 </tr>
                 <tr>
                     <td>Email</td>
-                    <td>:{{ $transaksi->user->email }}</td>
+                    <td>:{{ $user->email }}</td>
                 </tr>
                 <tr>
                     <td>Tanggal Transaksi</td>
-                    <td>:{{ $transaksi->tgl_transaksi }}</td>
+                    <td>:{{ $transaksi['tgl_transaksi'] }}</td>
                 </tr>
                 <tr>
                     <td>ID Transaksi</td>
-                    <td>:{{ $transaksi->ID_transaksi }}</td>
+                    <td>:{{ $transaksi['ID_transaksi'] }}</td>
                 </tr>
             </table>
         </div>
@@ -49,7 +49,7 @@
             <table>
                 <tr>
                     <td>Kepada</td>
-                    <td>: {{ $transaksi->pemberangkatan->kapal->user->name }}</td>
+                    <td>: {{ $transaksi['berangkat']->kapal->user->name }}</td>
                 </tr>
             </table>
         </div>
@@ -63,12 +63,12 @@
             <th>Harga</th>
         </tr>
         @php
-        $total = "Rp. ". number_format($transaksi->tiket->sum('harga'),0,2);
+        $total = "Rp. ". number_format($transaksi['berangkat']->harga * $transaksi['jumlah'],0,2);
     @endphp
         <tr>
-            <td>{{$transaksi->user->name}}</td>
-            <td>{{$transaksi->ID_transaksi}}</td>
-            <td>{{$transaksi->tiket->count()}}</td>
+            <td>{{$user->name}}</td>
+            <td>{{$transaksi['ID_transaksi']}}</td>
+            <td>{{$transaksi['jumlah']}}</td>
             <td>{{$total}}</td>
         </tr>
 
