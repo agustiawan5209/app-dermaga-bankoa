@@ -51,8 +51,8 @@
                 class="md:w-1/4 lg:w-1/5 overflow-y-auto sm:relative bg-gray-800 shadow h-screen flex-col justify-between hidden md:flex">
                 <div class="px-8 ">
                     <div class="h-16 w-full flex items-center">
-                        <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom-svg1.svg"
-                            alt="Logo">
+                        {{-- <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom-svg1.svg"
+                            alt="Logo"> --}}
                     </div>
                     @include('navigation-menu')
                     <div class="flex mt-48 mb-4 w-full">
