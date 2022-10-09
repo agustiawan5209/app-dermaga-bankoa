@@ -74,15 +74,15 @@ class PemesananTiketPage extends Component
     }
     public function editBerangkat($id)
     {
-        $berangkat = new Pemberangkatan(['id', $id]);
-        $berangkat->kode_berangkat = $this->kode_berangkat;
-        $berangkat->destinasi_id = $this->destinasi_id;
-        $berangkat->harga = $this->harga;
-        $berangkat->tgl_berangkat = $this->tgl_berangkat;
-        $berangkat->jam = $this->jam;
-        $berangkat->kapal_id = $this->kapal_id;
-        $berangkat->deskripsi = $this->deskripsi;
-        $berangkat->update();
+        $berangkat = Pemberangkatan::find($id)->update([
+           'kode_berangkat' => $this->kode_berangkat,
+           'destinasi_id' => $this->destinasi_id,
+           'harga' => $this->harga,
+           'tgl_berangkat' => $this->tgl_berangkat,
+           'jam' => $this->jam,
+           'kapal_id' => $this->kapal_id,
+           'deskripsi' => $this->deskripsi,
+        ]);
         $this->itemTambahBerangkat = false;
         Alert::success('Info', 'Berhasil');
     }

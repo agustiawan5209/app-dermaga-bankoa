@@ -43,10 +43,8 @@ class PageKapal extends Component
 
     public function addModal()
     {
+
         $this->itemAdd = true;
-        Storage::put('public/img/kapal/', '1.log');
-        // Alert::info('berhasil', 'ya');
-        // dd('a');
     }
     public function editModal($id)
     {

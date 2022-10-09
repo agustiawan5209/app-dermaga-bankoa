@@ -39,25 +39,13 @@ class FormPesanTiket extends Component
      */
     public function CariKapal()
     {
-        $valid = Validator::make(
-            [
-                'tujuan' => 'required',
-                'lokasi' => 'required',
-                'tgl_berangkat' => 'required',
-                'jumlah' => 'required',
-            ],
-            ['required' => 'The :attribute field is required'],
-        );
-        // dd('1');
-        // dd($valid);
-        $this->pemberangkatan = Pemberangkatan::all();
-        if ($this->tujuan != null && $this->tgl_berangkat != null && $this->jumlah != null ) {
-            $this->pemberangkatan = Pemberangkatan::where('destinasi_id', '=', $this->tujuan)
-                ->WhereDate('tgl_berangkat', $this->tgl_berangkat)
-                ->Where('status', '=', 'bersandar')
-                ->get();
-            $this->Cari = true;
-        }
+        $valid = $this->validate([
+            'tujuan' => 'required',
+            'lokasi' => 'required',
+            'tgl_berangkat' => 'required',
+            'jumlah' => 'required',
+        ]);
+        $this->Cari = true;
     }
 
     /**
@@ -128,13 +116,19 @@ class FormPesanTiket extends Component
     {
         $destinasi = Destinasi::all();
         $kapal = TabelKapal::all();
-        $pemberangkatan = Pemberangkatan::all();
-        $this->CariKapal();
+        $this->pemberangkatan = Pemberangkatan::all();
+        if ($this->Cari != false) {
+            if (($this->tujuan != null && $this->tgl_berangkat != null) || $this->jumlah != null) {
+                $this->pemberangkatan = Pemberangkatan::where('destinasi_id', '=', $this->tujuan)
+                    ->WhereDate('tgl_berangkat', $this->tgl_berangkat)
+                    ->Where('status', '=', 'bersandar')
+                    ->get();
+            }
+        }
         $this->ulasanItem = Ulasan::all();
         return view('livewire.form-pesan-tiket', [
             'destinasi' => $destinasi,
             'kapal' => $kapal,
-            'berangkat' => $pemberangkatan,
         ]);
     }
 }

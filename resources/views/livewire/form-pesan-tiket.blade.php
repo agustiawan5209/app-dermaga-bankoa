@@ -4,7 +4,7 @@
         <div class="container mx-auto w-full flex justify-center h-64 py-6 bg-white shadow-black shadow-sm">
             {{-- Pemesanan Tiket --}}
             <div class="w-full-h-full bg-white">
-                <form onload="this.preventDefault"
+                <form
                     class=" relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-5 px-20 mx-auto">
                     <div class="col-span-2">
                         <h3 class=" row-start-1 col-span-2 text-base text-gray-500">Dari</h3>
@@ -70,116 +70,60 @@
         <div aria-label="group of cards" tabindex="0" class="focus:outline-none py-8 w-full">
             <div class="lg:flex items-center justify-center w-full" wire:loading.class='opacity-50'
                 wire:target='CariKapal'>
-                @if ($Cari)
-                    @if ($pemberangkatan->count() > 0)
-                        @foreach ($pemberangkatan as $item)
-                            <div tabindex="0" aria-label="card 1"
-                                class="focus:outline-none lg:w-4/12 lg:mr-7 lg:mb-0 mb-7 bg-white relative dark:bg-gray-800 overflow-hidden  shadow rounded">
-                                @if ($item->statusmuatan->jumlah_tiket == $item->statusmuatan->batas_muatan)
-                                    <div class="w-full h-full flex bg-gray-500 opacity-50 absolute z-10">
-                                    </div>
-                                    <div
-                                        class=" w-full h-full absolute flex justify-center z-20 shadow-sm items-center font-bold text-sm md:text-2xl transform-cpu text-red-500">
-                                        Tiket Habis</div>
-                                @endif
-                                <div class="block items-center border-b border-gray-200 dark:border-gray-700  p-6">
-                                    <img src="{{ asset('storage/kapal/' . $item->kapal->gambar) }}" alt="coin avatar"
-                                        class="w-full h-max bg-cover rounded-sm" />
-                                    <div class="flex items-start justify-between w-full">
-                                        <div class="pl-3 w-full">
-                                            <p tabindex="0"
-                                                class="focus:outline-none text-xl font-medium leading-5 text-gray-800 dark:text-white ">
-                                                {{ $item->destinasi->lokasi }}</p>
-                                            <p tabindex="0"
-                                                class="focus:outline-none text-sm leading-normal pt-2 text-gray-500 dark:text-gray-200 ">
-                                                {{ $item->kode_berangkat }}</p>
-                                        </div>
-                                        <div role="img" aria-label="bookmark">
-                                            <svg class="focus:outline-none dark:text-white text-gray-800" width="28"
-                                                height="28" viewBox="0 0 28 28" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M10.5001 4.66667H17.5001C18.1189 4.66667 18.7124 4.9125 19.15 5.35009C19.5876 5.78767 19.8334 6.38117 19.8334 7V23.3333L14.0001 19.8333L8.16675 23.3333V7C8.16675 6.38117 8.41258 5.78767 8.85017 5.35009C9.28775 4.9125 9.88124 4.66667 10.5001 4.66667Z"
-                                                    stroke="currentColor" stroke-width="1.25" stroke-linecap="round"
-                                                    stroke-linejoin="round" />
-                                            </svg>
-                                        </div>
-                                    </div>
+                @if ($pemberangkatan->count() > 0)
+                    @foreach ($pemberangkatan as $item)
+                        <div tabindex="0" aria-label="card 1"
+                            class="focus:outline-none lg:w-4/12 lg:mr-7 lg:mb-0 mb-7 bg-white relative dark:bg-gray-800 overflow-hidden  shadow rounded">
+                            @if ($item->statusmuatan->jumlah_tiket == $item->statusmuatan->batas_muatan)
+                                <div class="w-full h-full flex bg-gray-500 opacity-50 absolute z-10">
                                 </div>
-                                <div class="px-2">
-                                    <p tabindex="0"
-                                        class="focus:outline-none text-sm leading-5 py-4 text-gray-600 dark:text-gray-200 ">
-                                        Tujuan : {{ $item->destinasi->lokasi }} <br>
-                                        Tanggal : {{ $item->tgl_berangkat }} <br>
-                                        Jam : {{ $item->jam }}
-                                        Harga : {{ $item->harga }}
-                                    </p>
-                                    <div tabindex="0" class="focus:outline-none flex">
-                                        @if ($Cari)
-                                            <x-jet-secondary-button type='button'
-                                                wire:click='DetailKapal({{ $item->id }}, {{ $jumlah }})'>
-                                                Detail
-                                            </x-jet-secondary-button>
-                                        @endif
+                                <div
+                                    class=" w-full h-full absolute flex justify-center z-20 shadow-sm items-center font-bold text-sm md:text-2xl transform-cpu text-red-500">
+                                    Tiket Habis</div>
+                            @endif
+                            <div class="block items-center border-b border-gray-200 dark:border-gray-700  p-6">
+                                <img src="{{ asset('storage/kapal/' . $item->kapal->gambar) }}" alt="coin avatar"
+                                    class="w-full h-max bg-cover rounded-sm" />
+                                <div class="flex items-start justify-between w-full">
+                                    <div class="pl-3 w-full">
+                                        <p tabindex="0"
+                                            class="focus:outline-none text-xl font-medium leading-5 text-gray-800 dark:text-white ">
+                                            {{ $item->destinasi->lokasi }}</p>
+                                        <p tabindex="0"
+                                            class="focus:outline-none text-sm leading-normal pt-2 text-gray-500 dark:text-gray-200 ">
+                                            {{ $item->kode_berangkat }}</p>
+                                    </div>
+                                    <div role="img" aria-label="bookmark">
+                                        <svg class="focus:outline-none dark:text-white text-gray-800" width="28"
+                                            height="28" viewBox="0 0 28 28" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M10.5001 4.66667H17.5001C18.1189 4.66667 18.7124 4.9125 19.15 5.35009C19.5876 5.78767 19.8334 6.38117 19.8334 7V23.3333L14.0001 19.8333L8.16675 23.3333V7C8.16675 6.38117 8.41258 5.78767 8.85017 5.35009C9.28775 4.9125 9.88124 4.66667 10.5001 4.66667Z"
+                                                stroke="currentColor" stroke-width="1.25" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg>
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
-                    @endif
-                @else
-                @foreach ($berangkat as $item)
-                            <div tabindex="0" aria-label="card 1"
-                                class="focus:outline-none lg:w-4/12 lg:mr-7 lg:mb-0 mb-7 bg-white relative dark:bg-gray-800 overflow-hidden  shadow rounded">
-                                @if ($item->statusmuatan->jumlah_tiket == $item->statusmuatan->batas_muatan)
-                                    <div class="w-full h-full flex bg-gray-500 opacity-50 absolute z-10">
-                                    </div>
-                                    <div
-                                        class=" w-full h-full absolute flex justify-center z-20 shadow-sm items-center font-bold text-sm md:text-2xl transform-cpu text-red-500">
-                                        Tiket Habis</div>
-                                @endif
-                                <div class="block items-center border-b border-gray-200 dark:border-gray-700  p-6">
-                                    <img src="{{ asset('storage/kapal/' . $item->kapal->gambar) }}" alt="coin avatar"
-                                        class="w-full h-max bg-cover rounded-sm" />
-                                    <div class="flex items-start justify-between w-full">
-                                        <div class="pl-3 w-full">
-                                            <p tabindex="0"
-                                                class="focus:outline-none text-xl font-medium leading-5 text-gray-800 dark:text-white ">
-                                                {{ $item->destinasi->lokasi }}</p>
-                                            <p tabindex="0"
-                                                class="focus:outline-none text-sm leading-normal pt-2 text-gray-500 dark:text-gray-200 ">
-                                                {{ $item->kode_berangkat }}</p>
-                                        </div>
-                                        <div role="img" aria-label="bookmark">
-                                            <svg class="focus:outline-none dark:text-white text-gray-800" width="28"
-                                                height="28" viewBox="0 0 28 28" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M10.5001 4.66667H17.5001C18.1189 4.66667 18.7124 4.9125 19.15 5.35009C19.5876 5.78767 19.8334 6.38117 19.8334 7V23.3333L14.0001 19.8333L8.16675 23.3333V7C8.16675 6.38117 8.41258 5.78767 8.85017 5.35009C9.28775 4.9125 9.88124 4.66667 10.5001 4.66667Z"
-                                                    stroke="currentColor" stroke-width="1.25" stroke-linecap="round"
-                                                    stroke-linejoin="round" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="px-2">
-                                    <p tabindex="0"
-                                        class="focus:outline-none text-sm leading-5 py-4 text-gray-600 dark:text-gray-200 ">
-                                        Tujuan : {{ $item->destinasi->lokasi }} <br>
-                                        Tanggal : {{ $item->tgl_berangkat }} <br>
-                                        Jam : {{ $item->jam }}
-                                        Harga : {{ $item->harga }}
-                                    </p>
-                                    <div tabindex="0" class="focus:outline-none flex">
-                                        @if ($Cari)
-                                            <x-jet-secondary-button type='button'
-                                                wire:click='DetailKapal({{ $item->id }}, {{ $jumlah }})'>
-                                                Detail
-                                            </x-jet-secondary-button>
-                                        @endif
-                                    </div>
+                            <div class="px-2">
+                                <p tabindex="0"
+                                    class="focus:outline-none text-sm leading-5 py-4 text-gray-600 dark:text-gray-200 ">
+                                    Tujuan : {{ $item->destinasi->lokasi }} <br>
+                                    Tanggal : {{ $item->tgl_berangkat }} <br>
+                                    Jam : {{ $item->jam }}
+                                    Harga : {{ $item->harga }}
+                                </p>
+                                <div tabindex="0" class="focus:outline-none flex">
+                                    @if ($Cari)
+                                        <x-jet-secondary-button type='button'
+                                            wire:click='DetailKapal({{ $item->id }}, {{ $jumlah }})'>
+                                            Detail
+                                        </x-jet-secondary-button>
+                                    @endif
                                 </div>
                             </div>
-                        @endforeach
+                        </div>
+                    @endforeach
                 @endif
             </div>
         </div>
