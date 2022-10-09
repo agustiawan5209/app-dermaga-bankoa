@@ -26,7 +26,7 @@
     @livewireStyles
 
     <!-- Scripts -->
-
+    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
     <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
 
