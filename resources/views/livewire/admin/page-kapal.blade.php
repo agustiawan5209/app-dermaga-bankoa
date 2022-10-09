@@ -59,6 +59,14 @@
                 </div>
         </form>
     @endif
+    <x-jet-confirmation-modal wire:model="itemDelete">
+        <x-slot name="title">Apakah Anda Yakin?</x-slot>
+        <x-slot name="content"></x-slot>
+        <x-slot name="footer">
+            <x-jet-danger-button wire:click="closeModal">Tutup</x-jet-danger-button>
+            <x-jet-danger-button wire:click="delete({{$itemID}})">Hapus</x-jet-danger-button>
+        </x-slot>
+    </x-jet-confirmation-modal>
     <x-table.table>
         <x-slot name="th">
             <tr>
@@ -67,6 +75,7 @@
                 <th>Nama Kapal</th>
                 <th>Kapal</th>
                 <th>Jumlah Muatan</th>
+                <th>Aksi</th>
             </tr>
         </x-slot>
 
@@ -79,6 +88,7 @@
                     <td class="text-center border border-gray-500">{{ $item->nama_kapal }}</td>
                     <td class="text-center border border-gray-500">{{ $item->jenis_kapal }}</td>
                     <td class="text-center border border-gray-500">{{ $item->jumlah_muatan }}</td>
+                    <x-table.tdaction  :id="$item->id"/>
                 </tr>
             @endforeach
         </x-slot>

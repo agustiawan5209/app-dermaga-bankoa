@@ -11,13 +11,27 @@ use RealRashid\SweetAlert\Facades\Alert;
 class PageKapal extends Component
 {
     use WithFileUploads;
+    // Item Modal
+    public $itemAdd = false,
+        $itemDelete = false;
     public $user_id;
     // item Field Table Kapal
     public $nama_kapal, $jenis_kapal, $pemilik, $jumlah_muatan, $itemID, $gambar;
+
     public function mount($user_id)
     {
         $this->user_id = $user_id;
         $this->pemilik = $user_id;
+    }
+    public function closeModal(){
+        $this->nama_kapal = null;
+        $this->jenis_kapal = null;
+        $this->pemilik = null;
+        $this->jumlah_muatan = null;
+        $this->itemID = null;
+        $this->gambar = null;
+        $this->itemAdd = false;
+        $this->itemDelete = false;
     }
     public function render()
     {
@@ -26,13 +40,11 @@ class PageKapal extends Component
             'kapal' => $kapal,
         ]);
     }
-    // Item Modal
-    public $itemAdd = false,
-        $itemDelete = false;
+
     public function addModal()
     {
         $this->itemAdd = true;
-        Storage::put('public/img/kapal/', '1.log' );
+        Storage::put('public/img/kapal/', '1.log');
         // Alert::info('berhasil', 'ya');
         // dd('a');
     }
@@ -64,35 +76,37 @@ class PageKapal extends Component
             'jenis_kapal' => 'required',
             'pemilik' => 'required',
             'jumlah_muatan' => 'required',
-            'gambar'=> 'image|max:2040'
+            'gambar' => 'image|max:2040',
         ]);
         // dd([$file, $ext]);
         $random = '';
-        if($this->gambar != null){
+        if ($this->gambar != null) {
             $file = $this->gambar->getClientOriginalName();
             $ext = $this->gambar->getClientOriginalExtension();
-            $random  = md5($file) . '.'. $ext;
+            $random = md5($file) . '.' . $ext;
             $this->gambar->storeAs('public/kapal/', $file);
         }
         // dd($random);
-        $push = array_replace($valid, ['gambar'=> $file]);
+        $push = array_replace($valid, ['gambar' => $file]);
         TabelKapal::create($push);
         $this->itemAdd = false;
         Alert::success('Info', 'Berhasil Di Tambah');
     }
-    public function edit($id){
+    public function edit($id)
+    {
         $valid = $this->validate([
             'nama_kapal' => 'required',
             'jenis_kapal' => 'required',
             'pemilik' => 'required',
             'jumlah_muatan' => 'required',
         ]);
-        TabelKapal::where('id',$id)->update($valid);
+        TabelKapal::where('id', $id)->update($valid);
         $this->itemAdd = false;
         Alert::success('Info', 'Berhasil Di Edit');
     }
-    public function delete($id){
-        TabelKapal::where('id',$id)->delete();
+    public function delete($id)
+    {
+        TabelKapal::where('id', $id)->delete();
         $this->itemDelete = false;
         Alert::info('Info', 'Berhasil Di Hapus');
     }
