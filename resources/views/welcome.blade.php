@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div style="background-image:linear-gradient(#c7d7fb00, #c7d7fba4) ,url({{ asset('img/dermaga.jpg') }});background-size:cover; background-position-y:0px;"
+    <div style="background-image:linear-gradient(#c7d7fb00, #c7d7fba4) ,url({{ asset('img/kapal/WhatsApp Image 2022-10-09 at 18.56.52 (1).jpeg') }});background-size:cover; background-position-y:0px;"
         class=" mx-auto mb-24 max-w-screen-xl text-center lg:my-20 xl:items-center    sm:mb-10 ">
         <div class="  text-gray-700 p-20">
             <h2
@@ -16,7 +16,7 @@
     <div class="py-11 bg-white overflow-hidden shadow-md shadow-current">
         <div class="grid grid-cols-2 mt-5 gap-y-5 sm:gap-y-0 lg:mx-auto lg:max-w-4xl">
             <div class="col-span-2 sm:col-span-1 md:col-span-1 wow slideInLeft"><img alt="No alt"
-                    src="{{ asset('img/logistik.jpg') }}" class="w-full bg-gray-50 " /></div>
+                    src="{{ asset('img/kapal/WhatsApp Image 2022-10-09 at 18.56.54.jpeg') }}" class="w-full bg-gray-50 " /></div>
             <div
                 class="col-span-2 px-3 pb-3 dark:border-slate-700 border-gray-50 sm:col-span-1 sm:flex sm:flex-col sm:justify-center sm:pl-7 sm:border-t lg:border-r wow slideInRight">
                 <h1
@@ -38,7 +38,7 @@
                     Indonesia.</p>
             </div>
             <div class="col-span-2 order-2 sm:col-span-1 sm:order-none md:col-span-1 wow slideInRight">
-                <img alt="No alt" src="{{ asset('img/layanan.jpg') }}" class="w-full bg-gray-50 " />
+                <img alt="No alt" src="{{ asset('img/kapal/WhatsApp Image 2022-10-09 at 18.56.52.jpeg') }}" class="w-full bg-gray-50 " />
             </div>
         </div>
     </div>
