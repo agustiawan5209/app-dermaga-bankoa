@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div style="background-image:linear-gradient(#c7d7fb00, #c7d7fba4) ,url({{ asset('img/kapal/WhatsApp Image 2022-10-09 at 18.56.52 (1).jpeg') }});background-size:cover; background-position-y:0px;"
+    <div style="background-image:linear-gradient(#c7d7fb00, #c7d7fba4) ,url({{ asset('img/kapal/WhatsApp Image 2022-10-16 at 09.07.53.jpeg') }});background-size:cover; background-position-y:0px;"
         class=" mx-auto mb-24 max-w-screen-xl text-center lg:my-20 xl:items-center    sm:mb-10 ">
         <div class="  text-gray-700 p-20">
             <h2
