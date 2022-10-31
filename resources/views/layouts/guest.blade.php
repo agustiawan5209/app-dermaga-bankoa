@@ -28,9 +28,9 @@
             <nav class="hidden flex-row justify-center items-center w-auto font-semibold gap-x-12 md:flex"><a
                     href="{{ route('home') }}" class="cursor-pointer">Home</a>
                 <a href="{{ route('Pesan-Tiket') }}" class="cursor-pointer">Reservasi Tiket</a>
-                <a href="{{ route('Layanan-page') }}" class="cursor-pointer">Layanan</a>
+                {{-- <a href="{{ route('Layanan-page') }}" class="cursor-pointer">Layanan</a>
                 <a href="{{ route('logistik-page') }}" class="cursor-pointer">Jasa
-                    Logistik</a>
+                    Logistik</a> --}}
                 @if (Route::has('login'))
                 @auth
                 @can ('managed-Customer', User::class)
