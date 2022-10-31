@@ -20,13 +20,12 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     {{-- <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script> --}}
-    @vite(['resources/js/app.js'])
+
     <link rel="stylesheet" href="{{asset('build/assets/app.4d1a4c05.css')}}">
-    <!-- Styles -->
+    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
     @livewireStyles
 
     <!-- Scripts -->
-    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
     <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
 

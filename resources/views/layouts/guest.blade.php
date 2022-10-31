@@ -15,12 +15,9 @@
     <script>
         new WOW().init();
     </script>
-    @vite(['resources/js/app.js'])
-    <link rel="stylesheet" href="{{asset('build/assets/app.4d1a4c05.css')}}">
-     <!-- Styles -->
-    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
-
-     @livewireStyles
+   <link rel="stylesheet" href="{{asset('build/assets/app.4d1a4c05.css')}}">
+   <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
+   @livewireStyles
 </head>
 
 <body class="font-body antialiased text-[#000] bg-[#f5f5f5] dark:text-[#fff] dark:bg-[#64748b]">
@@ -35,19 +32,19 @@
                 <a href="{{ route('logistik-page') }}" class="cursor-pointer">Jasa
                     Logistik</a>
                 @if (Route::has('login'))
-                    @auth
-                        @can ('managed-Customer', User::class)
-                            <a href="{{ route('Customer.Customer') }}"class="cursor-pointer ">Dashboard</a>
-                        @endcan
-                        <form action="{{route('logout')}}" method="post">
-                            @csrf
-                            <button type="submit" class="cursor-pointer ">Logout</button>
-                        </form>
-                    @else
-                        <a href="{{ route('login') }}" class="cursor-pointer">Login</a>
-                        <a href="{{ route('register') }}"class="cursor-pointer ">
-                            Register</a>
-                    @endauth
+                @auth
+                @can ('managed-Customer', User::class)
+                <a href="{{ route('Customer.Customer') }}" class="cursor-pointer ">Dashboard</a>
+                @endcan
+                <form action="{{route('logout')}}" method="post">
+                    @csrf
+                    <button type="submit" class="cursor-pointer ">Logout</button>
+                </form>
+                @else
+                <a href="{{ route('login') }}" class="cursor-pointer">Login</a>
+                <a href="{{ route('register') }}" class="cursor-pointer ">
+                    Register</a>
+                @endauth
                 @endif
             </nav><button id="cAzqws"
                 class="block relative z-30 p-2 mx-0 mt-1 mb-0 w-8 text-center text-gray-300 normal-case bg-none rounded-md cursor-pointer bg-blue-500-500 md:hidden "><span><svg
