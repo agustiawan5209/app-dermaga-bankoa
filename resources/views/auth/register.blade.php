@@ -7,10 +7,10 @@
     <title>Dermaga Kayu Bangkoa Dashboard | Register</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
         rel="stylesheet" />
-    @vite(['resources/js/app.js'])
     <!-- Styles -->
     @livewireStyles
-    <link rel="stylesheet" href="{{ asset('build/assets/app.1e2fbcac.css') }}">
+    <link rel="stylesheet" href="{{asset('build/assets/app.4d1a4c05.css')}}">
+    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
 </head>
 
 <body>

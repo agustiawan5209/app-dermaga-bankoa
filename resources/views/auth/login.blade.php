@@ -12,8 +12,7 @@
 </head>
 
 <body>
-    <div x-data="setup()" x-init="$refs.loading.classList.add('hidden');
-    setColors(color);" :class="{ 'dark': isDark }">
+    <div>
         <!-- Loading screen -->
         <div x-ref="loading"
             class="fixed inset-0 z-50 flex items-center justify-center text-2xl font-semibold text-white bg-blue-900">
