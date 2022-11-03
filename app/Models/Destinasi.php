@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Destinasi extends Model
 {
     protected $table = 'destinasis';
-    protected $fillable = ['lokasi'];
+    protected $fillable = ['lokasi','harga'];
     // protected $hidden = 'harga';
     use HasFactory;
 
