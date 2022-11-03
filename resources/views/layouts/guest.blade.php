@@ -15,7 +15,7 @@
     <script>
         new WOW().init();
     </script>
-   @vite(['resources/css/app.css', 'resources/js/app.js'])
+   <link rel="stylesheet" href="{{asset('build/assets/app.a4d01d30.css')}}">
    @livewireStyles
 </head>
 
@@ -78,6 +78,8 @@
     @stack('modals')
 
     @livewireScripts
+
+   <script defer src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
     {{-- <footer class="py-12 leading-6 px-4 lg:px-8 fixed bottom-0">
         <div class="flex justify-between mx-auto mb-6 max-w-screen-xl lg:mb-8"><a href="#"
                 class="px-2 space-x-2 flex items-center gap-x-1 text-2xl font-bold text-primary">DERMAGA KAYU
