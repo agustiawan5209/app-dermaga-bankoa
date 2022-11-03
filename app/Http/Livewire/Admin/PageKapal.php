@@ -102,6 +102,7 @@ class PageKapal extends Component
         $this->itemAdd = false;
         Alert::success('Info', 'Berhasil Di Edit');
     }
+
     public function delete($id)
     {
         TabelKapal::where('id', $id)->delete();

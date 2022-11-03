@@ -22,7 +22,6 @@
     {{-- <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script> --}}
 
     <link rel="stylesheet" href="{{asset('build/assets/app.4d1a4c05.css')}}">
-    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
     @livewireStyles
 
     <!-- Scripts -->
@@ -182,6 +181,7 @@
     <!--Datatables -->
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script defer src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
 
 
     <script>

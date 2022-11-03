@@ -46,10 +46,10 @@
                         <input
                             class="w-full px-4 py-2 border rounded-md dark:bg-gray-800 dark:border-gray-700 focus:outline-none focus:ring focus:ring-blue-400 dark:focus:ring-blue-900"
                             type="password" name="password_confirmation" placeholder="Confirm Password" required />
-                        <select name="role" id="role"
+                        {{-- <select name="role" id="role"
                             class="w-full px-4 py-2 border rounded-md dark:bg-gray-800 dark:border-gray-700 focus:outline-none focus:ring focus:ring-blue-400 dark:focus:ring-blue-900">
                             <option value="1">Pemilik Kapal</option>
-                            <option value="3">Pengguna</option>
+                            <option value="3">Pengguna</option> --}}
                         </select>
                         <div>
                             <button type="submit"

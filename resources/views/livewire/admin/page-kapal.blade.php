@@ -1,44 +1,45 @@
 <div>
     @include('sweetalert::alert')
+    <div>
 
-  <div>
-    <x-jet-button type='button' onclick="this.preventDefault" wire:click='addModal'>Tambah Kapal</x-jet-button>
-    <x-jet-validation-errors />
-    @if ($itemAdd)
-        <form action="" class="my-2">
-            <div class="flex flex-col space-y-5 max-w-md bg-white px-4 py-2">
-                <label for="">
-                    <p class="font-medium text-slate-700 pb-2">Foto kapal</p>
-                    <x-jet-input id="gambar" wire:model="gambar" type="file"
-                        class="w-full py-3 border border-slate-200 bg-white rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
-                        placeholder=".........." />
-                    @error('gambar')
-                        <span class="text-red-500 font-semibold">{{ $message }}</span>
-                    @enderror
-                </label>
-                <label for="">
-                    <p class="font-medium text-slate-700 pb-2">nama kapal</p>
-                    <x-jet-input id="nama_kapal" wire:model="nama_kapal" type="text"
-                        class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
-                        placeholder=".........." />
-                    @error('nama_kapal')
-                        <span class="text-red-500 font-semibold">{{ $message }}</span>
-                    @enderror
-                </label>
-                <label for="">
-                    <p class="font-medium text-slate-700 pb-2">jenis kapal</p>
-                    <select id="jenis_kapal" wire:model="jenis_kapal" type="text"
-                        class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
-                        placeholder=".........." />
-                    <option value="">--Pilih--</option>
-                    <option value="Penumpang">Penumpang</option>
-                    <option value="Kargo">Kargo</option>
-                    </select>
-                    @error('jenis_kapal')
-                        <span class="text-red-500 font-semibold">{{ $message }}</span>
-                    @enderror
-                </label>
-                <x-jet-input type="hidden" wire:model="pemilik" />
+        <x-jet-button type='button' onclick="this.preventDefault" wire:click='addModal'>Tambah Kapal</x-jet-button>
+        <x-jet-validation-errors />
+        @if ($itemAdd)
+            <form action="" class="my-2">
+
+                <div class="flex flex-col space-y-5 max-w-md bg-white px-4 py-2">
+                    <label for="">
+                        <p class="font-medium text-slate-700 pb-2">Foto kapal</p>
+                        <x-jet-input id="gambar" wire:model="gambar" type="file"
+                            class="w-full py-3 border border-slate-200 bg-white rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+                            placeholder=".........." />
+                        @error('gambar')
+                            <span class="text-red-500 font-semibold">{{ $message }}</span>
+                        @enderror
+                    </label>
+                    <label for="">
+                        <p class="font-medium text-slate-700 pb-2">nama kapal</p>
+                        <x-jet-input id="nama_kapal" wire:model="nama_kapal" type="text"
+                            class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+                            placeholder=".........." />
+                        @error('nama_kapal')
+                            <span class="text-red-500 font-semibold">{{ $message }}</span>
+                        @enderror
+                    </label>
+                    <label for="">
+                        <p class="font-medium text-slate-700 pb-2">jenis kapal</p>
+                        <select id="jenis_kapal" wire:model="jenis_kapal" type="text"
+                            class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+                            placeholder=".........." />
+                        <option value="">--Pilih--</option>
+                        <option value="Penumpang">Penumpang</option>
+                        <option value="Kargo">Kargo</option>
+                        </select>
+                        @error('jenis_kapal')
+                            <span class="text-red-500 font-semibold">{{ $message }}</span>
+                        @enderror
+                    </label>
+                    <x-jet-input type="hidden" wire:model="pemilik" />
                     <label for="">
                         <p class="font-medium text-slate-700 pb-2">jumlah muatan</p>
                         <x-jet-input id="jumlah_muatan" wire:model="jumlah_muatan" type="text"
@@ -59,42 +60,45 @@
                         <span>Tambah</span>
                     </button>
                 </div>
-        </form>
-    @endif
-    <x-jet-confirmation-modal wire:model="itemDelete">
-        <x-slot name="title">Apakah Anda Yakin?</x-slot>
-        <x-slot name="content"></x-slot>
-        <x-slot name="footer">
-            <x-jet-danger-button wire:click="closeModal">Tutup</x-jet-danger-button>
-            <x-jet-danger-button wire:click="delete({{$itemID}})">Hapus</x-jet-danger-button>
-        </x-slot>
-    </x-jet-confirmation-modal>
-    <x-table.table>
-        <x-slot name="th">
-            <tr>
-                <th>No</th>
-                <th>Foto</th>
-                <th>Nama Kapal</th>
-                <th>Kapal</th>
-                <th>Jumlah Muatan</th>
-                <th>Aksi</th>
-            </tr>
-        </x-slot>
+            </form>
+        @endif
 
-        <x-slot name="td">
-            @foreach ($kapal as $item)
+        <x-table.table>
+            <x-slot name="th">
                 <tr>
-                    <td class="text-center border border-gray-500">{{ $loop->iteration }}</td>
-                    <td class="w-20 border border-gray-500"><img src="{{ asset('storage/kapal/'. $item->gambar) }}" alt=""></td>
-                    {{-- <td class="text-center border border-gray-500">{{ $item->gambar }}</td> --}}
-                    <td class="text-center border border-gray-500">{{ $item->nama_kapal }}</td>
-                    <td class="text-center border border-gray-500">{{ $item->jenis_kapal }}</td>
-                    <td class="text-center border border-gray-500">{{ $item->jumlah_muatan }}</td>
-                    <x-table.tdaction  :id="$item->id"/>
+                    <th>No</th>
+                    <th>Foto</th>
+                    <th>Nama Kapal</th>
+                    <th>Kapal</th>
+                    <th>Jumlah Muatan</th>
+                    <th>Aksi</th>
                 </tr>
-            @endforeach
-        </x-slot>
+            </x-slot>
 
-    </x-table.table>
-  </div>
+            <x-slot name="td">
+                @foreach ($kapal as $item)
+                    <tr>
+                        <td class="text-center border border-gray-500">{{ $loop->iteration }}</td>
+                        <td class="w-20 border border-gray-500"><img src="{{ asset('storage/kapal/' . $item->gambar) }}"
+                                alt=""></td>
+                        {{-- <td class="text-center border border-gray-500">{{ $item->gambar }}</td> --}}
+                        <td class="text-center border border-gray-500">{{ $item->nama_kapal }}</td>
+                        <td class="text-center border border-gray-500">{{ $item->jenis_kapal }}</td>
+                        <td class="text-center border border-gray-500">{{ $item->jumlah_muatan }}</td>
+                        <x-table.tdaction :id="$item->id" />
+                    </tr>
+                @endforeach
+            </x-slot>
+
+        </x-table.table>
+        <x-jet-dialog-modal wire:model="itemDelete">
+            <x-slot name="title">Apakah Anda Yakin?</x-slot>
+            <x-slot name="content"></x-slot>
+            <x-slot name="footer">
+                <x-jet-danger-button wire:click="closeModal">Tutup</x-jet-danger-button>
+                <x-jet-danger-button wire:click="delete({{ $itemID }})">Hapus</x-jet-danger-button>
+            </x-slot>
+        </x-jet-dialog-modal>
+    </div>
+
 </div>
