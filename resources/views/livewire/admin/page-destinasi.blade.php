@@ -20,7 +20,7 @@
                 <x-jet-input type="hidden" wire:model="pemilik" />
                 <label for="">
                     <p class="font-medium text-slate-700 pb-2">Harga</p>
-                    <x-jet-input id="harga" wire:model="harga" type="text"
+                    <x-jet-input id="harga" wire:model.defer="harga" type="text"
                         class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
                         placeholder=".........." />
                     @error('harga')
@@ -53,30 +53,32 @@
         </form>
     @endif
 
-    <x-table.table>
-        <x-slot name="th">
-            <tr>
-                <th>No</th>
-                <th>Lokasi</th>
-                <th>Harga</th>
-                <th>Aksi</th>
-            </tr>
-        </x-slot>
-
-        <x-slot name="td">
-            @foreach ($tujuan as $destinasi)
+    <div class="w-full">
+        <x-table.table>
+            <x-slot name="th">
                 <tr>
-                    <td class="text-center border border-gray-500">{{ $loop->iteration }}</td>
-                    {{-- <td class="text-center border border-gray-500">{{ $destinasi->gambar }}</td> --}}
-                    <td class="text-center border border-gray-500">{{ $destinasi->lokasi }}</td>
-                    <td class="text-center border border-gray-500">Rp. {{ number_format($destinasi->harga, 0, 2) }}
-                    </td>
-                    <x-table.tdaction :id="$destinasi->id" />
+                    <th>No</th>
+                    <th>Lokasi</th>
+                    <th>Harga</th>
+                    <th>Aksi</th>
                 </tr>
-            @endforeach
-        </x-slot>
+            </x-slot>
 
-    </x-table.table>
+            <x-slot name="td">
+                @foreach ($tujuan as $destinasi)
+                    <tr>
+                        <td class="text-center border border-gray-500">{{ $loop->iteration }}</td>
+                        {{-- <td class="text-center border border-gray-500">{{ $destinasi->gambar }}</td> --}}
+                        <td class="text-center border border-gray-500">{{ $destinasi->lokasi }}</td>
+                        <td class="text-center border border-gray-500">Rp. {{ number_format($destinasi->harga, 0, 2) }}
+                        </td>
+                        <x-table.tdaction :id="$destinasi->id" />
+                    </tr>
+                @endforeach
+            </x-slot>
+
+        </x-table.table>
+    </div>
     <x-jet-dialog-modal wire:model="itemDelete">
         <x-slot name="title">Apakah Anda Yakin?</x-slot>
         <x-slot name="content"></x-slot>
