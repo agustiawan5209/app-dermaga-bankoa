@@ -8,13 +8,13 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class PageDestinasi extends Component
 {
-    public $itemAdd = false, $itemEdit = false, $itemDelete = false,$itemID;
+    public $itemAdd = false, $itemEdit = false, $itemDelete = false, $itemID;
     public $lokasi, $harga;
     public function render()
     {
         $destinasi = Destinasi::all();
         return view('livewire.admin.page-destinasi', [
-            'tujuan'=> $destinasi,
+            'tujuan' => $destinasi,
         ]);
     }
 
@@ -22,7 +22,8 @@ class PageDestinasi extends Component
     {
         $this->itemAdd = true;
     }
-    public function editModal($id){
+    public function editModal($id)
+    {
         $destinasi = Destinasi::find($id);
         $this->lokasi = $destinasi->lokasi;
         $this->harga = $destinasi->harga;
@@ -35,32 +36,35 @@ class PageDestinasi extends Component
         $this->itemDelete = true;
         $this->itemID = Destinasi::find($id)->id;
     }
-    public function create(){
+    public function create()
+    {
         $valid = $this->validate([
-            'lokasi'=>'required',
-            'harga'=> 'required',
+            'lokasi' => 'required',
+            'harga' => 'required',
         ]);
         Destinasi::create($valid);
         $this->itemAdd = false;
         Alert::success("Info", 'Berhasil Di tambah');
     }
-    public function edit($id){
+    public function edit($id)
+    {
         $valid = $this->validate([
-            'lokasi'=>'required',
-            'harga'=> ['required', 'integer'],
+            'lokasi' => 'required',
+            'harga' => ['required', 'numeric'],
         ]);
-        try{
+        try {
             Destinasi::find($id)->update($valid);
-        $this->itemEdit = false;
-        $this->itemAdd = false;
-        Alert::success("info", 'Berhasil Di Edit');
-        }catch(\Exception $msg){
+            $this->itemEdit = false;
+            $this->itemAdd = false;
+            Alert::success("info", 'Berhasil Di Edit');
+        } catch (\Exception $msg) {
             Alert::error('Error', $msg->getMessage());
         }
     }
-    public function delete($id){
+    public function delete($id)
+    {
         Destinasi::find($id)->delete();
-        Alert::success('Info','Berhasil Di Hapus');
+        Alert::success('Info', 'Berhasil Di Hapus');
         $this->itemDelete = false;
     }
 }
