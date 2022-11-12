@@ -40,7 +40,7 @@ class PageDestinasi extends Component
     {
         $valid = $this->validate([
             'lokasi' => 'required',
-            'harga' => 'required',
+            'harga' => ['required', 'numeric'],
         ]);
         Destinasi::create($valid);
         $this->itemAdd = false;
