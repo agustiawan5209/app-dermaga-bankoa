@@ -15,7 +15,7 @@
         <li class="flex w-full justify-between cursor-pointer items-center py-3 pl-4 {{ request()->routeIs('Admin.Data-Tr-Pemberangkatan') ?  'bg-white text-gray-700' :'text-gray-400 hover:text-gray-300' }}">
             <a href="{{ route('Admin.Data-Tr-Pemberangkatan') }}"
                 class="blo flex items-center focus:outline-none focus:ring-2 focus:ring-white">
-                <i class="fa fa-envelope fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Transaksi</span>
+                <i class="fa fa-envelope fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Pemberangkatan Kapal</span>
             </a>
         </li>
         <li class="flex w-full justify-between cursor-pointer items-center py-3 pl-4 {{ request()->routeIs('Admin.Data-Kapal') ?  'bg-white text-gray-700' :'text-gray-400 hover:text-gray-300' }}">
