@@ -78,7 +78,7 @@ class FormPesanTiket extends Component
         $this->batas_muatan = $pesan->kapal->jumlah_muatan;
         $this->gambar = $pesan->kapal->gambar;
 
-        // dd($this->itemBerangkat->id);
+        // dd($this->pesan);
         $statusMuatan = StatusMuatan::where('kode_berangkat', '=', $pesan->kode_berangkat)->first();
         $this->tiket_tersisa = abs(intval($statusMuatan->jumlah_tiket) - intval($statusMuatan->batas_muatan));
         if ($statusMuatan->batas_muatan <= intval($statusMuatan->jumlah_tiket + $this->jumlah)) {

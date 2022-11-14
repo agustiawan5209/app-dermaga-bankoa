@@ -1,7 +1,7 @@
 <div>
     <div class="">
         @include('sweetalert::alert')
-        <div class="py-2 px-4 md:px-12 2xl:px-20 2xl:container 2xl:mx-auto">
+        <div class="py-2 px-4 md:px-12 2xl:px-20 2xl:container 2xl:mx-auto bg-[#3157DB]">
             <div
                 class="mt-10 flex flex-col xl:flex-row jusitfy-center items-stretch w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">
                 <div
@@ -13,9 +13,7 @@
                         <div
                             class="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full">
                             <div class="pb-4 md:pb-8 w-full md:w-40">
-                                <img class="w-full hidden md:block" src="{{ asset('storage/kapal/' . $gambar) }}"
-                                    alt="dress" />
-                                <img class="w-full md:hidden" src="{{ asset('storage/kapal/' . $gambar) }}"
+                                <img class="w-full :block" src="{{ asset('storage/kapal/' . $gambar) }}"
                                     alt="dress" />
                             </div>
                             <div
@@ -101,9 +99,6 @@
                                     {{ number_format($sub_total, 0, 2) }}</p>
                             </div>
                             <div class="w-full flex justify-center items-center">
-                                <x-jet-secondary-button wire:click='bayar'
-                                    class="bg-blue-500 w-full text-white text-center hover:bg-blue-400 hover:text-gray-100">
-                                    Lakukan Pembayaran</x-jet-secondary-button>
                             </div>
                         </div>
                     </div>
