@@ -28,9 +28,9 @@
 
     <!--====== Style CSS ======-->
     <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
-    <link rel="stylesheet" href="{{asset('build/assets/aapp.c2b10521.css')}}">
     @vite(['resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('assets/css/tailwind.css') }}">
+    <link rel="stylesheet" href="{{asset('build/assets/app.c2b10521.css')}}">
     @livewireStyles
 
 </head>
@@ -86,7 +86,7 @@
                                 <ul id="nav"
                                     class="items-center content-start mr-auto lg:justify-end navbar-nav lg:flex">
                                     <li class="nav-item active">
-                                        <a class="page-scroll {{request()->routeIs('home') ? '' : '!text-white'}}" href="#home">Home</a>
+                                        <a class="page-scroll {{request()->routeIs('home') ? '' : '!text-white'}}" href="{{route('home')}}">Home</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="page-scroll {{request()->routeIs('home') ? '' : '!text-white'}}" href="#about">Tentang Kami</a>
