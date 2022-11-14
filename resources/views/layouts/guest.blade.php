@@ -28,7 +28,9 @@
 
     <!--====== Style CSS ======-->
     <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
-    @vite(['resources/js/app.js', 'resources/css/app.css'])
+    <link rel="stylesheet" href="{{asset('build/assets/app.7d98aa71.css')}}">
+    @vite(['resources/js/app.js','resources/css/app.css'])
+
     <link rel="stylesheet" href="{{ asset('assets/css/tailwind.css') }}">
 
 </head>
@@ -266,6 +268,7 @@
 
     <!--====== Main js ======-->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script defer src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
 
 </body>
 

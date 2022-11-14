@@ -7,7 +7,10 @@
     <title>Dermaga Kayu Bangkoa Dashboard | Login</title>
     <!-- Styles -->
     @livewireStyles
+    <link rel="stylesheet" href="{{asset('build/assets/app.7d98aa71.css')}}">
     @vite(['resources/js/app.js','resources/css/app.css'])
+
+    <script defer src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
 </head>
 
 <body>
@@ -37,7 +40,20 @@
                         <input
                             class="w-full px-4 py-2 border rounded-md dark:bg-darker dark:border-gray-700 focus:outline-none focus:ring focus:ring-blue-500-100 dark:focus:ring-blue-500-darker"
                             type="password" name="password" placeholder="Password" required />
+                        {{-- <div class="flex items-center justify-between">
+                            <!-- Remember me toggle -->
+                            <label class="flex items-center">
+                                <div class="relative inline-flex items-center">
+                                    <input type="checkbox" name="remembr_me"
+                                        class="w-10 h-4 transition bg-gray-200 border-none rounded-full shadow-inner outline-none appearance-none toggle checked:bg-blue-500-light disabled:bg-gray-200 focus:outline-none" />
+                                </div>
+                                <span class="ml-3 text-sm font-normal text-gray-500 dark:text-gray-400">Remember
+                                    me</span>
+                            </label>
 
+                            <a href="forgot-password.html" class="text-sm text-blue-600 hover:underline">Forgot
+                                Password?</a>
+                        </div> --}}
                         <div>
                             <button type="submit"
                                 class="w-full px-4 py-2 font-medium text-center text-white transition-colors duration-200 rounded-md bg-blue-500 hover:bg-blue-500-dark focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 dark:focus:ring-offset-darker">
