@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     {{-- <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script> --}}
 
-    <link rel="stylesheet" href="{{asset('build/assets/app.7d98aa71.css')}}">
+    <link rel="stylesheet" href="{{asset('build/assets/aapp.c2b10521.css')}}">
     @livewireStyles
 
     <!-- Scripts -->
