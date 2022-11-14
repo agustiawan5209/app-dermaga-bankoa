@@ -1,132 +1,272 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!doctype html>
+<html class="no-js" lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ config('APP_NAME', 'Dermaga Bangkoa') }}</title>
+    <meta charset="utf-8">
 
-    <link id="heading-font" rel="stylesheet" type="text/css"
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800;900&display=swap"
-        media="all" />
-    <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
-    <script src="{{ asset('js/wow.min.js') }}"></script>
-    <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
-    <script>
-        new WOW().init();
-    </script>
-   <link rel="stylesheet" href="{{asset('build/assets/app.3153d51e.css')}}">
-   @vite(['resources/js/app.js'])
-   @livewireStyles
+    <!--====== Title ======-->
+    <title>Basic - Tailwind CSS Template</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
+
+    <!--====== Animate CSS ======-->
+    <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
+
+    <!--====== Magnific Popup CSS ======-->
+    <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
+
+    <!--====== Slick CSS ======-->
+    <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
+
+    <!--====== Line Icons CSS ======-->
+    <link rel="stylesheet" href="{{ asset('assets/css/LineIcons.2.0.css') }}">
+
+
+    <!--====== Style CSS ======-->
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
+    <link rel="stylesheet" href="{{ asset('assets/css/tailwind.css') }}">
+
 </head>
 
-<body class="font-body antialiased text-[#000] bg-[#f5f5f5] dark:text-[#fff] dark:bg-[#64748b]">
-    <header style="background-image:linear-gradient(170deg,#fff 63%,#c7d7fb 0,#c7d7fb 123%)"
-        class="relative py-4 px-6 leading-6 bg-cover lg:py-5 lg:px-12">
-        <div class="flex relative justify-between items-center mx-auto max-w-screen-xl text-gray-700"><a href="#"
-                class="cursor-pointer font-mono">DERMAGA BANGKOA</a>
-            <nav class="hidden flex-row justify-center items-center w-auto font-semibold gap-x-12 md:flex"><a
-                    href="{{ route('home') }}" class="cursor-pointer">Home</a>
-                <a href="{{ route('Pesan-Tiket') }}" class="cursor-pointer">Reservasi Tiket</a>
-                {{-- <a href="{{ route('Layanan-page') }}" class="cursor-pointer">Layanan</a>
-                <a href="{{ route('logistik-page') }}" class="cursor-pointer">Jasa
-                    Logistik</a> --}}
-                @if (Route::has('login'))
-                @auth
-                @can ('managed-Customer', User::class)
-                <a href="{{ route('Customer.Customer') }}" class="cursor-pointer ">Dashboard</a>
-                @endcan
-                <form action="{{route('logout')}}" method="post">
-                    @csrf
-                    <button type="submit" class="cursor-pointer ">Logout</button>
-                </form>
-                @else
-                <a href="{{ route('login') }}" class="cursor-pointer">Login</a>
-                <a href="{{ route('register') }}" class="cursor-pointer ">
-                    Register</a>
-                @endauth
-                @endif
-            </nav><button id="cAzqws"
-                class="block relative z-30 p-2 mx-0 mt-1 mb-0 w-8 text-center text-gray-300 normal-case bg-none rounded-md cursor-pointer bg-blue-500-500 md:hidden "><span><svg
-                        class="block align-middle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                        fill="currentColor" class="block align-middle">
-                        <path fill-rule="evenodd"
-                            d="M3 5a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1zm0 5a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1zm0 5a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1z"
-                            clip-rule="evenodd" class=""></path>
-                    </svg></span></button>
-            <div class="hidden absolute inset-x-0 z-50 py-2 w-full transform md:hidden">
-                <nav class="p-3 bg-white rounded-lg transform shadow-xs"><a href="#"
-                        class="block py-3 px-6 font-semibold border-t-0 border-r-0 border-l-0 border-b border-blue-100  border-solid cursor-pointer box-border">Home</a><a
-                        href="#"
-                        class="block py-3 px-6 font-semibold border-t-0 border-r-0 border-l-0 border-b border-blue-100  border-solid cursor-pointer box-border">Reservasi
-                        Tiket</a><a href="#"
-                        class="block py-3 px-6 font-semibold border-t-0 border-r-0 border-l-0 border-b border-blue-100  border-solid cursor-pointer box-border">Layanan</a><a
-                        href="#"
-                        class="block py-3 px-6 font-semibold border-t-0 border-r-0 border-l-0 border-b border-blue-100  border-solid cursor-pointer box-border">Jasa
-                        Logistik</a>
-                    <a href="#"
-                        class="block py-3 px-6 font-semibold border-t-0 border-r-0 border-l-0 border-b border-blue-100  border-solid cursor-pointer box-border">Login</a>
-                    <a href="#"
-                        class="block py-3 text-sm font-semibold leading-5 text-center text-white bg-blue-300 rounded-lg cursor-pointer">Register</a>
-                </nav>
+<body>
+    <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+
+    <!--====== PRELOADER PART START ======-->
+
+    <div class="hidden preloader">
+        <div class="loader">
+            <div class="ytp-spinner">
+                <div class="ytp-spinner-container">
+                    <div class="ytp-spinner-rotator">
+                        <div class="ytp-spinner-left">
+                            <div class="ytp-spinner-circle"></div>
+                        </div>
+                        <div class="ytp-spinner-right">
+                            <div class="ytp-spinner-circle"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+
+    <!--====== PRELOADER PART ENDS ======-->
+
+    <!--====== HEADER PART START ======-->
+
+    <header class="header-area {{ request()->routeIs('home') }}">
+        <div class="navbar-area {{ request()->routeIs('home')  ? '' : 'sticky !bg-gray-800' }}">
+            <div class="container relative">
+                <div class="flex">
+                    <div class="w-full">
+                        <nav class="flex items-center justify-between navbar navbar-expand-lg">
+                            <a class="mr-4 navbar-brand font-bold md:text-lg" href="/">
+                                {{-- DermagaBangkoa --}}
+                            </a>
+                            <button class="block navbar-toggler focus:outline-none lg:hidden" type="button"
+                                data-toggle="collapse" data-target="#navbarOne" aria-controls="navbarOne"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+
+                            <div class="absolute left-0 z-20 hidden w-full px-5 py-3 duration-300 bg-white shadow lg:w-auto collapse navbar-collapse lg:block top-100 mt-full lg:static lg:bg-transparent lg:shadow-none"
+                                id="navbarOne">
+                                <ul id="nav"
+                                    class="items-center content-start mr-auto lg:justify-end navbar-nav lg:flex">
+                                    <li class="nav-item active">
+                                        <a class="page-scroll {{request()->routeIs('home') ? '' : '!text-white'}}" href="#home">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="page-scroll {{request()->routeIs('home') ? '' : '!text-white'}}" href="#about">Tentang Kami</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="page-scroll {{request()->routeIs('home') ? '' : '!text-white'}}" href="{{ route('Pesan-Tiket') }}">Pesan Kapal</a>
+                                    </li>
+                                </ul>
+                            </div> <!-- navbar collapse -->
+
+                            <div
+                                class="absolute right-0 hidden mt-2 mr-24 navbar-btn sm:inline-block lg:mt-0 lg:static lg:mr-0">
+                                <a class="main-btn gradient-btn" data-scroll-nav="0" href="{{route('login')}}"
+                                    rel="nofollow">Masuk</a>
+                                <a class="main-btn gradient-btn" data-scroll-nav="0" href="{{route('register')}}"
+                                    rel="nofollow">Daftar</a>
+                            </div>
+                        </nav> <!-- navbar -->
+                    </div>
+                </div> <!-- flex -->
+            </div> <!-- container -->
+        </div> <!-- navbar area -->
+
+        @if (request()->routeIs('home'))
+            <div id="home" class="header-hero bg-cover" style="background-image: url({{ asset('img/wa/2.jpg') }})">
+                <div class="container">
+                    <div class="justify-center flex">
+                        <div class="w-full lg:w-2/3">
+                            <div class="pt-32 mb-12 text-center lg:pt-48 header-hero-content">
+                                <h3 class="text-4xl font-light leading-tight text-white header-sub-title wow fadeInUp"
+                                    data-wow-duration="1.3s" data-wow-delay="0.2s">
+                                    Dermaga Kayu Bangkoa
+                                </h3>
+                                <h2 class="mb-3 text-4xl font-bold text-white header-title wow fadeInUp"
+                                    data-wow-duration="1.3s" data-wow-delay="0.5s">Lakukan Pemesanan Kapal Untuk Kunjungi Objek Wisata Keinginan Anda!</h2>
+
+                                <a href="{{route('Pesan-Tiket')}}" class="main-btn gradient-btn gradient-btn-2 wow fadeInUp"
+                                    data-wow-duration="1.3s" data-wow-delay="1.1s">Pesan Kapal</a>
+                            </div> <!-- header hero content -->
+                        </div>
+                    </div> <!-- flex -->
+                    <div class="justify-center flex">
+                        <div class="w-full lg:w-2/3 rounded-r-lg">
+                            <div class="text-center  header-hero-image  wow fadeIn" data-wow-duration="1.3s"
+                                data-wow-delay="1.4s">
+                                <img src="{{ asset('img/wa/4.jpg') }}" class="rounded-r-lg" alt="hero">
+                            </div> <!-- header hero image -->
+                        </div>
+                    </div> <!-- flex -->
+                </div> <!-- container -->
+                <div id="particles-1" class="particles"></div>
+            </div> <!-- header hero -->
+        @endif
     </header>
 
-    <main class="w-full-h-full py-3 my-2">
+    <!--====== HEADER PART ENDS ======-->
+
+    <main class="{{ request()->routeIs('home') ? '' : 'mt-28 ' }}">
         {{ $slot }}
     </main>
-    @stack('modals')
 
-    @livewireScripts
+    <!--====== BLOG PART ENDS ======-->
 
-   <script defer src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
-    {{-- <footer class="py-12 leading-6 px-4 lg:px-8 fixed bottom-0">
-        <div class="flex justify-between mx-auto mb-6 max-w-screen-xl lg:mb-8"><a href="#"
-                class="px-2 space-x-2 flex items-center gap-x-1 text-2xl font-bold text-primary">DERMAGA KAYU
-                BANGKOA<span class="order-first">
-                    <div style="font-size:inherit;color:inherit;padding:2px"><svg stroke="currentColor"
-                            fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M502.285 159.704l-234-156c-7.987-4.915-16.511-4.96-24.571 0l-234 156C3.714 163.703 0 170.847 0 177.989v155.999c0 7.143 3.714 14.286 9.715 18.286l234 156.022c7.987 4.915 16.511 4.96 24.571 0l234-156.022c6-3.999 9.715-11.143 9.715-18.286V177.989c-.001-7.142-3.715-14.286-9.716-18.285zM278 63.131l172.286 114.858-76.857 51.429L278 165.703V63.131zm-44 0v102.572l-95.429 63.715-76.857-51.429L234 63.131zM44 219.132l55.143 36.857L44 292.846v-73.714zm190 229.715L61.714 333.989l76.857-51.429L234 346.275v102.572zm22-140.858l-77.715-52 77.715-52 77.715 52-77.715 52zm22 140.858V346.275l95.429-63.715 76.857 51.429L278 448.847zm190-156.001l-55.143-36.857L468 219.132v73.714z">
-                            </path>
-                        </svg></div>
-                </span></a>
-            <a href="#" class="flex items-center cursor-pointer hover:text-gray-200">
-                <span class="">
-                    to top
-                </span>
-                <span class="block w-4 h-4 align-middle ml-2">
-                    <div style="font-size:inherit;color:inherit;padding:2px"><svg stroke="currentColor"
-                            fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z">
-                            </path>
-                        </svg>
+    <!--====== FOOTER PART START ======-->
+
+    <footer id="footer" class="relative z-10 footer-area pt-120">
+        <div class="footer-bg" style="background-image: url({{asset('assets/images/footer-bg.svg')}});"></div>
+        <div class="container">
+            {{-- <div class="px-6 pt-10 pb-20 mb-12 bg-white rounded-lg shadow-xl md:px-12 subscribe-area wow fadeIn"
+                data-wow-duration="1s" data-wow-delay="0.5s">
+                <div class="flex">
+                    <div class="w-full lg:w-1/2">
+                        <div class="lg:mt-12 subscribe-content">
+                            <h2 class="text-2xl font-bold sm:text-4xl subscribe-title">
+                                Subscribe Our Newsletter
+                                <span class="block font-normal">get reguler updates</span>
+                            </h2>
+                        </div>
                     </div>
-                </span>
-            </a>
+                    <div class="w-full lg:w-1/2">
+                        <div class="mt-12 subscribe-form">
+                            <form action="#" class="relative focus:outline-none">
+                                <input type="email" placeholder="Enter eamil"
+                                    class="w-full py-4 pl-6 pr-40 duration-300 border-2 rounded focus:border-theme-color focus:outline-none">
+                                <button class="main-btn gradient-btn">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                </div> <!-- flex -->
+            </div> <!-- subscribe area --> --}}
+            <div class="footer-widget pb-120">
+                <div class="flex">
+                    <div class="w-4/5 md:w-3/5 lg:w-2/6">
+                        <div class="mt-12 footer-about wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
+                            <a class="inline-block mb-8 logo" href="index.html">
+                               <x-jet-application-logo />
+                            </a>
+                            <p class="pb-10 pr-10 leading-snug text-white">Lorem ipsum dolor sit amet consetetur
+                                sadipscing elitr, sederfs diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                aliquyam.</p>
+                            <ul class="flex footer-social">
+                                <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
+                                <li><a href="javascript:void(0)"><i class="lni lni-twitter-filled"></i></a></li>
+                                <li><a href="javascript:void(0)"><i class="lni lni-instagram-filled"></i></a></li>
+                                <li><a href="javascript:void(0)"><i class="lni lni-linkedin-original"></i></a></li>
+                            </ul>
+                        </div> <!-- footer about -->
+                    </div>
+                    <div class="w-4/5 sm:w-1/3 md:w-2/5 lg:w-2/6">
+                        <div class="mt-12 footer-contact wow fadeIn" data-wow-duration="1s" data-wow-delay="0.8s">
+                            <div class="footer-title">
+                                <h4 class="mb-8 text-2xl font-bold text-white">Hubungi Kami </h4>
+                            </div>
+                            <ul class="contact">
+                                <li>+62 852-4048-1678</li>
+                                <li>Bulo Gading, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan 90174</li>
+                                <li>www.dermaga-bangkoa.oraclesip.my.id</li>
+                            </ul>
+                        </div> <!-- footer contact -->
+                    </div>
+                </div> <!-- flex -->
+            </div> <!-- footer widget -->
+            <div class="py-8 border-t border-gray-200 footer-copyright">
+                <p class="text-white">
+                    Template by <a class="duration-300 hover:text-theme-color-2" href="https://tailwindtemplates.co"
+                        rel="nofollow" target="_blank">TailwindTemplates</a> and
+                    <a class="duration-300 hover:text-theme-color-2" href="https://uideck.com" rel="nofollow"
+                        target="_blank">UIdeck</a>
+                </p>
+            </div> <!-- footer copyright -->
+        </div> <!-- container -->
+        <div id="particles-2" class="particles"></div>
+    </footer>
+
+    <!--====== FOOTER PART ENDS ======-->
+
+    <!--====== BACK TOP TOP PART START ======-->
+
+    <a href="#" class="back-to-top"><i class="lni lni-chevron-up"></i></a>
+
+    <!--====== BACK TOP TOP PART ENDS ======-->
+
+    <!--====== PART START ======-->
+
+    <!--
+    <section class="">
+        <div class="container">
+            <div class="flex">
+                <div class="col-lg-"></div>
+            </div>
         </div>
+    </section>
+-->
 
-    </footer> --}}
-    <script>
-        // Use Javascript
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
-        var yyyy = today.getFullYear();
-        if (dd < 10) {
-            dd = '0' + dd
-        }
-        if (mm < 10) {
-            mm = '0' + mm
-        }
+    <!--====== PART ENDS ======-->
 
-        today = yyyy + '-' + mm + '-' + dd;
-        document.getElementById("tgl_berangkat").setAttribute("min", today);
-    </script>
+
+
+
+    <!--====== Jquery js ======-->
+    <script src="{{ asset('assets/js/vendor/jquery-3.5.1-min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/modernizr-3.7.1.min.js') }}"></script>
+
+    <!--====== Plugins js ======-->
+    <script src="{{ asset('assets/js/plugins.js') }}"></script>
+
+    <!--====== Slick js ======-->
+    <script src="{{ asset('assets/js/slick.min.js') }}"></script>
+
+    <!--====== Scrolling Nav js ======-->
+    <script src="{{ asset('assets/js/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('assets/js/scrolling-nav.js') }}"></script>
+
+    <!--====== wow js ======-->
+    <script src="{{ asset('assets/js/wow.min.js') }}"></script>
+
+    <!--====== Particles js ======-->
+    <script src="{{ asset('assets/js/particles.min.js') }}"></script>
+
+    <!--====== Main js ======-->
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+
 </body>
 
 </html>
