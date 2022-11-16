@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
 
-    <link rel="stylesheet" href="{{asset('build/assets/app.c2b10521.css')}}">
+    <link rel="stylesheet" href="{{asset('build/assets/app.ff6f3007.css')}}">
     @livewireStyles
     @vite(['resources/js/app.js','resources/css/app.css'])
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
@@ -97,7 +97,7 @@
     @livewireScripts
 
 
-
+<script defer src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
     <script>
         $(document).ready(function() {
             $('.datatable').dataTable();

@@ -7,7 +7,7 @@
     <title>Dermaga Kayu Bangkoa Dashboard | Login</title>
     <!-- Styles -->
     @livewireStyles
-    <link rel="stylesheet" href="{{asset('build/assets/app.c2b10521.css')}}">
+    <link rel="stylesheet" href="{{asset('build/assets/app.ff6f3007.css')}}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <script defer src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
