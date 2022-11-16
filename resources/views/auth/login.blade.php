@@ -8,22 +8,23 @@
     <!-- Styles -->
     @livewireStyles
     <link rel="stylesheet" href="{{asset('build/assets/app.c2b10521.css')}}">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <script defer src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
 </head>
 
-<body>
+<body class="bg-cover" style="background-image: url({{asset('img/layanan.jpg')}})">
     <div>
 
         <div
-            class="flex flex-col items-center justify-center min-h-screen p-4 space-y-4 antialiased text-gray-900 bg-gray-100 dark:bg-dark dark:text-light">
+            class="flex flex-col items-center justify-center min-h-screen p-4 space-y-4 antialiased text-gray-900 bg-[#52525254] dark:bg-dark dark:text-light">
             <!-- Brand -->
-            <a href="../index.html"
+            <a href="/"
                 class="inline-block mb-6 text-3xl font-bold tracking-wider uppercase text-blue-500-dark dark:text-light">
                 Dermaga Kayu Bangkoa
             </a>
             <main >
-                <div class="w-full max-w-sm px-4 py-6 space-y-6 bg-white rounded-md dark:bg-darker shadow-lg">
+                <div class="w-full max-w-sm px-4 py-6 space-y-6 bg-[#ffffffc2] rounded-md dark:bg-darker shadow-lg">
                     <h1 class="text-xl font-semibold text-center">Login</h1>
                     <x-jet-validation-errors class="mb-4 text-center mx-auto" />
                     @if (session('status'))
