@@ -12,7 +12,9 @@
                     <x-table.th>Foto</x-table.th>
                     <x-table.th>Nama Kapal</x-table.th>
                     <x-table.th>Kapal</x-table.th>
+                    <x-table.th>Tujuan</x-table.th>
                     <x-table.th>Jumlah Muatan</x-table.th>
+                    <x-table.th>Status</x-table.th>
                     <x-table.th>Aksi</x-table.th>
                 </tr>
             </x-slot>
@@ -25,8 +27,12 @@
                                 alt=""></x-table.td>
                         {{-- <x-table.td class="text-center border border-gray-500">{{ $item->gambar }}</x-table.td> --}}
                         <x-table.td class="text-center border border-gray-500">{{ $item->nama_kapal }}</x-table.td>
+                        <x-table.td class="text-center border border-gray-500">{{ $item->pemberangkatan->destinasi->lokasi }}</x-table.td>
                         <x-table.td class="text-center border border-gray-500">{{ $item->jenis_kapal }}</x-table.td>
                         <x-table.td class="text-center border border-gray-500">{{ $item->jumlah_muatan }}</x-table.td>
+                        <x-table.td class="text-center border border-gray-500">
+                            <span class="px-2 py-1 bg-red-200 rounded-lg">{{ $item->pemberangkatan->status }}</span>
+                        </x-table.td>
                         <x-table.tdaction :id="$item->id" />
                     </tr>
                 @endforeach
@@ -122,26 +128,6 @@
                                     <span class="text-red-500 font-semibold">{{ $message }}</span>
                                 @enderror
                             </label>
-                            <label for="email">
-                                <p class="font-medium text-slate-700 pb-2">Tgl Berangkat</p>
-                                <input id="tgl_berangkat" wire:model="tgl_berangkat" type="date"
-                                    class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
-                                    placeholder="..........">
-                                @error('tgl_berangkat')
-                                    <span class="text-red-500 font-semibold">{{ $message }}</span>
-                                @enderror
-                            </label>
-                            <label for="email">
-                                <p class="font-medium text-slate-700 pb-2">Jam Berangkat</p>
-                                <input id="jam" wire:model="jam" type="time"
-                                    class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
-                                    placeholder="..........">
-                                @error('jam')
-                                    <span class="text-red-500 font-semibold">{{ $message }}</span>
-                                @enderror
-                            </label>
-
-
                             <label for="email">
                                 <p class="font-medium text-slate-700 pb-2">Keterangan</p>
                                 <textarea id="deskripsi" wire:model="deskripsi"

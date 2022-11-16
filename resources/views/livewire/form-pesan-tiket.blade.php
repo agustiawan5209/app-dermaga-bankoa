@@ -41,11 +41,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-span-1 ">
-                        <label for="tanggal_keberangkatan" class="text-gray-500 ">Tanggal Keberangkatan</label>
-                        <input type="date"
-                            class="w-full @error('tgl_berangkat'){{ $message }} @enderror border border-gray-300 rounded-lg text-gray-500"
-                            min="27-07-2022" wire:model="tgl_berangkat" id='tgl_berangkat'>
+                    <div class="col-span-1 flex flex-wrap">
+                        <label for="tanggal_keberangkatan" class="text-gray-500 ">Status</label>
+                        <select class="flex col-span-3 rounded-r-lg text-gray-500  border-gray-300 rounded-lg px-2 w-full" name="status" id="status">
+                            <option value="">--</option>
+                            <option value="bersandar">Bersandar</option>
+                            <option value="full">Full</option>
+                            <option value="berangkat">Berangkat</option>
+                        </select>
                     </div>
                     <div class=" col-span-1 flex flex-wrap ">
                         <label for="jumlah" class="w-full">Jumlah</label>
@@ -84,8 +87,7 @@
                             <tr>
                                 <th>Gambar</th>
                                 <th>Nama kapal</th>
-                                <th>Tanggal Berangkat</th>
-                                <th>Jam</th>
+                                <th>harga</th>
                                 <th>Tujuan</th>
                                 <th>Status</th>
                             </tr>
@@ -106,18 +108,10 @@
 
                                     <td class="border-x text-center">
                                         <div class="flex items-center justify-center">
-                                            <p
-                                                class="py-3 px-3 text-sm focus:outline-none leading-none text-red-700 bg-red-100 rounded">
-                                                {{ $tabelkapal->pemberangkatan->tgl_berangkat }}
-                                            </p>
-                                        </div>
-                                    </td>
-                                    <td class="border-x text-center">
-                                        <div class="flex items-center justify-center">
 
                                             <p
                                                 class="py-3 px-3 text-sm focus:outline-none leading-none text-red-700 bg-red-100 rounded">
-                                                {{ $tabelkapal->pemberangkatan->jam }} WITA
+                                               Rp. {{ number_format($tabelkapal->pemberangkatan->harga,0,2) }}
                                             </p>
                                         </div>
                                     </td>
@@ -137,8 +131,8 @@
                                     </td>
                                     <td>
                                         <div tabindex="0" wire:click='DetailKapal({{ $tabelkapal->id }})'
-                                            class="focus:outline-none focus:text-indigo-600 text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                                            <p>Detail</p>
+                                            class="focus:outline-none focus:text-indigo-600 text-xs w-full transition-all ease-in rounded-lg hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
+                                          Detail
                                         </div>
                                     </td>
                                 </tr>

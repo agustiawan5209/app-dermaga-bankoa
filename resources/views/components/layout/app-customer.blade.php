@@ -17,7 +17,7 @@
     </script>
     @vite(['resources/js/app.js'])
     <link rel="stylesheet" href="{{asset('build/assets/app.c2b10521.css')}}">
-    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
+    <script src="{{asset("js/jquery-3.6.1.min.js")}}"></script>
 
     <!-- Styles -->
     @livewireStyles
@@ -66,13 +66,6 @@
                 chaibuilder.com</p>
         </div>
     </footer>
+    <script defer src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
-    <script>
-        AOS.init({
-            offset: 50,
-            duration: 800
-        });
-    </script>
 </body>

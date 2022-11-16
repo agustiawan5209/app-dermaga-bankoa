@@ -43,7 +43,7 @@ class PemberangkatanController extends Controller
         $transaksi = Transaksi::create([
             'kode_berangkat' => $data['kode_berangkat'],
             'user_id' => Auth::user()->id,
-            'ID_transaksi' => $data['ID_transaksi'] . '/1p',
+            'ID_transaksi' => $data['ID_transaksi'],
             'bukti' => $name,
             'tgl_transaksi' => $data['tgl_transaksi'],
         ]);
@@ -61,7 +61,7 @@ class PemberangkatanController extends Controller
                 'kode_berangkat' => $tiket['kode_berangkat'],
                 'kode_tiket' => $kode[0],
                 'harga' => $tiket['harga'],
-                'ID_transaksi' => $tiket['ID_transaksi'] . '/1p',
+                'ID_transaksi' => $tiket['ID_transaksi'],
             ]);
         }
         // Mengupdate Jumlah Tiket Pada Tabel Status Muatan
@@ -73,7 +73,7 @@ class PemberangkatanController extends Controller
         Storage::put('bukti/' . $name, $pdf->download()->getOriginalContent());
         Alert::success('Info', 'Pemesanan Berhasil');
         // session()->forget('itemCek');
-        return $pdf->stream($name);
+        return redirect()->route('Customer.Customer');
     }
     public function dataPembayaran($request, $nama_file, $bukti)
     {

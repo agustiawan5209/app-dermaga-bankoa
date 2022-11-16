@@ -128,8 +128,6 @@ class PageKapal extends Component
         $berangkat->kode_berangkat = $this->kode_berangkat;
         $berangkat->destinasi_id = $this->destinasi_id;
         $berangkat->harga = $this->harga;
-        $berangkat->tgl_berangkat = $this->tgl_berangkat;
-        $berangkat->jam = $this->jam;
         $berangkat->kapal_id = $kapalID;
         $berangkat->deskripsi = $this->deskripsi;
         $berangkat->save();
@@ -149,8 +147,6 @@ class PageKapal extends Component
             'kode_berangkat' => $this->kode_berangkat,
             'destinasi_id' => $this->destinasi_id,
             'harga' => $this->harga,
-            'tgl_berangkat' => $this->tgl_berangkat,
-            'jam' => $this->jam,
             'deskripsi' => $this->deskripsi,
         ]);
         $this->itemTambahBerangkat = false;

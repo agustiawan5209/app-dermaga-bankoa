@@ -20,7 +20,7 @@ class UserController extends Controller
             return redirect()->route('Admin.Dashboard.Pemilik');
         }
         if($user_id == 3){
-            return redirect()->route('home');
+            return redirect()->route('Customer.Customer');
         }else{
             auth()->guard('web')->logout();
             abort(401);

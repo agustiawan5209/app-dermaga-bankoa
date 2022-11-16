@@ -5,7 +5,7 @@
     <meta charset="utf-8">
 
     <!--====== Title ======-->
-    <title>{{config('app.name', 'Dermaga Bangkoa')}}</title>
+    <title>{{ config('app.name', 'Dermaga Bangkoa') }}</title>
 
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,7 +30,7 @@
     <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
     @vite(['resources/js/app.js', 'resources/css.app.css'])
     <link rel="stylesheet" href="{{ asset('assets/css/tailwind.css') }}">
-    <link rel="stylesheet" href="{{asset('build/assets/app.c2b10521.css')}}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app.c2b10521.css') }}">
     @livewireStyles
 
 </head>
@@ -65,7 +65,7 @@
     <!--====== HEADER PART START ======-->
 
     <header class="header-area {{ request()->routeIs('home') }}">
-        <div class="navbar-area {{ request()->routeIs('home')  ? '' : 'sticky !bg-gray-800' }}">
+        <div class="navbar-area {{ request()->routeIs('home') ? '' : 'sticky !bg-gray-800' }}">
             <div class="container relative">
                 <div class="flex">
                     <div class="w-full">
@@ -86,23 +86,33 @@
                                 <ul id="nav"
                                     class="items-center content-start mr-auto lg:justify-end navbar-nav lg:flex">
                                     <li class="nav-item active">
-                                        <a class="page-scroll {{request()->routeIs('home') ? '' : '!text-white'}}" href="{{route('home')}}">Home</a>
+                                        <a class="page-scroll {{ request()->routeIs('home') ? '' : '!text-white' }}"
+                                            href="{{ route('home') }}">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="page-scroll {{request()->routeIs('home') ? '' : '!text-white'}}" href="#about">Tentang Kami</a>
+                                        <a class="page-scroll {{ request()->routeIs('home') ? '' : '!text-white' }}"
+                                            href="#about">Tentang Kami</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="page-scroll {{request()->routeIs('home') ? '' : '!text-white'}}" href="{{ route('Pesan-Tiket') }}">Pesan Kapal</a>
+                                        <a class="page-scroll {{ request()->routeIs('home') ? '' : '!text-white' }}"
+                                            href="{{ route('Pesan-Tiket') }}">Pesan Kapal</a>
                                     </li>
                                 </ul>
                             </div> <!-- navbar collapse -->
 
                             <div
                                 class="absolute right-0 hidden mt-2 mr-24 navbar-btn sm:inline-block lg:mt-0 lg:static lg:mr-0">
-                                <a class="main-btn gradient-btn" data-scroll-nav="0" href="{{route('login')}}"
-                                    rel="nofollow">Masuk</a>
-                                <a class="main-btn gradient-btn" data-scroll-nav="0" href="{{route('register')}}"
-                                    rel="nofollow">Daftar</a>
+                                @if (Route::has('login'))
+                                    @auth
+                                        <a class="main-btn gradient-btn" data-scroll-nav="0"
+                                            href="{{ route('dashboard') }}" rel="nofollow">Dashboard</a>
+                                    @else
+                                        <a class="main-btn gradient-btn" data-scroll-nav="0" href="{{ route('login') }}"
+                                            rel="nofollow">Masuk</a>
+                                        <a class="main-btn gradient-btn" data-scroll-nav="0" href="{{ route('register') }}"
+                                            rel="nofollow">Daftar</a>
+                                    @endauth
+                                @endif
                             </div>
                         </nav> <!-- navbar -->
                     </div>
@@ -111,7 +121,8 @@
         </div> <!-- navbar area -->
 
         @if (request()->routeIs('home'))
-            <div id="home" class="header-hero bg-cover" style="background-image: url({{ asset('img/wa/2.jpg') }})">
+            <div id="home" class="header-hero bg-cover"
+                style="background-image: url({{ asset('img/wa/2.jpg') }})">
                 <div class="container">
                     <div class="justify-center flex">
                         <div class="w-full lg:w-2/3">
@@ -121,10 +132,12 @@
                                     Dermaga Kayu Bangkoa
                                 </h3>
                                 <h2 class="mb-3 text-4xl font-bold text-white header-title wow fadeInUp"
-                                    data-wow-duration="1.3s" data-wow-delay="0.5s">Lakukan Pemesanan Kapal Untuk Kunjungi Objek Wisata Keinginan Anda!</h2>
+                                    data-wow-duration="1.3s" data-wow-delay="0.5s">Lakukan Pemesanan Kapal Untuk
+                                    Kunjungi Objek Wisata Keinginan Anda!</h2>
 
-                                <a href="{{route('Pesan-Tiket')}}" class="main-btn gradient-btn gradient-btn-2 wow fadeInUp"
-                                    data-wow-duration="1.3s" data-wow-delay="1.1s">Pesan Kapal</a>
+                                <a href="{{ route('Pesan-Tiket') }}"
+                                    class="main-btn gradient-btn gradient-btn-2 wow fadeInUp" data-wow-duration="1.3s"
+                                    data-wow-delay="1.1s">Pesan Kapal</a>
                             </div> <!-- header hero content -->
                         </div>
                     </div> <!-- flex -->
@@ -153,7 +166,7 @@
     <!--====== FOOTER PART START ======-->
 
     <footer id="footer" class="relative z-10 footer-area pt-120">
-        <div class="footer-bg" style="background-image: url({{asset('assets/images/footer-bg.svg')}});"></div>
+        <div class="footer-bg" style="background-image: url({{ asset('assets/images/footer-bg.svg') }});"></div>
         <div class="container">
             {{-- <div class="px-6 pt-10 pb-20 mb-12 bg-white rounded-lg shadow-xl md:px-12 subscribe-area wow fadeIn"
                 data-wow-duration="1s" data-wow-delay="0.5s">
@@ -182,7 +195,7 @@
                     <div class="w-4/5 md:w-3/5 lg:w-2/6">
                         <div class="mt-12 footer-about wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
                             <a class="inline-block mb-8 logo" href="index.html">
-                               <x-jet-application-logo />
+                                <x-jet-application-logo />
                             </a>
                             <p class="pb-10 pr-10 leading-snug text-white">Lorem ipsum dolor sit amet consetetur
                                 sadipscing elitr, sederfs diam nonumy eirmod tempor invidunt ut labore et dolore magna
@@ -269,7 +282,7 @@
 
     <!--====== Main js ======-->
     <script src="{{ asset('assets/js/main.js') }}"></script>
-    <script defer src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
+    <script defer src="{{ asset('build/assets/app.ab93cf8a.js') }}"></script>
 
 </body>
 

@@ -11,10 +11,12 @@
     tr td {
         border-bottom: 1px solid rgb(71, 71, 67);
     }
-    top{
+
+    top {
         display: flex;
     }
-    .table-full{
+
+    .table-full {
         width: 100%;
     }
 </style>
@@ -54,7 +56,19 @@
             </table>
         </div>
     </div>
-    <h5>Detail Pesanan</h5>
+    <h5>Detail Kapal</h5>
+    <table cellpadding="5" cellspacing='1' border='1' align="center" class="table-full">
+        <tr>
+            <th>Nama Kapal</th>
+            <th>Jenis</th>
+            <th>Tujuan</th>
+        </tr>
+        <tr>
+            <td>{{ $transaksi['berangkat']->kapal->nama_kapal }}</td>
+            <td>{{ $transaksi['berangkat']->kapal->jenis_kapal }}</td>
+            <td>{{ $transaksi['berangkat']->destinasi->lokasi }}</td>
+        </tr>
+    </table>
     <table cellpadding="5" cellspacing='1' border='1' align="center" class="table-full">
         <tr>
             <th>Nama</th>
@@ -64,22 +78,22 @@
             <th>Harga</th>
         </tr>
         @php
-        $total = "Rp. ". number_format($transaksi['berangkat']->harga * $transaksi['jumlah'],0,2);
-    @endphp
+            $total = 'Rp. ' . number_format($transaksi['berangkat']->harga * $transaksi['jumlah'], 0, 2);
+        @endphp
         <tr>
-            <td>{{$user->name}}</td>
-            <td>{{$transaksi['ID_transaksi']}}</td>
-            <td>{{$bank}}</td>
-            <td>{{$transaksi['jumlah']}}</td>
-            <td>{{$total}}</td>
+            <td>{{ $user->name }}</td>
+            <td>{{ $transaksi['ID_transaksi'] }}</td>
+            <td>{{ $bank }}</td>
+            <td>{{ $transaksi['jumlah'] }}</td>
+            <td>{{ $total }}</td>
         </tr>
 
         <tr>
-            <td colspan="3">Total</td>
-            <td colspan="1">{{$total}}</td>
+            <td colspan="4">Total</td>
+            <td colspan="1">{{ $total }}</td>
         </tr>
     </table>
-    <img src="{{public_path('upload/'. $file)}}" alt="" width="300">
+    <img src="{{ public_path('upload/' . $file) }}" alt="" width="200">
 </body>
 
 </html>

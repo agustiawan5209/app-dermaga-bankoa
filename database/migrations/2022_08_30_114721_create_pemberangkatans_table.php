@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('kode_berangkat')->unique();
             $table->foreignId('destinasi_id')->constrained('destinasis');
             $table->integer('harga');
-            $table->date('tgl_berangkat');
-            $table->string('jam');
+            // $table->date('tgl_berangkat')->nullable();
+            // $table->string('jam')->nullable();
             $table->foreignId('kapal_id')->constrained('tabel_kapals');
             $table->enum('status', ['bersandar', 'full', 'berangkat']);
             $table->string('deskripsi')->nullable();

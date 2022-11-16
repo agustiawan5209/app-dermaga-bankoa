@@ -10,7 +10,7 @@ class DashboardCustomer extends Component
 {
     public function render()
     {
-        $tr  = Transaksi::where('user_id', Auth::user()->id)->get();
+        $tr  = Transaksi::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
         return view('livewire.customer.dashboard-customer', compact('tr'))->layout('components.layout.app-customer');
     }
 }

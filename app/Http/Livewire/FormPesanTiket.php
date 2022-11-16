@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Validator;
 class FormPesanTiket extends Component
 {
     use WithFileUploads;
-    public $tujuan, $lokasi, $tgl_berangkat, $jumlah;
+    public $tujuan, $lokasi, $status, $jumlah;
     public $pemberangkatan;
     public $Cari = false;
     public $CekoutItem = false;
@@ -42,11 +42,13 @@ class FormPesanTiket extends Component
         $valid = $this->validate([
             'tujuan' => 'required',
             'lokasi' => 'required',
-            'tgl_berangkat' => 'required',
+            'status' => 'required',
             'jumlah' => 'required',
         ]);
-        if ($this->tujuan != null && $this->tgl_berangkat != null || $this->jumlah != null) {
-            $this->pemberangkatan = TabelKapal::all();
+        if ($this->tujuan != null && $this->status != null || $this->jumlah != null) {
+            $this->pemberangkatan = TabelKapal::whereHas('pemberangkatan', function($query){
+                return $query->where('status', '=', $this->status);
+            });
         }
         $this->Cari = true;
     }
@@ -65,7 +67,7 @@ class FormPesanTiket extends Component
         $tabelkapal = TabelKapal::find($id);
         $this->itemID = $tabelkapal->id;
         $this->kode_berangkat = $tabelkapal->pemberangkatan->kode_berangkat;
-        $this->tgl_berangkat = $tabelkapal->pemberangkatan->tgl_berangkat;
+        $this->status = $tabelkapal->pemberangkatan->status;
         $this->harga = $tabelkapal->pemberangkatan->harga;
         $this->jam = $tabelkapal->pemberangkatan->jam;
         $this->destinasi_id = $tabelkapal->pemberangkatan->destinasi->lokasi;
@@ -96,7 +98,7 @@ class FormPesanTiket extends Component
         $this->CekoutItem = false;
         $this->BayarItem = false;
         $this->kode_berangkat = '';
-        $this->tgl_berangkat = '';
+        $this->status = '';
         $this->itemID = '';
         $this->harga = '';
         $this->jumlah = '';

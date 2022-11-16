@@ -2,6 +2,7 @@
 
     <!--Card-->
     <!--Regular Datatables CSS-->
+
     <link href="{{asset('datatable/datatables.css')}}" rel="stylesheet">
     <!--Responsive Extension Datatables CSS-->
 
@@ -120,9 +121,8 @@
 
     <script>
         $(document).ready(function() {
-            $('.datatable').dataTable([
-                serverside : true,
-                proccessing: true
+            $('.datatable').DataTable([
+                processing: true,
             ]);
 
         });
