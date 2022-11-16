@@ -1,90 +1,32 @@
 <div>
-    @include('sweetalert::alert')
     <div>
+        @include('sweetalert::alert')
 
         <x-jet-button type='button' onclick="this.preventDefault" wire:click='addModal'>Tambah Kapal</x-jet-button>
         <x-jet-validation-errors />
-        @if ($itemAdd)
-            <form action="" class="my-2">
-
-                <div class="flex flex-col space-y-5 max-w-md bg-white px-4 py-2">
-                    <label for="">
-                        <p class="font-medium text-slate-700 pb-2">Foto kapal</p>
-                        <x-jet-input id="gambar" wire:model="gambar" type="file"
-                            class="w-full py-3 border border-slate-200 bg-white rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
-                            placeholder=".........." />
-                        @error('gambar')
-                            <span class="text-red-500 font-semibold">{{ $message }}</span>
-                        @enderror
-                    </label>
-                    <label for="">
-                        <p class="font-medium text-slate-700 pb-2">nama kapal</p>
-                        <x-jet-input id="nama_kapal" wire:model="nama_kapal" type="text"
-                            class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
-                            placeholder=".........." />
-                        @error('nama_kapal')
-                            <span class="text-red-500 font-semibold">{{ $message }}</span>
-                        @enderror
-                    </label>
-                    <label for="">
-                        <p class="font-medium text-slate-700 pb-2">jenis kapal</p>
-                        <select id="jenis_kapal" wire:model="jenis_kapal" type="text"
-                            class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
-                            placeholder=".........." />
-                        <option value="">--Pilih--</option>
-                        <option value="Penumpang">Penumpang</option>
-                        <option value="Kargo">Kargo</option>
-                        </select>
-                        @error('jenis_kapal')
-                            <span class="text-red-500 font-semibold">{{ $message }}</span>
-                        @enderror
-                    </label>
-                    <x-jet-input type="hidden" wire:model="pemilik" />
-                    <label for="">
-                        <p class="font-medium text-slate-700 pb-2">jumlah muatan</p>
-                        <x-jet-input id="jumlah_muatan" wire:model="jumlah_muatan" type="text"
-                            class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
-                            placeholder=".........." />
-                        @error('jumlah_muatan')
-                            <span class="text-red-500 font-semibold">{{ $message }}</span>
-                        @enderror
-                    </label>
-
-                    <button wire:click='create' type="submit"
-                        class="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
-                        </svg>
-                        <span>Tambah</span>
-                    </button>
-                </div>
-            </form>
-        @endif
 
         <x-table.table>
             <x-slot name="th">
                 <tr>
-                    <th>No</th>
-                    <th>Foto</th>
-                    <th>Nama Kapal</th>
-                    <th>Kapal</th>
-                    <th>Jumlah Muatan</th>
-                    <th>Aksi</th>
+                    <x-table.th>No</x-table.th>
+                    <x-table.th>Foto</x-table.th>
+                    <x-table.th>Nama Kapal</x-table.th>
+                    <x-table.th>Kapal</x-table.th>
+                    <x-table.th>Jumlah Muatan</x-table.th>
+                    <x-table.th>Aksi</x-table.th>
                 </tr>
             </x-slot>
 
             <x-slot name="td">
                 @foreach ($kapal as $item)
                     <tr>
-                        <td class="text-center border border-gray-500">{{ $loop->iteration }}</td>
-                        <td class="w-20 border border-gray-500"><img src="{{ asset('storage/kapal/' . $item->gambar) }}"
-                                alt=""></td>
-                        {{-- <td class="text-center border border-gray-500">{{ $item->gambar }}</td> --}}
-                        <td class="text-center border border-gray-500">{{ $item->nama_kapal }}</td>
-                        <td class="text-center border border-gray-500">{{ $item->jenis_kapal }}</td>
-                        <td class="text-center border border-gray-500">{{ $item->jumlah_muatan }}</td>
+                        <x-table.td class="text-center border border-gray-500">{{ $loop->iteration }}</x-table.td>
+                        <x-table.td class="w-20 border border-gray-500"><img src="{{ asset('storage/kapal/' . $item->gambar) }}"
+                                alt=""></x-table.td>
+                        {{-- <x-table.td class="text-center border border-gray-500">{{ $item->gambar }}</x-table.td> --}}
+                        <x-table.td class="text-center border border-gray-500">{{ $item->nama_kapal }}</x-table.td>
+                        <x-table.td class="text-center border border-gray-500">{{ $item->jenis_kapal }}</x-table.td>
+                        <x-table.td class="text-center border border-gray-500">{{ $item->jumlah_muatan }}</x-table.td>
                         <x-table.tdaction :id="$item->id" />
                     </tr>
                 @endforeach
@@ -100,5 +42,140 @@
             </x-slot>
         </x-jet-dialog-modal>
     </div>
+    <div>
+        <x-jet-dialog-modal wire:model='itemAdd'>
+            <x-slot name="content">
+                <form action="" class="my-2">
 
+                    <div class="flex flex-col space-y-5 max-w-md bg-white px-4 py-2">
+                        <label for="">
+                            <p class="font-medium text-slate-700 pb-2">Foto kapal</p>
+                            <x-jet-input id="gambar" wire:model="gambar" type="file"
+                                class="w-full py-3 border border-slate-200 bg-white rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+                                placeholder=".........." />
+                            @error('gambar')
+                                <span class="text-red-500 font-semibold">{{ $message }}</span>
+                            @enderror
+                        </label>
+                        <label for="">
+                            <p class="font-medium text-slate-700 pb-2">nama kapal</p>
+                            <x-jet-input id="nama_kapal" wire:model="nama_kapal" type="text"
+                                class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+                                placeholder=".........." />
+                            @error('nama_kapal')
+                                <span class="text-red-500 font-semibold">{{ $message }}</span>
+                            @enderror
+                        </label>
+                        <label for="">
+                            <p class="font-medium text-slate-700 pb-2">jenis kapal</p>
+                            <select id="jenis_kapal" wire:model="jenis_kapal" type="text"
+                                class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+                                placeholder=".........." />
+                            <option value="">--Pilih--</option>
+                            <option value="Penumpang">Penumpang</option>
+                            <option value="Kargo">Kargo</option>
+                            </select>
+                            @error('jenis_kapal')
+                                <span class="text-red-500 font-semibold">{{ $message }}</span>
+                            @enderror
+                        </label>
+                        <x-jet-input type="hidden" wire:model="pemilik" />
+                        <label for="">
+                            <p class="font-medium text-slate-700 pb-2">jumlah muatan</p>
+                            <x-jet-input id="jumlah_muatan" wire:model="jumlah_muatan" type="text"
+                                class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+                                placeholder=".........." />
+                            @error('jumlah_muatan')
+                                <span class="text-red-500 font-semibold">{{ $message }}</span>
+                            @enderror
+                        </label>
+                        <div class="flex flex-col space-y-5">
+                            <label for="email">
+                                <p class="font-medium text-slate-700 pb-2">Kode Berangkat</p>
+                                <input id="kode_berangkat" wire:model="kode_berangkat" type="text"
+                                    class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+                                    placeholder="..........">
+                                @error('kode_berangkat')
+                                    <span class="text-red-500 font-semibold">{{ $message }}</span>
+                                @enderror
+                            </label>
+                            <label for="email">
+                                <p class="font-medium text-slate-700 pb-2">Tujuan</p>
+                                <select id="des" wire:model="destinasi_id" type="text"
+                                    class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+                                    placeholder="..........">
+                                    <option value="">--Pilih--</option>
+                                    @foreach ($destinasi as $item)
+                                        <option value="{{ $item->id }}">{{ $item->lokasi }}</option>
+                                    @endforeach
+                                </select>
+                                @error('destinasi_id')
+                                    <span class="text-red-500 font-semibold">{{ $message }}</span>
+                                @enderror
+                            </label>
+                            <label for="email">
+                                <p class="font-medium text-slate-700 pb-2">Harga</p>
+                                <input id="harga" wire:model="harga" type="text"
+                                    class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+                                    placeholder="..........">
+                                @error('harga')
+                                    <span class="text-red-500 font-semibold">{{ $message }}</span>
+                                @enderror
+                            </label>
+                            <label for="email">
+                                <p class="font-medium text-slate-700 pb-2">Tgl Berangkat</p>
+                                <input id="tgl_berangkat" wire:model="tgl_berangkat" type="date"
+                                    class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+                                    placeholder="..........">
+                                @error('tgl_berangkat')
+                                    <span class="text-red-500 font-semibold">{{ $message }}</span>
+                                @enderror
+                            </label>
+                            <label for="email">
+                                <p class="font-medium text-slate-700 pb-2">Jam Berangkat</p>
+                                <input id="jam" wire:model="jam" type="time"
+                                    class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+                                    placeholder="..........">
+                                @error('jam')
+                                    <span class="text-red-500 font-semibold">{{ $message }}</span>
+                                @enderror
+                            </label>
+
+
+                            <label for="email">
+                                <p class="font-medium text-slate-700 pb-2">Keterangan</p>
+                                <textarea id="deskripsi" wire:model="deskripsi"
+                                    class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+                                    placeholder=".........."></textarea>
+                                @error('deskripsi')
+                                    <span class="text-red-500 font-semibold">{{ $message }}</span>
+                                @enderror
+                            </label>
+
+                        @if ($itemEdit == false)
+                            <button wire:click='create' type="button"
+                                class="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                                </svg>
+                                <span>Tambah</span>
+                            </button>
+                        @else
+                            <button wire:click='edit({{ $itemID }})' type="button"
+                                class="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                                </svg>
+                                <span>Edit</span>
+                            </button>
+                        @endif
+                    </div>
+                </form>
+            </x-slot>
+        </x-jet-dialog-modal>
+    </div>
 </div>

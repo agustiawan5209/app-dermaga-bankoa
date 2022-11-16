@@ -28,7 +28,7 @@
 
     <!--====== Style CSS ======-->
     <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
-    @vite(['resources/js/app.js'])
+    @vite(['resources/js/app.js', 'resources/css.app.css'])
     <link rel="stylesheet" href="{{ asset('assets/css/tailwind.css') }}">
     <link rel="stylesheet" href="{{asset('build/assets/app.c2b10521.css')}}">
     @livewireStyles

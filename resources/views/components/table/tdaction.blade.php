@@ -1,4 +1,4 @@
-<td class=" justify-center">
+<x-table.td class=" text-center border px-0">
     <x-jet-button type="button" class="bg-green-500 hover:bg-green-600 " wire:click='editModal({{$id}})'>
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -14,4 +14,4 @@
             </path>
         </svg>
     </x-jet-button>
-</td>
+</x-table.td>

@@ -87,27 +87,28 @@
                                 <th>Tanggal Berangkat</th>
                                 <th>Jam</th>
                                 <th>Tujuan</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($pemberangkatan as $pemberangkatan)
+                            @foreach ($pemberangkatan as $tabelkapal)
                                 <tr tabindex="0"
                                     class="focus:outline-none h-16 border border-gray-100 dark:border-gray-600  rounded">
                                     <td class="border-x text-center pl-2">
                                         <div class="flex items-center justify-center">
-                                            <img src="{{ asset('storage/kapal/' . $pemberangkatan->kapal->gambar) }}"
+                                            <img src="{{ asset('storage/kapal/' . $tabelkapal->gambar) }}"
                                                 alt="Gambar" class="w-20">
                                         </div>
                                     </td>
                                     <td class="border-x text-center ">
-                                        {{ $pemberangkatan->kapal->nama_kapal }}
+                                        {{ $tabelkapal->nama_kapal }}
                                     </td>
 
                                     <td class="border-x text-center">
                                         <div class="flex items-center justify-center">
                                             <p
                                                 class="py-3 px-3 text-sm focus:outline-none leading-none text-red-700 bg-red-100 rounded">
-                                                {{ $pemberangkatan->tgl_berangkat }}
+                                                {{ $tabelkapal->pemberangkatan->tgl_berangkat }}
                                             </p>
                                         </div>
                                     </td>
@@ -116,18 +117,26 @@
 
                                             <p
                                                 class="py-3 px-3 text-sm focus:outline-none leading-none text-red-700 bg-red-100 rounded">
-                                                {{ $pemberangkatan->jam }} WITA
+                                                {{ $tabelkapal->pemberangkatan->jam }} WITA
                                             </p>
                                         </div>
                                     </td>
                                     <td class="border-x text-center">
                                         <div class="flex items-center justify-center">
-                                            <p class="text-sm leading-none text-gray-600 dark:text-gray-200  ml-2 font-bold">
-                                                {{ $pemberangkatan->destinasi->lokasi }}</p>
+                                            <p
+                                                class="text-sm leading-none text-gray-600 dark:text-gray-200  ml-2 font-bold">
+                                                {{ $tabelkapal->pemberangkatan->destinasi->lokasi }}</p>
+                                        </div>
+                                    </td>
+                                    <td class="border-x text-center">
+                                        <div class="flex items-center justify-center">
+                                            <p
+                                                class="py-3 px-3 text-sm focus:outline-none leading-none text-white capitalize bg-blue-400 rounded">
+                                                {{ $tabelkapal->pemberangkatan->status }}</p>
                                         </div>
                                     </td>
                                     <td>
-                                        <div tabindex="0" wire:click='DetailKapal({{$pemberangkatan->id}})'
+                                        <div tabindex="0" wire:click='DetailKapal({{ $tabelkapal->id }})'
                                             class="focus:outline-none focus:text-indigo-600 text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
                                             <p>Detail</p>
                                         </div>

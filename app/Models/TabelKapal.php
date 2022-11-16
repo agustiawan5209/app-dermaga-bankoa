@@ -23,6 +23,6 @@ class TabelKapal extends Model
         return $this->belongsTo(Ulasan::class, 'kapal_id','id');
     }
     public function pemberangkatan(){
-        return $this->hasMany(Pemberangkatan::class, 'kapal_id', 'id');
+        return $this->hasOne(Pemberangkatan::class, 'kapal_id', 'id');
     }
 }

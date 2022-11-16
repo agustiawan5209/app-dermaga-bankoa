@@ -8,35 +8,19 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    {{-- <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/> --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"
-        integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
-    {{-- <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script> --}}
 
     <link rel="stylesheet" href="{{asset('build/assets/app.c2b10521.css')}}">
     @livewireStyles
-
-    <!-- Scripts -->
+    @vite(['resources/js/app.js','resources/css/app.css'])
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
-    <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
+    <script src="{{asset("js/jquery-3.6.1.min.js")}}"></script>
 
 
 </head>
 
-<style>
-    tr td {
-        text-align: center;
-        border: 1px solid #ddd;
-    }
-</style>
 
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
 
@@ -112,12 +96,6 @@
 
     @livewireScripts
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
-    <!--Datatables -->
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    <script defer src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
 
 
     <script>

@@ -29,7 +29,7 @@ class FormPesanTiket extends Component
     public function mount()
     {
         $this->lokasi = 'Dermaga Bangkoa';
-        $this->pemberangkatan = Pemberangkatan::all();
+        $this->pemberangkatan = TabelKapal::all();
     }
 
     /**
@@ -46,10 +46,7 @@ class FormPesanTiket extends Component
             'jumlah' => 'required',
         ]);
         if ($this->tujuan != null && $this->tgl_berangkat != null || $this->jumlah != null) {
-            $this->pemberangkatan = Pemberangkatan::where('destinasi_id', '=', $this->tujuan)
-                ->WhereDate('tgl_berangkat', $this->tgl_berangkat)
-                ->Where('status', '=', 'bersandar')
-                ->get();
+            $this->pemberangkatan = TabelKapal::all();
         }
         $this->Cari = true;
     }
@@ -65,21 +62,21 @@ class FormPesanTiket extends Component
     public $pemilik_kapal, $deskripsi, $batas_muatan, $tiket_tersisa, $gambar;
     public function DetailKapal($id, $jumlah = 0)
     {
-        $pesan = Pemberangkatan::find($id);
-        $this->itemID = $pesan->id;
-        $this->kode_berangkat = $pesan->kode_berangkat;
-        $this->tgl_berangkat = $pesan->tgl_berangkat;
-        $this->harga = $pesan->harga;
-        $this->jam = $pesan->jam;
-        $this->destinasi_id = $pesan->destinasi->lokasi;
-        $this->kapal_id = $pesan->kapal_id;
-        $this->pemilik_kapal = $pesan->kapal->user->name;
-        $this->deskripsi = $pesan->deskripsi;
-        $this->batas_muatan = $pesan->kapal->jumlah_muatan;
-        $this->gambar = $pesan->kapal->gambar;
+        $tabelkapal = TabelKapal::find($id);
+        $this->itemID = $tabelkapal->id;
+        $this->kode_berangkat = $tabelkapal->pemberangkatan->kode_berangkat;
+        $this->tgl_berangkat = $tabelkapal->pemberangkatan->tgl_berangkat;
+        $this->harga = $tabelkapal->pemberangkatan->harga;
+        $this->jam = $tabelkapal->pemberangkatan->jam;
+        $this->destinasi_id = $tabelkapal->pemberangkatan->destinasi->lokasi;
+        $this->kapal_id = $tabelkapal->id;
+        $this->pemilik_kapal = $tabelkapal->user->name;
+        $this->deskripsi = $tabelkapal->pemberangkatan->deskripsi;
+        $this->batas_muatan = $tabelkapal->jumlah_muatan;
+        $this->gambar = $tabelkapal->gambar;
 
         // dd($this->pesan);
-        $statusMuatan = StatusMuatan::where('kode_berangkat', '=', $pesan->kode_berangkat)->first();
+        $statusMuatan = StatusMuatan::where('kode_berangkat', '=', $tabelkapal->pemberangkatan->kode_berangkat)->first();
         $this->tiket_tersisa = abs(intval($statusMuatan->jumlah_tiket) - intval($statusMuatan->batas_muatan));
         if ($statusMuatan->batas_muatan <= intval($statusMuatan->jumlah_tiket + $this->jumlah)) {
             Alert::warning('Transaksi Gagal', 'Batas Muatan Tercapai, Transaksi Gagal');
@@ -123,8 +120,7 @@ class FormPesanTiket extends Component
         $destinasi = Destinasi::all();
         $kapal = TabelKapal::all();
         if ($this->Cari == false) {
-        $this->pemberangkatan = Pemberangkatan::all();
-
+            $this->pemberangkatan = TabelKapal::all();
         }
         $this->ulasanItem = Ulasan::all();
         return view('livewire.form-pesan-tiket', [
