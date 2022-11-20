@@ -82,8 +82,10 @@ class PageKapal extends Component
             'nama_kapal' => 'required',
             'jenis_kapal' => 'required',
             'pemilik' => 'required',
+            'harga'=> ['required', 'numeric'],
             'jumlah_muatan' => 'required',
             'gambar' => ['image', 'required'],
+
         ]);
         // dd([$file, $ext]);
         $random = '';

@@ -3,7 +3,6 @@
         @include('sweetalert::alert')
 
         <x-jet-button type='button' onclick="this.preventDefault" wire:click='addModal'>Tambah Kapal</x-jet-button>
-        <x-jet-validation-errors />
 
         <x-table.table>
             <x-slot name="th">
@@ -54,6 +53,7 @@
                 <form action="" class="my-2">
 
                     <div class="flex flex-col space-y-5 max-w-md bg-white px-4 py-2">
+                        <x-jet-validation-errors />
                         <label for="">
                             <p class="font-medium text-slate-700 pb-2">Foto kapal</p>
                             <x-jet-input id="gambar" wire:model="gambar" type="file"
