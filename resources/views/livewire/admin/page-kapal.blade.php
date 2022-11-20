@@ -59,18 +59,14 @@
                             <x-jet-input id="gambar" wire:model="gambar" type="file"
                                 class="w-full py-3 border border-slate-200 bg-white rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
                                 placeholder=".........." />
-                            @error('gambar')
-                                <span class="text-red-500 font-semibold">{{ $message }}</span>
-                            @enderror
+
                         </label>
                         <label for="">
                             <p class="font-medium text-slate-700 pb-2">nama kapal</p>
                             <x-jet-input id="nama_kapal" wire:model="nama_kapal" type="text"
                                 class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
                                 placeholder=".........." />
-                            @error('nama_kapal')
-                                <span class="text-red-500 font-semibold">{{ $message }}</span>
-                            @enderror
+
                         </label>
                         <label for="">
                             <p class="font-medium text-slate-700 pb-2">jenis kapal</p>
@@ -81,9 +77,6 @@
                             <option value="Penumpang">Penumpang</option>
                             <option value="Kargo">Kargo</option>
                             </select>
-                            @error('jenis_kapal')
-                                <span class="text-red-500 font-semibold">{{ $message }}</span>
-                            @enderror
                         </label>
                         <x-jet-input type="hidden" wire:model="pemilik" />
                         <label for="">
@@ -91,9 +84,7 @@
                             <x-jet-input id="jumlah_muatan" wire:model="jumlah_muatan" type="text"
                                 class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
                                 placeholder=".........." />
-                            @error('jumlah_muatan')
-                                <span class="text-red-500 font-semibold">{{ $message }}</span>
-                            @enderror
+
                         </label>
                         <div class="flex flex-col space-y-5">
                             <label for="email">
@@ -101,9 +92,7 @@
                                 <input id="kode_berangkat" wire:model="kode_berangkat" type="text"
                                     class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
                                     placeholder="..........">
-                                @error('kode_berangkat')
-                                    <span class="text-red-500 font-semibold">{{ $message }}</span>
-                                @enderror
+
                             </label>
                             <label for="email">
                                 <p class="font-medium text-slate-700 pb-2">Tujuan</p>
@@ -115,27 +104,21 @@
                                         <option value="{{ $item->id }}">{{ $item->lokasi }}</option>
                                     @endforeach
                                 </select>
-                                @error('destinasi_id')
-                                    <span class="text-red-500 font-semibold">{{ $message }}</span>
-                                @enderror
+
                             </label>
                             <label for="email">
                                 <p class="font-medium text-slate-700 pb-2">Harga</p>
                                 <input id="harga" wire:model="harga" type="text"
                                     class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
                                     placeholder="..........">
-                                @error('harga')
-                                    <span class="text-red-500 font-semibold">{{ $message }}</span>
-                                @enderror
+
                             </label>
                             <label for="email">
                                 <p class="font-medium text-slate-700 pb-2">Keterangan</p>
                                 <textarea id="deskripsi" wire:model="deskripsi"
                                     class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
                                     placeholder=".........."></textarea>
-                                @error('deskripsi')
-                                    <span class="text-red-500 font-semibold">{{ $message }}</span>
-                                @enderror
+
                             </label>
 
                         @if ($itemEdit == false)
