@@ -16,7 +16,7 @@
         new WOW().init();
     </script>
     @vite(['resources/js/app.js'])
-    <link rel="stylesheet" href="{{asset('build/assets/app.ff6f3007.css')}}">
+    <link rel="stylesheet" href="{{asset('build/assets/app.9da706ca.css')}}">
     <script src="{{asset("js/jquery-3.6.1.min.js")}}"></script>
 
     <!-- Styles -->

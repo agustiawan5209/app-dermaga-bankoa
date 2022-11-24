@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
 
-    <link rel="stylesheet" href="{{asset('build/assets/app.ff6f3007.css')}}">
+    <link rel="stylesheet" href="{{asset('build/assets/app.9da706ca.css')}}">
     @livewireStyles
     @vite(['resources/js/app.js'])
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>

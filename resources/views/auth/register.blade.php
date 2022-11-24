@@ -9,7 +9,7 @@
         rel="stylesheet" />
     <!-- Styles -->
     @livewireStyles
-    <link rel="stylesheet" href="{{asset('build/assets/app.ff6f3007.css')}}">
+    <link rel="stylesheet" href="{{asset('build/assets/app.9da706ca.css')}}">
     @vite(['resources/js/app.js'])
 
     <script defer src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
