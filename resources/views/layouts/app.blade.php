@@ -12,11 +12,11 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
 
-    <link rel="stylesheet" href="{{asset('build/assets/app.9da706ca.css')}}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app.9da706ca.css') }}">
     @livewireStyles
     @vite(['resources/js/app.js'])
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
-    <script src="{{asset("js/jquery-3.6.1.min.js")}}"></script>
+    <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
 
 
 </head>
@@ -28,7 +28,7 @@
     <div class="flex flex-no-wrap">
         <!-- Sidebar starts -->
         <!-- Remove class [ hidden ] and replace [ sm:flex ] with [ flex ] -->
-        @can ('managed-Admin')
+        @can('managed-Admin')
             <div
                 class="md:w-1/4 lg:w-1/5 overflow-y-auto sm:relative bg-gray-800 shadow h-screen flex-col justify-between hidden md:flex">
                 <div class="px-8 ">
@@ -96,8 +96,6 @@
 
     @livewireScripts
 
-
-<script defer src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
     <script>
         $(document).ready(function() {
             $('.datatable').dataTable();

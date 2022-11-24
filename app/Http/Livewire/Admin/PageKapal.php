@@ -62,6 +62,11 @@ class PageKapal extends Component
         $this->jenis_kapal = $kapal->jenis_kapal;
         $this->jumlah_muatan = $kapal->jumlah_muatan;
         $this->gambar = $kapal->gambar;
+        $berangkat = Pemberangkatan::where('kapal_id',$id)->first();
+        $this->kode_berangkat = $berangkat->kode_berangkat;
+        $this->destinasi_id = $berangkat->destinasi_id;
+        $this->harga = $berangkat->harga;
+        $this->deskripsi = $berangkat->deskripsi;
         $this->itemAdd = true;
         $this->itemEdit = true;
     }

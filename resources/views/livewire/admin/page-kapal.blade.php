@@ -10,8 +10,8 @@
                     <x-table.th>No</x-table.th>
                     <x-table.th>Foto</x-table.th>
                     <x-table.th>Nama Kapal</x-table.th>
-                    <x-table.th>Kapal</x-table.th>
                     <x-table.th>Tujuan</x-table.th>
+                    <x-table.th>Harga</x-table.th>
                     <x-table.th>Jumlah Muatan</x-table.th>
                     <x-table.th>Status</x-table.th>
                     <x-table.th>Aksi</x-table.th>
@@ -27,7 +27,7 @@
                         {{-- <x-table.td class="text-center border border-gray-500">{{ $item->gambar }}</x-table.td> --}}
                         <x-table.td class="text-center border border-gray-500">{{ $item->nama_kapal }}</x-table.td>
                         <x-table.td class="text-center border border-gray-500">{{ $item->pemberangkatan->destinasi->lokasi }}</x-table.td>
-                        <x-table.td class="text-center border border-gray-500">{{ $item->jenis_kapal }}</x-table.td>
+                        <x-table.td class="text-center border border-gray-500">Rp. {{ number_format($item->pemberangkatan->harga,0,2) }}</x-table.td>
                         <x-table.td class="text-center border border-gray-500">{{ $item->jumlah_muatan }}</x-table.td>
                         <x-table.td class="text-center border border-gray-500">
                             <span class="px-2 py-1 bg-red-200 rounded-lg">{{ $item->pemberangkatan->status }}</span>
