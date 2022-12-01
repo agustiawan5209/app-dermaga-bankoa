@@ -26,6 +26,6 @@ class TabelKapal extends Model
         return $this->hasOne(Pemberangkatan::class, 'kapal_id', 'id');
     }
     public function statusMuatan(){
-        return $this->hasOne(statusMuatan::class, 'kapal_id', 'id');
+        return $this->hasOne(StatusMuatan::class, 'kapal_id', 'id');
     }
 }
