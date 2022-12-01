@@ -48,8 +48,11 @@ class FormPesanTiket extends Component
         if ($this->tujuan != null && $this->status != null || $this->jumlah != null) {
             $this->pemberangkatan = TabelKapal::whereHas('pemberangkatan', function ($query) {
                 return $query->where('status', '=', $this->status)
-                    ->orWhere('destinasi_id', '=', $this->lokasi);
-            })->get();
+                    ->where('destinasi_id', '=', $this->lokasi);
+            })->whereHas('statusMuatan', function($qeury){
+                return $qeury->where('jumlah_tiket' , '<', $this->jumlah);
+            })
+            ->get();
         }
         // dd($this->pemberangkatan);
         $this->Cari = true;

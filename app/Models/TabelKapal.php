@@ -25,4 +25,7 @@ class TabelKapal extends Model
     public function pemberangkatan(){
         return $this->hasOne(Pemberangkatan::class, 'kapal_id', 'id');
     }
+    public function statusMuatan(){
+        return $this->hasOne(TabelKapal::class, 'kapal_id','id');
+    }
 }
