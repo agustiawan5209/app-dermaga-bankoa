@@ -51,8 +51,7 @@ class FormPesanTiket extends Component
                     ->where('destinasi_id', '=', $this->lokasi);
             })->whereHas('statusMuatan', function($qeury){
                 return $qeury->where('jumlah_tiket' , '<', $this->jumlah);
-            })
-            ->get();
+            })->get();
         }
         // dd($this->pemberangkatan);
         $this->Cari = true;
