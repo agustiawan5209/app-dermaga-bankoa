@@ -46,6 +46,12 @@
                         <li class=""><a
                                 class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
                                 href="{{ route('Customer.Customer') }}">Pesanan</a></li>
+                        <li class=""><a
+                                class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                                > <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="text-lg w-full">Logout</button>
+                                </form></a></li>
 
                     </ul>
                 </div>

@@ -9,10 +9,8 @@
         rel="stylesheet" />
     <!-- Styles -->
     @livewireStyles
-    <link rel="stylesheet" href="{{asset('build/assets/app.9da706ca.css')}}">
-    @vite(['resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('build/assets/app.cea81095.css') }}">
 
-    <script defer src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
 </head>
 
 <body class="bg-cover" style="background-image: url({{asset('img/layanan.jpg')}})">

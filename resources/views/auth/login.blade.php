@@ -7,10 +7,9 @@
     <title>Dermaga Kayu Bangkoa Dashboard | Login</title>
     <!-- Styles -->
     @livewireStyles
-    <link rel="stylesheet" href="{{asset('build/assets/app.9da706ca.css')}}">
-    @vite(['resources/js/app.js'])
-
-    <script defer src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
+    {{-- @vite(['resources/js/app.js', 'resources/app/app.css']) --}}
+    <link rel="stylesheet" href="{{ asset('build/assets/app.cea81095.css') }}">
+    {{-- <script defer src="{{asset('build/assets/app.cea81095.css')}}"></script> --}}
 </head>
 
 <body class="bg-cover" style="background-image: url({{asset('img/layanan.jpg')}})">
@@ -76,51 +75,6 @@
         <!-- Toggle dark mode button -->
     </div>
 
-    <script>
-        const setup = () => {
-            const getTheme = () => {
-                if (window.localStorage.getItem('dark')) {
-                    return JSON.parse(window.localStorage.getItem('dark'))
-                }
-                return !!window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-            }
-
-            const setTheme = (value) => {
-                window.localStorage.setItem('dark', value)
-            }
-
-            const getColor = () => {
-                if (window.localStorage.getItem('color')) {
-                    return window.localStorage.getItem('color')
-                }
-                return 'cyan'
-            }
-
-            const setColors = (color) => {
-                const root = document.documentElement
-                root.style.setProperty('--color-blue-500', `var(--color-${color})`)
-                root.style.setProperty('--color-blue-500-50', `var(--color-${color}-50)`)
-                root.style.setProperty('--color-blue-500-100', `var(--color-${color}-100)`)
-                root.style.setProperty('--color-blue-500-light', `var(--color-${color}-light)`)
-                root.style.setProperty('--color-blue-500-lighter', `var(--color-${color}-lighter)`)
-                root.style.setProperty('--color-blue-500-dark', `var(--color-${color}-dark)`)
-                root.style.setProperty('--color-blue-500-darker', `var(--color-${color}-darker)`)
-                this.selectedColor = color
-                window.localStorage.setItem('color', color)
-            }
-
-            return {
-                loading: true,
-                isDark: getTheme(),
-                color: getColor(),
-                toggleTheme() {
-                    this.isDark = !this.isDark
-                    setTheme(this.isDark)
-                },
-                setColors,
-            }
-        }
-    </script>
 </body>
 
 </html>
