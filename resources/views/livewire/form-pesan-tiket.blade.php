@@ -42,7 +42,7 @@
                     </div>
                     <div class="col-span-1 flex flex-wrap">
                         <label for="tanggal_keberangkatan" class="text-gray-500 ">Status</label>
-                        <select class="flex col-span-3 rounded-r-lg text-gray-500  border-gray-300 rounded-lg px-2 w-full" name="status" id="status">
+                        <select class="flex col-span-3 rounded-r-lg text-gray-500  border-gray-300 rounded-lg px-2 w-full" wire:model="status" id="status">
                             <option value="">--</option>
                             <option value="bersandar">Bersandar</option>
                             <option value="full">Full</option>
@@ -69,7 +69,7 @@
             </div>
         </div>
 
-        @if ($CekoutItem == true)
+        @if ($CekoutItem == false && $Cari == true)
 
         <div class="sm:px-6 w-full">
             <div class="px-4 md:px-10 ">

@@ -46,10 +46,12 @@ class FormPesanTiket extends Component
             'jumlah' => 'required',
         ]);
         if ($this->tujuan != null && $this->status != null || $this->jumlah != null) {
-            $this->pemberangkatan = TabelKapal::whereHas('pemberangkatan', function($query){
-                return $query->where('status', '=', $this->status);
-            });
+            $this->pemberangkatan = TabelKapal::whereHas('pemberangkatan', function ($query) {
+                return $query->where('status', '=', $this->status)
+                    ->orWhere('destinasi_id', '=', $this->lokasi);
+            })->get();
         }
+        // dd($this->pemberangkatan);
         $this->Cari = true;
     }
 
@@ -122,7 +124,12 @@ class FormPesanTiket extends Component
         $destinasi = Destinasi::all();
         $kapal = TabelKapal::all();
         if ($this->Cari == false) {
-            $this->pemberangkatan = TabelKapal::all();
+            if ($this->tujuan != null && $this->status != null || $this->jumlah != null) {
+                $this->pemberangkatan = TabelKapal::whereHas('pemberangkatan', function ($query) {
+                    return $query->where('status', '=', $this->status)
+                        ->orWhere('destinasi_id', '=', $this->lokasi);
+                })->get();
+            }
         }
         $this->ulasanItem = Ulasan::all();
         return view('livewire.form-pesan-tiket', [
