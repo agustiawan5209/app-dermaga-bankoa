@@ -26,7 +26,7 @@
                     {{-- <x-table.td class="text-center border border-gray-500">{{ $item->gambar }}</x-table.td> --}}
                     <x-table.td class="text-center border border-gray-500">{{ $item->nama_kapal }}</x-table.td>
                     <x-table.td class="text-center border border-gray-500">
-                        @if ($item->pemberangkatan->lokasi == null || $item->pemberangkatan == null)
+                        @if ($item->pemberangkatan->destinasi == null || $item->pemberangkatan == null)
                             Lokasi/Destinasi Hilang
                         @else
                             {{ $item->pemberangkatan->destinasi->lokasi }}
