@@ -98,7 +98,7 @@
     @stack('modals')
 
     @livewireScripts
-
+    <script defer src="{{ asset('build/assets/app.d225c007.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('.datatable').dataTable();
