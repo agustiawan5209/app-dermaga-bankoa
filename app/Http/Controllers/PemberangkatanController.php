@@ -16,63 +16,104 @@ use Illuminate\Support\Facades\Storage;
 
 class PemberangkatanController extends Controller
 {
+    public function transaksiKode()
+    {
+        $transaksi = Transaksi::select('ID_transaksi')->get();
+        $codeAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $codeAlphabet .= 'abcdefghijklmnopqrstuvwxyz';
+        $codeAlphabet .= '0123456789';
+        $kode = substr(str_shuffle($codeAlphabet), 0, 10);
+        foreach ($transaksi as $key => $value) {
+            if ($kode == $value->ID_transaksi) {
+                $kode = substr(str_shuffle($codeAlphabet), 0, 10);
+            }
+        }
+        return $kode;
+    }
+
     public function bayar(Request $request)
     {
-        $this->validate($request, [
-            'file' => ['required', 'image'],
-            'tgl_transaksi' => ['required', 'date'],
-            'nama_bank' => ['required', 'string'],
-        ]);
-        $transaksi = Transaksi::find(1);
+        $id = $request->itemID;
+        // dd($request->all());
+
+        //
+        $berangkat = Pemberangkatan::find($id);
+        // dd($berangkat);
+        if ($request->jumlah > 0) {
+            // $randonBukti = '';
+            $kode_transaksi = $this->transaksiKode();
+            // Cek Status Dari Muatan Kapal
+            $statusMuatan = StatusMuatan::where('kapal_id', '=', $berangkat->kapal_id)->first();
+            $data = [
+                'id' => $id,
+                'berangkat' => $berangkat,
+                'kode_berangkat' => $berangkat->kode_berangkat,
+                'user_id' => Auth::user()->id,
+                'ID_transaksi' => $kode_transaksi,
+                'tgl_transaksi' => $request->tgl_transaksi,
+                'jumlah' => $request->jumlah,
+                'nama_bank' => $request->nama_bank,
+            ];
+            $tiket =  [
+                'kode_berangkat' => $berangkat->kode_berangkat,
+                'harga' => $berangkat->harga,
+                'ID_transaksi' => $kode_transaksi,
+            ];
+        }
+
+        //
         $file = $request->file->getContent();
         $name = $request->file->getClientOriginalName();
         $name_file_image = '1' . $request->file->getClientOriginalName();
         Storage::put('upload/' . $name_file_image, $file);
-        $data = session('data');
-        $tiket = session('tiket');
-        // dd($data);
-        // $token = '';
-        $codeAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $codeAlphabet .= 'abcdefghijklmnopqrstuvwxyz';
-        $codeAlphabet .= '0123456789';
-        $kode = str_split(str_shuffle($codeAlphabet), 10);
 
-        // Membuat Transaksi
-        $name = $name . '.pdf';
-        $transaksi = Transaksi::create([
-            'kode_berangkat' => $data['kode_berangkat'],
-            'user_id' => Auth::user()->id,
-            'ID_transaksi' => $data['ID_transaksi'],
-            'bukti' => $name,
-            'tgl_transaksi' => $data['tgl_transaksi'],
-        ]);
-
-        // Cek Status Dari Muatan Kapal
-        $statusMuatan = StatusMuatan::where('kode_berangkat', '=', $data['kode_berangkat'])->first();
-        // Melakukan Perulangan Untuk Tiket
-        for ($i = 0; $i < intval($data['jumlah']); $i++) {
+        if ($request->jumlah > 0) {
+            // $token = '';
             $codeAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $codeAlphabet .= 'abcdefghijklmnopqrstuvwxyz';
             $codeAlphabet .= '0123456789';
-            $kode = str_split(str_shuffle($codeAlphabet), 7);
-            // dd($kode);
-            Tiket::create([
-                'kode_berangkat' => $tiket['kode_berangkat'],
-                'kode_tiket' => $kode[0],
-                'harga' => $tiket['harga'],
-                'ID_transaksi' => $tiket['ID_transaksi'],
+            $kode = str_split(str_shuffle($codeAlphabet), 10);
+
+            // Membuat Transaksi
+            $name = $name . '.pdf';
+            $transaksi = Transaksi::create([
+                'kode_berangkat' => $data['kode_berangkat'],
+                'user_id' => Auth::user()->id,
+                'ID_transaksi' => $data['ID_transaksi'],
+                'bukti' => $name,
+                'tgl_transaksi' => $data['tgl_transaksi'],
             ]);
+
+            // Cek Status Dari Muatan Kapal
+            $statusMuatan = StatusMuatan::where('kode_berangkat', '=', $data['kode_berangkat'])->first();
+            // Melakukan Perulangan Untuk Tiket
+            for ($i = 0; $i < intval($data['jumlah']); $i++) {
+                $codeAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                $codeAlphabet .= 'abcdefghijklmnopqrstuvwxyz';
+                $codeAlphabet .= '0123456789';
+                $kode = str_split(str_shuffle($codeAlphabet), 7);
+                // dd($kode);
+                Tiket::create([
+                    'kode_berangkat' => $tiket['kode_berangkat'],
+                    'kode_tiket' => $kode[0],
+                    'harga' => $tiket['harga'],
+                    'ID_transaksi' => $tiket['ID_transaksi'],
+                ]);
+            }
+            // Mengupdate Jumlah Tiket Pada Tabel Status Muatan
+            $statusMuatan->update([
+                'jumlah_tiket' => intval($data['jumlah']) + $statusMuatan->jumlah_tiket,
+            ]);
+            $pdf = Pdf::loadView('pdf.invoice2', ['transaksi' => $data, 'file' => $name_file_image, 'user' => Auth::user(), 'bukti' => $data['nama_bank'], 'bank' => $data['nama_bank']]);
+            // Storage::disk('bukti')->put($nama_file, );
+            Storage::put('bukti/' . $name, $pdf->download()->getOriginalContent());
+            Alert::success('Info', 'Pemesanan Berhasil');
+            // session()->forget('itemCek');
+            return redirect()->route('Customer.Customer');
+        } else {
+            Alert::error('Maaf', 'Jumlah Harus Di isi');
+            return redirect()->back();
         }
-        // Mengupdate Jumlah Tiket Pada Tabel Status Muatan
-        $statusMuatan->update([
-            'jumlah_tiket' => intval($data['jumlah']) + $statusMuatan->jumlah_tiket,
-        ]);
-        $pdf = Pdf::loadView('pdf.invoice2', ['transaksi' => $data, 'file' => $name_file_image, 'user' => Auth::user(), 'bukti' => $request->nama_bank, 'bank' => $request->nama_bank]);
-        // Storage::disk('bukti')->put($nama_file, );
-        Storage::put('bukti/' . $name, $pdf->download()->getOriginalContent());
-        Alert::success('Info', 'Pemesanan Berhasil');
-        // session()->forget('itemCek');
-        return redirect()->route('Customer.Customer');
     }
     public function dataPembayaran($request, $nama_file, $bukti)
     {

@@ -166,10 +166,12 @@
                     </div>
                 </div>
 
-                <form enctype="multipart/form-data" action="{{ route('Kirim-Bayar') }}" method="POST"
+                <form enctype="multipart/form-data" action="{{ route('Kirim-Bayar') }}"  method="POST"
                     class="relative py-8 px-5 md:px-10 bg-white   shadow-md rounded border border-gray-400">
                     <x-jet-validation-errors />
                     @csrf
+                    <input type="hidden" name="itemID" value="{{ $itemID }}">
+                    <input type="hidden" name="jumlah" wire:model='jumlah'>
                     <div class="w-full flex justify-start text-gray-600 mb-3">
                         <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left_aligned_form-svg1.svg"
                             alt="icon" />
@@ -212,7 +214,7 @@
                             placeholder="MM/YY">
                     </div>
                     <div class="flex items-center justify-start w-full">
-                        <button type="submit" wire:click='SendPembayaran({{ $itemID }})'
+                        <button type="submit"
                             class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Submit</button>
                         <button wire:click='batalkan'
                             class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm"

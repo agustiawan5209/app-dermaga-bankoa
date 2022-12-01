@@ -2,14 +2,14 @@
 
 namespace App\Http\Livewire\Customer;
 
+use Carbon\Carbon;
 use App\Models\Tiket;
 use Livewire\Component;
 use App\Models\Transaksi;
 use App\Models\StatusMuatan;
-use App\Models\Pemberangkatan;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
+use App\Models\Pemberangkatan;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class Cekout extends Component
@@ -151,15 +151,14 @@ class Cekout extends Component
             'tgl_transaksi' => ['required','date'],
             'nama_bank' => ['required', 'string'],
         ]);
-        $berangkat = Pemberangkatan::find($id);
+        $berangkat = Pemberangkatan::find($this->itemID);
+        // dd($berangkat);
         if ($this->jumlah > 0) {
-            $randonBukti = '';
-            $namaFile = $this->bukti_transaksi->getClientOriginalName();
-            $extFile = $this->bukti_transaksi->getClientOriginalExtension();
-            $randonBukti = md5($namaFile) . '.' . $extFile;
+            // $randonBukti = '';
+
             $kode_transaksi = $this->transaksiKode();
             // Cek Status Dari Muatan Kapal
-            $statusMuatan = StatusMuatan::where('kode_berangkat', '=', $berangkat->kode_berangkat)->first();
+            $statusMuatan = StatusMuatan::where('kapal_id', '=', $berangkat->kapal_id)->first();
             if ($statusMuatan->batas_muatan >= $statusMuatan->jumlah_tiket) {
                 session()->put('data', [
                     'id' => $id,
@@ -168,20 +167,23 @@ class Cekout extends Component
                     'user_id' => Auth::user()->id,
                     'ID_transaksi' => $kode_transaksi,
                     'tgl_transaksi' => $this->tgl_transaksi,
-                    'jumlah'=> $this->jumlah,
-                    'bank'=> $this->nama_bank,
+                    'jumlah' => $this->jumlah,
+                    'bank' => $this->nama_bank,
+                    'gambar' => $this->bukti_transaksi,
+                    'nama_bank' => $this->nama_bank,
                 ]);
                 session()->put('tiket', [
                     'kode_berangkat' => $berangkat->kode_berangkat,
                     'harga' => $berangkat->harga,
                     'ID_transaksi' => $kode_transaksi,
                 ]);
-            }else {
+            } else {
                 Alert::warning('info', 'Sisa Tiket Kosong');
             }
-        }else {
+        } else {
             Alert::warning('info', 'Sisa Tiket Kosong');
         }
+        return redirect()->route('Kirim-Bayar');
     }
     public $bayar = false;
     public function bayar()
