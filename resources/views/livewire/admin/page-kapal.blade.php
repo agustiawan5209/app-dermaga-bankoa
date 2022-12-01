@@ -25,7 +25,12 @@
                             src="{{ asset('storage/kapal/' . $item->gambar) }}" alt=""></x-table.td>
                     {{-- <x-table.td class="text-center border border-gray-500">{{ $item->gambar }}</x-table.td> --}}
                     <x-table.td class="text-center border border-gray-500">{{ $item->nama_kapal }}</x-table.td>
-                    <x-table.td class="text-center border border-gray-500">{{ $item->pemberangkatan->destinasi->lokasi }}
+                    <x-table.td class="text-center border border-gray-500">
+                        @if ($item->pemberangkatan->lokasi == null || $item->pemberangkatan == null)
+                            Lokasi/Destinasi Hilang
+                        @else
+                            {{ $item->pemberangkatan->destinasi->lokasi }}
+                        @endif
                     </x-table.td>
                     <x-table.td class="text-center border border-gray-500">Rp.
                         {{ number_format($item->pemberangkatan->harga, 0, 2) }}</x-table.td>
