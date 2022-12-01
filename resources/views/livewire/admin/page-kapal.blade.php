@@ -33,10 +33,10 @@
                         @endif
                     </x-table.td>
                     <x-table.td class="text-center border border-gray-500">Rp.
-                        {{ number_format($item->pemberangkatan->harga, 0, 2) }}</x-table.td>
+                        {{ $item->pemberangkatan != null ? number_format( $item->pemberangkatan->harga, 0, 2) : 'Data Keberangkaran Kosog'  }}</x-table.td>
                     <x-table.td class="text-center border border-gray-500">{{ $item->jumlah_muatan }}</x-table.td>
                     <x-table.td class="text-center border border-gray-500">
-                        <span class="px-2 py-1 bg-red-200 rounded-lg">{{ $item->pemberangkatan->status }}</span>
+                        <span class="px-2 py-1 bg-red-200 rounded-lg">{{  $item->pemberangkatan != null ?$item->pemberangkatan->status : 'Data Keberangkaran Kosog' }}</span>
                     </x-table.td>
                     <x-table.tdaction :id="$item->id" />
                 </tr>

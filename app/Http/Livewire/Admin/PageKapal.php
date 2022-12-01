@@ -87,7 +87,7 @@ class PageKapal extends Component
             'jenis_kapal' => 'required',
             'pemilik' => 'required',
             'harga' => ['required', 'numeric'],
-            'jumlah_muatan' => 'required',
+            'jumlah_muatan' => ['required', 'numeric'],
             'gambar' => ['image', 'required'],
 
         ]);
