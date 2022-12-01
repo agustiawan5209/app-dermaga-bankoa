@@ -2,12 +2,13 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\Destinasi;
 use Livewire\Component;
+use App\Models\Destinasi;
 use App\Models\TabelKapal;
 use App\Models\StatusMuatan;
 use Livewire\WithFileUploads;
 use App\Models\Pemberangkatan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -134,7 +135,7 @@ class PageKapal extends Component
         TabelKapal::where('id', $id)->delete();
         $this->itemDelete = false;
         $this->deleteBerangkat($id);
-        return redirect()->route('Admin.Data-Kapal');
+        return redirect()->route('Admin.Data-Kapal', ['user_id'=> $this->user_id]);
     }
 
     public function createBerangkat($kapalID)
