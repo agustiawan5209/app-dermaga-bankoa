@@ -31,7 +31,6 @@ class PemberangkatanController extends Controller
         $data = session('data');
         $tiket = session('tiket');
         // dd($data);
-        $berangkat = Pemberangkatan::find($data['id']);
         // $token = '';
         $codeAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $codeAlphabet .= 'abcdefghijklmnopqrstuvwxyz';
