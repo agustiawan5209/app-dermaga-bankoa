@@ -121,9 +121,10 @@ class PageKapal extends Component
             $random = md5($file) . '.' . $ext;
             $this->gambar->storeAs('public/kapal/', $file);
         }
+        $push = array_replace($valid, ['gambar' => $file]);
         $kapal = TabelKapal::find($id);
         $this->editBerangkat($kapal->id);
-        $kapal->update($valid);
+        $kapal->update($push);
         $this->closeModal();
         Alert::success('Info', 'Berhasil Di Edit');
     }
