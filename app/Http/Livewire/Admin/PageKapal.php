@@ -21,7 +21,6 @@ class PageKapal extends Component
     // item Field Table Kapal
     public $nama_kapal, $jenis_kapal, $pemilik, $jumlah_muatan, $itemID, $gambar;
     public $pemberangkatan, $kode_berangkat, $destinasi_id, $harga, $tgl_berangkat, $jam, $hari, $kapal_id, $batas_muatan, $deskripsi;
-
     public function mount($user_id)
     {
         $this->user_id = $user_id;
@@ -45,7 +44,7 @@ class PageKapal extends Component
         $kapal = TabelKapal::where('pemilik', $this->user_id)->get();
         return view('livewire.admin.page-kapal', [
             'kapal' => $kapal,
-            'destinasi'=> $destinasi
+            'destinasi' => $destinasi
         ]);
     }
 
@@ -62,7 +61,7 @@ class PageKapal extends Component
         $this->jenis_kapal = $kapal->jenis_kapal;
         $this->jumlah_muatan = $kapal->jumlah_muatan;
         $this->gambar = $kapal->gambar;
-        $berangkat = Pemberangkatan::where('kapal_id',$id)->first();
+        $berangkat = Pemberangkatan::where('kapal_id', $id)->first();
         $this->kode_berangkat = $berangkat->kode_berangkat;
         $this->destinasi_id = $berangkat->destinasi_id;
         $this->harga = $berangkat->harga;
@@ -87,7 +86,7 @@ class PageKapal extends Component
             'nama_kapal' => 'required',
             'jenis_kapal' => 'required',
             'pemilik' => 'required',
-            'harga'=> ['required', 'numeric'],
+            'harga' => ['required', 'numeric'],
             'jumlah_muatan' => 'required',
             'gambar' => ['image', 'required'],
 
@@ -164,5 +163,11 @@ class PageKapal extends Component
         Pemberangkatan::find($id)->delete();
         $this->itemHapusBerangkat = false;
         Alert::success('Info', 'Berhasil');
+    }
+    public function GetHargaDestinasi()
+    {
+        $destinasi = Destinasi::find($this->destinasi_id);
+        $this->harga = $destinasi->harga;
+        // dd($destinasi);
     }
 }

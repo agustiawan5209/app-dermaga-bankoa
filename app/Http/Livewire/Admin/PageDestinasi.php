@@ -52,8 +52,12 @@ class PageDestinasi extends Component
             'lokasi' => 'required',
             'harga' => ['required', 'numeric'],
         ]);
+        // dd($valid);
         try {
-            Destinasi::find($id)->update($valid);
+            Destinasi::find($id)->update([
+                'lokasi'=> $this->lokasi,
+                'harga'=> $this->harga,
+            ]);
             $this->itemEdit = false;
             $this->itemAdd = false;
             Alert::success("info", 'Berhasil Di Edit');

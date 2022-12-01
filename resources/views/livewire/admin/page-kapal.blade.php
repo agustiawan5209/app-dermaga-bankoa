@@ -96,7 +96,7 @@
                             </label>
                             <label for="email">
                                 <p class="font-medium text-slate-700 pb-2">Tujuan</p>
-                                <select id="des" wire:model="destinasi_id" type="text"
+                                <select id="des" wire:model="destinasi_id" wire:change='GetHargaDestinasi()' type="text"
                                     class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
                                     placeholder="..........">
                                     <option value="">--Pilih--</option>
@@ -108,7 +108,7 @@
                             </label>
                             <label for="email">
                                 <p class="font-medium text-slate-700 pb-2">Harga</p>
-                                <input id="harga" wire:model="harga" type="text"
+                                <input id="harga" wire:model="harga" type="number"
                                     class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
                                     placeholder="..........">
 

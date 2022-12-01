@@ -121,9 +121,7 @@
 
     <script>
         $(document).ready(function() {
-            $('.datatable').DataTable([
-                processing: true,
-            ]);
+            $('.datatable').DataTable();
 
         });
     </script>

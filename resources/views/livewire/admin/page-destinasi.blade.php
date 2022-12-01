@@ -4,7 +4,7 @@
     <x-jet-button type='button' onclick="this.preventDefault" wire:click='addModal'>Tambah Destinasi</x-jet-button>
     <x-jet-validation-errors />
     @if ($itemAdd)
-        <form action="#" class="my-2">
+        <form class="my-2">
 
             <div class="flex flex-col space-y-5 max-w-md bg-white px-4 py-2">
 
@@ -29,7 +29,7 @@
                 </label>
 
                 @if ($itemEdit == false)
-                    <button wire:click='create' type="submit"
+                    <button wire:click='create' type="button"
                         class="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor" stroke-width="2">
@@ -39,7 +39,7 @@
                         <span>Tambah</span>
                     </button>
                 @else
-                    <button wire:click='edit({{ $itemID }})' type="submit"
+                    <button wire:click='edit({{ $itemID }})' type="button"
                         class="w-full py-3 font-medium text-white bg-green-600 hover:bg-green-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor" stroke-width="2">
