@@ -16,7 +16,8 @@
         new WOW().init();
     </script>
     @vite(['resources/js/app.js'])
-    <link rel="stylesheet" href="{{asset('build/assets/app.9da706ca.css')}}">
+     <link rel="stylesheet" href="{{ asset('build/assets/app.cea81095.css') }}">
+
     <script src="{{asset("js/jquery-3.6.1.min.js")}}"></script>
 
     <!-- Styles -->
@@ -66,6 +67,6 @@
                 chaibuilder.com</p>
         </div>
     </footer>
-    <script defer src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
+    <script defer src="{{asset('build/assets/app.d225c007.js')}}"></script>
 
 </body>

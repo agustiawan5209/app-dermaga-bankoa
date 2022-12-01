@@ -12,11 +12,14 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('build/assets/app.9da706ca.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app.cea81095.css') }}">
+
     @livewireStyles
-    @vite(['resources/js/app.js', 'resources/app/app.css'])
+    @vite(['resources/js/app.js'])
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
     <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
+    <script defer src="{{asset('build/assets/app.d225c007.js')}}"></script>
+
 
 
 </head>

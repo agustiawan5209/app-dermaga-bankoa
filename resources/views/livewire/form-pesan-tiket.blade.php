@@ -1,14 +1,13 @@
 <div class="h-max">
     @include('sweetalert::alert')
-    @if ($CekoutItem == false)
-        <div class="container mx-auto w-full flex justify-center h-64 py-6 bg-white shadow-black shadow-sm">
+        <div class="container mx-auto w-full flex justify-center h-max py-6 bg-white shadow-black shadow-sm">
             {{-- Pemesanan Tiket --}}
             <div class="w-full-h-full bg-white">
                 <x-jet-validation-errors />
-                <form class=" relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-5 px-20 mx-auto">
-                    <div class="col-span-2">
-                        <h3 class=" row-start-1 col-span-2 text-base text-gray-500">Dari</h3>
-                        <div class=" row-start-2 col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <form class=" relative sm:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 py-5 px-20 mx-auto">
+                    <div class=" col-sapn-1 md:col-span-2">
+                        <h3 class=" row-start-1 col-sapn-1 md:col-span-2 text-base text-gray-500">Dari</h3>
+                        <div class=" row-start-2 col-sapn-1 md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class=" relative grid grid-cols-4 text-center border border-gray-300 rounded-lg">
                                 <label for="tujuan" id="icon"
                                     class="col-span-1 font-mono text-sm px-3 py-1 text-center rounded-l-lg bg-white text-gray-600 h-full flex items-center">Dari</label>
@@ -70,6 +69,7 @@
             </div>
         </div>
 
+        @if ($CekoutItem == true)
 
         <div class="sm:px-6 w-full">
             <div class="px-4 md:px-10 ">
@@ -142,13 +142,14 @@
                 </div>
             </div>
         </div>
+        @endif
         <style>
             .checkbox:checked+.check-icon {
                 display: flex;
             }
         </style>
 
-    @endif
+
     @if ($detailKapalItem)
         @include('modal.detail')
     @endif

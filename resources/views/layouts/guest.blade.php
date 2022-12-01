@@ -30,7 +30,7 @@
     <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
     @vite(['resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('assets/css/tailwind.css') }}">
-    <link rel="stylesheet" href="{{ asset('build/assets/app.9da706ca.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app.cea81095.css') }}">
     @livewireStyles
 
 </head>
@@ -264,7 +264,8 @@
     <script src="{{ asset('assets/js/vendor/jquery-3.5.1-min.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/modernizr-3.7.1.min.js') }}"></script>
 
-    <script defer src="{{ asset('build/assets/app.ab93cf8a.js') }}"></script>
+    <script defer src="{{asset('build/assets/app.d225c007.js')}}"></script>
+
     <!--====== Plugins js ======-->
     <script src="{{ asset('assets/js/plugins.js') }}"></script>
 
