@@ -109,11 +109,18 @@ class PageKapal extends Component
     public function edit($id)
     {
         $valid = $this->validate([
+            'gambar' => ['image'],
             'nama_kapal' => 'required',
             'jenis_kapal' => 'required',
             'pemilik' => 'required',
             'jumlah_muatan' => 'required',
         ]);
+        if ($this->gambar != null) {
+            $file = $this->gambar->getClientOriginalName();
+            $ext = $this->gambar->getClientOriginalExtension();
+            $random = md5($file) . '.' . $ext;
+            $this->gambar->storeAs('public/kapal/', $file);
+        }
         $kapal = TabelKapal::find($id);
         $this->editBerangkat($kapal->id);
         $kapal->update($valid);
