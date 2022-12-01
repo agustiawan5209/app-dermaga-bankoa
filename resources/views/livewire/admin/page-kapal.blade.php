@@ -46,11 +46,14 @@
     </x-table.table>
     <main>
         <x-jet-dialog-modal wire:model="itemDelete">
-            <x-slot name="title">Apakah Anda Yakin?</x-slot>
-            <x-slot name="content"></x-slot>
-            <x-slot name="footer">
+            <x-slot name="title"></x-slot>
+            <x-slot name="content">
+                <h1>Apakah Anda Yakin?</h1>
                 <x-jet-danger-button wire:click="closeModal">Tutup</x-jet-danger-button>
                 <x-jet-danger-button wire:click="delete({{ $itemID }})">Hapus</x-jet-danger-button>
+            </x-slot>
+            <x-slot name="footer">
+
             </x-slot>
         </x-jet-dialog-modal>
         <x-jet-dialog-modal wire:model='itemAdd'>

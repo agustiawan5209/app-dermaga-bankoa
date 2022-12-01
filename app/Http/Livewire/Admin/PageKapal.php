@@ -133,7 +133,8 @@ class PageKapal extends Component
     {
         TabelKapal::where('id', $id)->delete();
         $this->itemDelete = false;
-        Alert::info('Info', 'Berhasil Di Hapus');
+        $this->deleteBerangkat($id);
+        return redirect()->route('Admin.Data-Kapal');
     }
 
     public function createBerangkat($kapalID)
@@ -168,7 +169,7 @@ class PageKapal extends Component
     }
     public function deleteBerangkat($id)
     {
-        Pemberangkatan::find($id)->delete();
+        Pemberangkatan::where('kapal_id', $id)->delete();
         $this->itemHapusBerangkat = false;
         Alert::success('Info', 'Berhasil');
     }
