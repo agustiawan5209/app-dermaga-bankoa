@@ -6,9 +6,10 @@
                     <div class="mx-4 mt-12 about-content wow fadeInLeftBig" data-wow-duration="1s" data-wow-delay="0.5s">
                         <div class="mb-4 section-title">
                             <div class="line"></div>
-                            <h3 class="title">Cepat <span>Dan</span> Mudah </h3>
+                            <h3 class="title">DERMAGA <b>KAYU BANGKOA</b> </h3>
                         </div> <!-- section title -->
-                        <p class="mb-8">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, seiam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing.</p>
+                        <p class="mb-8">
+                            merupakan sebuah gerbang menuju keindahan Pulau spermonde, beroperasi sejak 1970 hingga kini dipenuhi kapal-kapal yang melayani penumpang dengan rute Pulau-pulau indah yang berada di sekitar wilayah Makassar</p>
                         {{-- <a href="javascript:void(0)" class="main-btn gradient-btn">Try it Free</a> --}}
                     </div> <!-- about content -->
                 </div>
@@ -40,7 +41,7 @@
                             <div class="line"></div>
                             <h3 class="title">Jangkauan Objek Wisata<span> Terbaik</span></h3>
                         </div> <!-- section title -->
-                        <p class="mb-8">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, seiam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing.</p>
+                        <p class="mb-8">Gugusan kepulauan Spermonde yang terdiri dari 12 pulau indah yang masing-masing memiliki daya tarik tersendiri, memiliki perairan yang jernih hamparan pasir putih dan pemandangan bawah laut yang masih terjaga dengan baik, serta pemandangan matahari terbit dan terbenam yang luar biasa</p>
                         {{-- <a href="javascript:void(0)" class="main-btn gradient-btn">Try it Free</a> --}}
                     </div> <!-- about content -->
                 </div>
