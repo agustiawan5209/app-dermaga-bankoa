@@ -14,7 +14,7 @@ class DashboardPemilik extends Component
     public function render()
     {
         $dataPelanggan = User::where('role_id', '=', '3')->get();
-        $tabelk = TabelKapal::where('pemilik', Auth::user()->id)->get();
+        $tabelk = TabelKapal::all();
         $total_pendapatan = 0;
         foreach ($tabelk as $tabelkapal) {
             $berangkat = Pemberangkatan::where('kapal_id', $tabelkapal->id)->get();

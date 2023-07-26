@@ -45,7 +45,6 @@
                         <select class="flex col-span-3 rounded-r-lg text-gray-500  border-gray-300 rounded-lg px-2 w-full" wire:model="status" id="status">
                             <option value="">--</option>
                             <option value="bersandar">Bersandar</option>
-                            <option value="full">Full</option>
                             <option value="berangkat">Berangkat</option>
                         </select>
                     </div>
