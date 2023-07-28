@@ -46,7 +46,7 @@
                     </div>
                     <div class="flex-1 text-right md:text-center">
                         <h5 class="font-bold uppercase text-gray-400">Jumlah Kapal</h5>
-                        <h3 class="font-bold text-3xl text-gray-600">2 <span class="text-yellow-600"><i
+                        <h3 class="font-bold text-3xl text-gray-600">{{ $total_kapal_count }} <span class="text-yellow-600"><i
                                     class="fas fa-caret-up"></i></span></h3>
                     </div>
                 </div>

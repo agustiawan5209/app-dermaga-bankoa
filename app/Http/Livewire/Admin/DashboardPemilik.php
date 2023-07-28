@@ -22,9 +22,11 @@ class DashboardPemilik extends Component
                 $total_pendapatan = Tiket::where('kode_berangkat', '=', $item->kode_berangkat)->count();
             }
         }
+        $total_kapal_count = $tabelk->count();
         return view('livewire.admin.dashboard-pemilik', [
             'datapelanggan' => $dataPelanggan,
             'total_pendapatan' => $total_pendapatan,
+            'total_kapal_count' => $total_kapal_count,
         ]);
     }
 }
