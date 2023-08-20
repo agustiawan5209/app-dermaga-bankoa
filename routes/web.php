@@ -13,6 +13,7 @@ use App\Http\Livewire\Admin\PageTransaksiPesanan;
 use App\Http\Livewire\Admin\PageUlasan;
 use App\Http\Livewire\Customer\Cekout;
 use App\Http\Livewire\Customer\DashboardCustomer;
+use App\Http\Livewire\Pemilik\PageTransaksi;
 use App\Http\Livewire\Transaksi\PemesananTiketPage;
 use App\Models\Destinasi;
 use App\Models\Ulasan;
@@ -61,6 +62,18 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('Data/Kapal/{user_id}', PageKapal::class)->name('Data-Kapal');
         Route::get('/MetodePembayran', MetodePembayaran::class)->name('Metode-Pembayaran');
         Route::get('Data/Destinasi', PageDestinasi::class)->name('Data-Destinasi');
+    });
+    Route::group(['middleware' =>  'role:Pemilik', 'prefix' => 'Pemilik', 'as' => 'Pemilik.'], function(){
+        Route::get('Dashboard', DashboardPemilik::class)->name('Dashboard.Pemilik');
+        Route::get('Pemesanan/Tiket/{Kode}/Kode', PageTransaksiPesanan::class)->name('Page.Pemesanan.Tiket');
+        Route::get('Data/Pelanggan', PageDataPelanggan::class)->name('Data-Pelanggan');
+        Route::get('Data/Pesanan/Tiket', PemesananTiketPage::class)->name('Data-Tr-Pemberangkatan');
+        Route::get('Data/Ulasan', PageUlasan::class)->name('Data-Ulasan');
+        Route::get('Data/Kapal/{user_id}', PageKapal::class)->name('Data-Kapal');
+        Route::get('/MetodePembayran', MetodePembayaran::class)->name('Metode-Pembayaran');
+        Route::get('Data/Destinasi', PageDestinasi::class)->name('Data-Destinasi');
+        Route::get('data-transaksi-pemesanan-kapal', PageTransaksi::class)->name('Page-Transaksi');
+
 
     });
     // Route::group(['middleware' =>  'role:Pemilik', 'prefix' => 'Pemilik', 'as' => 'Pemilik.'], function(){

@@ -24,4 +24,7 @@ class Pemberangkatan extends Model
     public function statusmuatan(){
         return $this->hasOne(StatusMuatan::class , 'kode_berangkat', 'kode_berangkat');
     }
+    public function transaksi(){
+        return $this->hasMany(Transaksi::class,'kode_berangkat','kode_berangkat');
+    }
 }

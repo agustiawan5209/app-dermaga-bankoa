@@ -19,6 +19,9 @@ class UserController extends Controller
         if($user_id == 1){
             return redirect()->route('Admin.Dashboard.Pemilik');
         }
+        if($user_id == 2){
+            return redirect()->route('Pemilik.Dashboard.Pemilik');
+        }
         if($user_id == 3){
             return redirect()->route('Customer.Customer');
         }else{
