@@ -8,8 +8,10 @@ use App\Models\TabelKapal;
 use App\Models\StatusMuatan;
 use Livewire\WithFileUploads;
 use App\Models\Pemberangkatan;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Nette\Utils\Random;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PageKapal extends Component
@@ -17,15 +19,16 @@ class PageKapal extends Component
     use WithFileUploads;
     // Item Modal
     public $itemAdd = false,
-        $itemDelete = false, $itemEdit = false;
+        $itemDelete = false, $itemEdit = false,$itemShow = false;
     public $user_id;
     // item Field Table Kapal
     public $nama_kapal, $jenis_kapal, $pemilik, $jumlah_muatan, $itemID, $gambar;
-    public $pemberangkatan, $kode_berangkat, $destinasi_id, $harga, $tgl_berangkat, $jam, $hari, $kapal_id, $batas_muatan, $deskripsi;
+    public $pemberangkatan, $kode_berangkat, $destinasi_id, $harga, $tgl_berangkat, $jam, $hari, $kapal_id, $batas_muatan, $deskripsi, $jadwal_kembali,$jadwal_berangkat;
     public function mount($user_id)
     {
         $this->user_id = $user_id;
         $this->pemilik = $user_id;
+        $this->kode_berangkat = Random::generate(10,'A-Z0-9'). '-'. Auth::user()->id;
     }
     public function closeModal()
     {
@@ -38,6 +41,7 @@ class PageKapal extends Component
         $this->itemAdd = false;
         $this->itemDelete = false;
         $this->itemEdit = false;
+        $this->itemShow = false;
     }
     public function render()
     {
@@ -63,10 +67,11 @@ class PageKapal extends Component
         $this->jumlah_muatan = $kapal->jumlah_muatan;
         $this->gambar = $kapal->gambar;
         $berangkat = Pemberangkatan::where('kapal_id', $id)->first();
-        $this->kode_berangkat = $berangkat->kode_berangkat;
         $this->destinasi_id = $berangkat->destinasi_id;
         $this->harga = $berangkat->harga;
         $this->deskripsi = $berangkat->deskripsi;
+        $this->jadwal_berangkat = $berangkat->jadwal_berangkat;
+        $this->jadwal_kembali = $berangkat->jadwal_kembali;
         $this->itemAdd = true;
         $this->itemEdit = true;
     }
@@ -85,8 +90,12 @@ class PageKapal extends Component
     {
         $valid = $this->validate([
             'nama_kapal' => 'required',
+            'kode_berangkat' => 'required|unique:pemberangkatans,kode_berangkat',
             'jenis_kapal' => 'required',
+            'jadwal_kembali' => 'required',
+            'jadwal_berangkat' => 'required',
             'pemilik' => 'required',
+            'destinasi_id' => 'required',
             'harga' => ['required', 'numeric'],
             'jumlah_muatan' => ['required', 'numeric'],
             'gambar' => ['image', 'required'],
@@ -146,6 +155,8 @@ class PageKapal extends Component
         $berangkat->harga = $this->harga;
         $berangkat->kapal_id = $kapalID;
         $berangkat->deskripsi = $this->deskripsi;
+        $berangkat->jadwal_berangkat = $this->jadwal_berangkat;
+        $berangkat->jadwal_kembali = $this->jadwal_kembali;
         $berangkat->save();
         $kapal = TabelKapal::find($kapalID);
         $statusMuatan = StatusMuatan::create([
@@ -154,24 +165,25 @@ class PageKapal extends Component
             'jumlah_tiket' => '0',
             'kode_berangkat' => $this->kode_berangkat,
         ]);
-        $this->itemTambahBerangkat = false;
+        $this->itemAdd = false;
         Alert::success('Info', 'Berhasil');
     }
     public function editBerangkat($id)
     {
         $berangkat = Pemberangkatan::find($id)->update([
-            'kode_berangkat' => $this->kode_berangkat,
             'destinasi_id' => $this->destinasi_id,
             'harga' => $this->harga,
             'deskripsi' => $this->deskripsi,
+            'jadwal_berangkat' => $this->jadwal_berangkat,
+            'jadwal_kembali' => $this->jadwal_kembali,
         ]);
-        $this->itemTambahBerangkat = false;
+        $this->itemAdd = false;
         Alert::success('Info', 'Berhasil');
     }
     public function deleteBerangkat($id)
     {
         Pemberangkatan::where('kapal_id', $id)->delete();
-        $this->itemHapusBerangkat = false;
+        $this->itemDelete = false;
         Alert::success('Info', 'Berhasil');
     }
     public function GetHargaDestinasi()
@@ -179,5 +191,23 @@ class PageKapal extends Component
         $destinasi = Destinasi::find($this->destinasi_id);
         $this->harga = $destinasi->harga;
         // dd($destinasi);
+    }
+
+    // SHow
+    public function showModal($id){
+        $kapal = TabelKapal::find($id);
+        $this->itemID = $kapal->id;
+        $this->nama_kapal = $kapal->nama_kapal;
+        $this->jenis_kapal = $kapal->jenis_kapal;
+        $this->jumlah_muatan = $kapal->jumlah_muatan;
+        $this->gambar = $kapal->gambar;
+        $berangkat = Pemberangkatan::where('kapal_id', $id)->first();
+        $this->kode_berangkat = $berangkat->kode_berangkat;
+        $this->destinasi_id = $berangkat->destinasi->lokasi;
+        $this->harga = $berangkat->harga;
+        $this->deskripsi = $berangkat->deskripsi;
+        $this->jadwal_berangkat = $berangkat->jadwal_berangkat;
+        $this->jadwal_kembali = $berangkat->jadwal_kembali;
+        $this->itemShow = true;
     }
 }
