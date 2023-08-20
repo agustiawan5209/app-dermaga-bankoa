@@ -64,7 +64,7 @@ class FormPesanTiket extends Component
      * @return void
      */
     public $detailKapalItem = false;
-    public $pemilik_kapal, $deskripsi, $batas_muatan, $tiket_tersisa, $gambar;
+    public $pemilik_kapal, $deskripsi, $batas_muatan, $tiket_tersisa, $jumlah_tiket, $gambar;
     public function DetailKapal($id, $jumlah = 0)
     {
         $tabelkapal = TabelKapal::find($id);
@@ -83,6 +83,8 @@ class FormPesanTiket extends Component
         // dd($this->pesan);
         $statusMuatan = StatusMuatan::where('kode_berangkat', '=', $tabelkapal->pemberangkatan->kode_berangkat)->first();
         $this->tiket_tersisa = abs(intval($statusMuatan->jumlah_tiket) - intval($statusMuatan->batas_muatan));
+        $this->jumlah_tiket = abs(intval($statusMuatan->jumlah_tiket));
+
         if ($statusMuatan->batas_muatan <= intval($statusMuatan->jumlah_tiket + $this->jumlah)) {
             Alert::warning('Transaksi Gagal', 'Batas Muatan Tercapai, Transaksi Gagal');
         } else {
@@ -111,8 +113,15 @@ class FormPesanTiket extends Component
     public function KirimPembayaran($id)
     {
         session()->put('itemCek', $id);
-
+        $this->bayar();
         return redirect()->route('Customer.Cekout-Page', ['item' => $id]);
+    }
+    public function bayar()
+    {
+            $carbon_n = Carbon::now()
+                ->add('10', 'minutes')
+                ->toTimeString();
+            session()->put('estimasi', $carbon_n);
     }
     public $ulasanItem;
     public function showUlasan($id)

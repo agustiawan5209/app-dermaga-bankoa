@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('ID_transaksi', 30)->unique();
             $table->date('tgl_transaksi');
             $table->string('bukti',100);
+            $table->enum('status',['PENDING','SUCCESS'])->default('PENDING');
             $table->timestamps();
 
 

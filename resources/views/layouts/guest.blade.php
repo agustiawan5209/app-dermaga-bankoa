@@ -29,6 +29,8 @@
     <!--====== Style CSS ======-->
     <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
     @vite(['resources/js/app.js'])
+    <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
+
     <link rel="stylesheet" href="{{ asset('assets/css/tailwind.css') }}">
     <link rel="stylesheet" href="{{ asset('build/assets/app.cea81095.css') }}">
     @livewireStyles

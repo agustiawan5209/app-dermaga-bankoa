@@ -65,11 +65,11 @@ class Cekout extends Component
         // dd(intval($statusMuatan->jumlah_tiket + $this->jumlah));
         if ($statusMuatan->batas_muatan <= intval($statusMuatan->jumlah_tiket + $this->jumlah)) {
             Alert::warning('Transaksi Gagal', 'Batas Muatan Tercapai, Transaksi Gagal');
-            $this->detailKapalItem = false;
+            // $this->detailKapalItem = false;
             $this->count = 0;
         } else {
             // Alert::warning('Transaksi Berhasil', 'Lanjutkan');
-            $this->detailKapalItem = true;
+            // $this->detailKapalItem = true;
         }
     }
     public function plus()

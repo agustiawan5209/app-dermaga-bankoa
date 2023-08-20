@@ -27,6 +27,10 @@
                     <span class="text-gray-500">Tiket Tersisa : </span>
                     <span class="ml-auto text-gray-900">{{ $tiket_tersisa }}</span>
                 </div>
+                <div class="flex border-t border-b mb-6 border-gray-200 py-2">
+                    <span class="text-gray-500">Total Penumpang : </span>
+                    <span class="ml-auto text-gray-900">{{ $jumlah_tiket }}</span>
+                </div>
                 <div class="flex">
                     <span class="title-font font-medium text-2xl text-gray-900">Harga Tiket : Rp.
                         {{ number_format($harga, 0, 2) }}</span>
