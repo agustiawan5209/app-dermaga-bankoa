@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('kode_berangkat');
             $table->string('kode_tiket')->unique();
             $table->bigInteger('harga');
+            $table->date('jadwal_berangkat')->nullable();
+            $table->time('jam_berangkat')->nullable();
+            $table->date('jadwal_kembali')->nullable();
+            $table->time('jam_kembali')->nullable();
             $table->timestamps();
 
         });

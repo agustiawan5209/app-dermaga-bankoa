@@ -74,7 +74,7 @@
             <th>Nama</th>
             <th>ID Pesanan</th>
             <th>Bank Tujuan</th>
-            <th>Jumlah Pesanan</th>
+            <th>Jumlah Tiket</th>
             <th>Harga</th>
         </tr>
         @php
@@ -89,9 +89,20 @@
         </tr>
 
         <tr>
-            <td colspan="4">Total</td>
+            <td colspan="6">Total</td>
             <td colspan="1">{{ $total }}</td>
         </tr>
+    </table>
+    <table cellpadding="5" cellspacing='1' border='1' align="center" class="table-full">
+        <tr>
+            <th>Jadwal/Jam Berangkat</th>
+            <th>Jadwal/Jam Kembali</th>
+        </tr>
+        <tr>
+            <td>{{ $transaksi['jadwal_berangkat'] }} / {{ $transaksi['jam_berangkat'] }}</td>
+            <td>{{ $transaksi['jadwal_kembali'] }} / {{ $transaksi['jam_kembali'] }}</td>
+        </tr>
+
     </table>
     <img src="{{ public_path('upload/' . $file) }}" alt="" width="200">
 </body>

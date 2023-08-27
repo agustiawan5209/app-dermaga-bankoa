@@ -28,6 +28,9 @@ class Cekout extends Component
     public $detailKapalItem = false;
     // Item Kapal
     public $pemilik_kapal, $deskripsi, $batas_muatan, $tiket_tersisa, $gambar;
+
+    // Jadwal Tiket
+    public $jadwal_kembali,$jam_kembali, $jadwal_berangkat,$jam_berangkat;
     // Item Hitung
     public $count = 0;
     public function mount($item)
@@ -176,6 +179,10 @@ class Cekout extends Component
                     'kode_berangkat' => $berangkat->kode_berangkat,
                     'harga' => $berangkat->harga,
                     'ID_transaksi' => $kode_transaksi,
+                    'jadwal_berangkat'=> $this->jadwal_berangkat,
+                    'jam_berangkat'=> $this->jam_berangkat,
+                    'jadwal_kembali'=> $this->jadwal_kembali,
+                    'jam_kembali'=> $this->jam_kembali,
                 ]);
             } else {
                 Alert::warning('info', 'Sisa Tiket Kosong');

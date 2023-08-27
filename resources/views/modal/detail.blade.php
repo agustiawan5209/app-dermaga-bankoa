@@ -85,9 +85,8 @@
                     <form action="{{ route('Kirim-Ulasan', ['kapal_id' => $kapal_id]) }}" method="POST"
                         class="lg:w-1/3 md:w-1/2 bg-white flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
                         @csrf
-                        <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">Feedback</h2>
-                        <p class="leading-relaxed mb-5 text-gray-600">Post-ironic portland shabby chic echo park, banjo
-                            fashion axe</p>
+                        <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">Ulasan</h2>
+                        <p class="leading-relaxed mb-5 text-gray-600">Komentar Dari Para Pengunjung</p>
                         {{-- <input type="hidden" name="user_id" value="{{Auth::user()->id}}"> --}}
                         <div class="relative mb-4">
                             <label for="name" class="leading-7 text-sm text-gray-600">Name</label>
