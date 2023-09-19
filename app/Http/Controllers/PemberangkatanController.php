@@ -43,7 +43,6 @@ class PemberangkatanController extends Controller
             'jadwal_kembali'=> 'required|date',
             'jam_kembali'=> 'required',
         ]);
-        //
         $berangkat = Pemberangkatan::find($id);
         $data = [];
         if($valid->fails()){
@@ -130,7 +129,7 @@ class PemberangkatanController extends Controller
                 $statusMuatan->update([
                     'jumlah_tiket' => intval($data['jumlah']) + $statusMuatan->jumlah_tiket,
                 ]);
-                $pdf = Pdf::loadView('pdf.invoice2', ['transaksi' => $data, 'file' => $name_file_image, 'user' => Auth::user(), 'bukti' => $data['nama_bank'], 'bank' => $data['nama_bank']]);
+                $pdf = Pdf::loadView('pdf.invoice2', ['transaksi' => $data, 'tiket'=> $tiket, 'file' => $name_file_image, 'user' => Auth::user(), 'bukti' => $data['nama_bank'], 'bank' => $data['nama_bank']]);
                 // Storage::disk('bukti')->put($nama_file, );
                 Storage::put('bukti/' . $name, $pdf->download()->getOriginalContent());
                 Alert::success('Info', 'Pemesanan Berhasil');

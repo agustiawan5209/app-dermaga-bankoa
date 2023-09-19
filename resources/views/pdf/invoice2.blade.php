@@ -89,7 +89,7 @@
         </tr>
 
         <tr>
-            <td colspan="6">Total</td>
+            <td colspan="5">Total</td>
             <td colspan="1">{{ $total }}</td>
         </tr>
     </table>
@@ -99,8 +99,8 @@
             <th>Jadwal/Jam Kembali</th>
         </tr>
         <tr>
-            <td>{{ $transaksi['jadwal_berangkat'] }} / {{ $transaksi['jam_berangkat'] }}</td>
-            <td>{{ $transaksi['jadwal_kembali'] }} / {{ $transaksi['jam_kembali'] }}</td>
+            <td>{{ $tiket['jadwal_berangkat'] }} / {{ $tiket['jam_berangkat'] }}</td>
+            <td>{{ $tiket['jadwal_kembali'] }} / {{ $tiket['jam_kembali'] }}</td>
         </tr>
 
     </table>

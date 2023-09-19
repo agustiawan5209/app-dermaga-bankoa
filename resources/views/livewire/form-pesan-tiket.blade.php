@@ -4,7 +4,7 @@
             {{-- Pemesanan Tiket --}}
             <div class="w-full-h-full bg-white">
                 <x-jet-validation-errors />
-                <form class=" relative sm:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 py-5 px-20 mx-auto">
+                <form class=" relative sm:grid grid-cols-1 sm:grid-cols-2  gap-4 py-5 px-20 mx-auto">
                     <div class=" col-sapn-1 md:col-span-2">
                         <h3 class=" row-start-1 col-sapn-1 md:col-span-2 text-base text-gray-500">Dari</h3>
                         <div class=" row-start-2 col-sapn-1 md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -40,27 +40,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-span-1 flex flex-wrap">
-                        <label for="tanggal_keberangkatan" class="text-gray-500 ">Status</label>
-                        <select class="flex col-span-3 rounded-r-lg text-gray-500  border-gray-300 rounded-lg px-2 w-full" wire:model="status" id="status">
-                            <option value="">--</option>
-                            <option value="bersandar">Bersandar</option>
-                            <option value="berangkat">Berangkat</option>
-                        </select>
-                    </div>
-                    <div class=" col-span-1 flex flex-wrap ">
-                        <label for="jumlah" class="w-full">Jumlah</label>
-                        <div
-                            class="flex border @error('jumlah'){{ $message }} @enderror border-gray-300 rounded-lg px-2 w-full">
-                            <div class="px-2 py-1"><img src="{{ asset('img/icon-male.png') }}" alt=""></div>
-                            <select wire:model="jumlah" class="border-none w-full">
-                                <option value="">0</option>
-                                @for ($i = 1; $i < 11; $i++)
-                                    <option value="{{ $i }}">{{ $i }}</option>
-                                @endfor
-                            </select>
-                        </div>
-                    </div>
+
                     <button type="button"
                         class="bg-blue-300 w-full h-full col-span-4 px-2 md:px-5 py-1 md:py-3 rounded"
                         wire:click='CariKapal'>Cari Kapal</button>
@@ -88,7 +68,6 @@
                                 <th>Nama kapal</th>
                                 <th>harga</th>
                                 <th>Tujuan</th>
-                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -119,13 +98,6 @@
                                             <p
                                                 class="text-sm leading-none text-gray-600 dark:text-gray-200  ml-2 font-bold">
                                                 {{ $tabelkapal->pemberangkatan->destinasi->lokasi }}</p>
-                                        </div>
-                                    </td>
-                                    <td class="border-x text-center">
-                                        <div class="flex items-center justify-center">
-                                            <p
-                                                class="py-3 px-3 text-sm focus:outline-none leading-none text-white capitalize bg-blue-400 rounded">
-                                                {{ $tabelkapal->pemberangkatan->status }}</p>
                                         </div>
                                     </td>
                                     <td>
