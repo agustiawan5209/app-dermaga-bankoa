@@ -100,6 +100,7 @@ class PemberangkatanController extends Controller
                 $transaksi = Transaksi::create([
                     'kode_berangkat' => $data['kode_berangkat'],
                     'user_id' => Auth::user()->id,
+                    'user_name' => Auth::user()->name,
                     'ID_transaksi' => $data['ID_transaksi'],
                     'bukti' => $name,
                     'tgl_transaksi' => $data['tgl_transaksi'],

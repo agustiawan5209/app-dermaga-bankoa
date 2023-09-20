@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('kode_berangkat');
             $table->foreignId('user_id')->constrained('users');
+            $table->string('user_name');
             $table->string('ID_transaksi', 30)->unique();
             $table->date('tgl_transaksi');
             $table->string('bukti',100);

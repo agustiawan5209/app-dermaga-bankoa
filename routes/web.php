@@ -13,6 +13,7 @@ use App\Http\Livewire\Admin\PageTransaksiPesanan;
 use App\Http\Livewire\Admin\PageUlasan;
 use App\Http\Livewire\Customer\Cekout;
 use App\Http\Livewire\Customer\DashboardCustomer;
+use App\Http\Livewire\Pemilik\PagePelanggan;
 use App\Http\Livewire\Pemilik\PageTransaksi;
 use App\Http\Livewire\Transaksi\PemesananTiketPage;
 use App\Models\Destinasi;
@@ -73,7 +74,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/MetodePembayran', MetodePembayaran::class)->name('Metode-Pembayaran');
         Route::get('Data/Destinasi', PageDestinasi::class)->name('Data-Destinasi');
         Route::get('data-transaksi-pemesanan-kapal', PageTransaksi::class)->name('Page-Transaksi');
-
+        Route::get('data-Pelanggan', PagePelanggan::class)->name('datapelanggan-kapal');
 
     });
     // Route::group(['middleware' =>  'role:Pemilik', 'prefix' => 'Pemilik', 'as' => 'Pemilik.'], function(){

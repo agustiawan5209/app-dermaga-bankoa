@@ -46,7 +46,9 @@ class PageKapal extends Component
     public function render()
     {
         $destinasi = Destinasi::all();
-        $kapal = TabelKapal::where('pemilik', $this->user_id)->get();
+        $kapal = TabelKapal::orderBy('id','desc')->when(Auth::user()->role_id == 2, function($query){
+            $query->where('pemilik', Auth::user()->id);
+        })->get();
         return view('livewire.admin.page-kapal', [
             'kapal' => $kapal,
             'destinasi' => $destinasi

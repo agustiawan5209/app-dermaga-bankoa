@@ -89,7 +89,7 @@
         </tr>
 
         <tr>
-            <td colspan="5">Total</td>
+            <td colspan="4">Total</td>
             <td colspan="1">{{ $total }}</td>
         </tr>
     </table>

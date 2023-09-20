@@ -18,7 +18,7 @@ class PageTransaksi extends Component
         $tabelKapal = TabelKapal::where('pemilik', Auth::user()->id)->get();
         foreach ($tabelKapal as $key => $value) {
             $kapal = Pemberangkatan::where('kapal_id', $value->id)->first();
-            $tr = Transaksi::with(['user'])->where('kode_berangkat', $kapal->kode_berangkat)->get();
+            $tr = Transaksi::with(['user','tiket'])->where('kode_berangkat', $kapal->kode_berangkat)->get();
             if($tr->count() > 0){
                 foreach ($tr as $k => $item) {
                     $transaksi[] = $item;

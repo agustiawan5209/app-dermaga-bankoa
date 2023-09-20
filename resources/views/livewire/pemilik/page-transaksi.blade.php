@@ -21,7 +21,7 @@
                     @foreach ($transaksi as $item)
                         <tr>
                             <x-table.td class=" border border-gray-500 text-center">{{ $loop->iteration }}</x-table.td>
-                            <x-table.td class=" border border-gray-500 text-center">{{ $item->user->name }}</x-table.td>
+                            <x-table.td class=" border border-gray-500 text-center">{{ $item->user_name }}</x-table.td>
                             <x-table.td class=" border border-gray-500 text-center">{{ $item->kode_berangkat }}</x-table.td>
                             <x-table.td class=" border border-gray-500 text-center">{{ $item->ID_transaksi }}</x-table.td>
                             <x-table.td class=" border border-gray-500 text-center">{{ $item->tgl_transaksi }}</x-table.td>

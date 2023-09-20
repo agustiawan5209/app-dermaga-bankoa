@@ -59,6 +59,13 @@
             </a>
         </li>
         <li
+            class="flex w-full justify-between cursor-pointer items-center py-3 pl-4 {{ request()->routeIs('Pemilik.datapelanggan-kapal') ? 'bg-white text-gray-700' : 'text-gray-400 hover:text-gray-300' }}">
+            <a href="{{ route('Pemilik.datapelanggan-kapal', ['user_id' => Auth::user()->id, 'kode' => \Nette\Utils\Random::generate(30)]) }}"
+                class="blo flex items-center focus:outline-none focus:ring-2 focus:ring-white w-full">
+                <i class="fa fa-envelope fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Data Pelanggan</span>
+            </a>
+        </li>
+        <li
             class="flex w-full justify-between cursor-pointer items-center py-3 pl-4 {{ request()->routeIs('Pemilik.Page-Transaksi') ? 'bg-white text-gray-700' : 'text-gray-400 hover:text-gray-300' }}">
             <a href="{{ route('Pemilik.Page-Transaksi', ['user_id' => Auth::user()->id, 'kode' => \Nette\Utils\Random::generate(30)]) }}"
                 class="blo flex items-center focus:outline-none focus:ring-2 focus:ring-white w-full">
