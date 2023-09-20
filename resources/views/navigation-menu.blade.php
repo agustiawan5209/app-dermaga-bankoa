@@ -1,7 +1,7 @@
 <ul class="mt-3">
     <li
-        class="flex w-full justify-between cursor-pointer items-center py-3 pl-4 {{ request()->routeIs('Admin.Dashboard.Pemilik') ? 'bg-white text-gray-700' : 'text-gray-400 hover:text-gray-300' }}">
-        <a href="{{ route('Admin.Dashboard.Pemilik') }}"
+        class="flex w-full justify-between cursor-pointer items-center py-3 pl-4 {{ request()->routeIs('Dashboard.Pemilik') ? 'bg-white text-gray-700' : 'text-gray-400 hover:text-gray-300' }}">
+        <a href="{{ route('Dashboard.Pemilik') }}"
             class="flex items-center focus:outline-none focus:ring-2 focus:ring-white w-full">
             <i class="fas fa-home fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Home</span>
         </a>

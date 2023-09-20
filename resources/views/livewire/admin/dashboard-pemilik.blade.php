@@ -53,8 +53,8 @@
             </div>
             <!--/Metric Card-->
         </div>
+        <livewire:chart-page />
     </div>
-
 
     <!--/ Console Content-->
 </section>
