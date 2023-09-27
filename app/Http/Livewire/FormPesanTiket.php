@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Tiket;
 use App\Models\Ulasan;
 use Livewire\Component;
@@ -26,6 +27,7 @@ class FormPesanTiket extends Component
     public $CekoutItem = false;
     public $BayarItem = false;
     public $kode_berangkat, $destinasi_id, $harga, $jam, $hari, $kapal_id, $itemID;
+    public $user_kapal;
     public function mount()
     {
         $this->lokasi = 'Dermaga Bangkoa';
@@ -46,7 +48,7 @@ class FormPesanTiket extends Component
         if ($this->tujuan != null ) {
             $this->pemberangkatan = TabelKapal::whereHas('pemberangkatan', function ($query) {
                 return $query->where('destinasi_id', '=', $this->tujuan);
-            })->get();
+            })->orWhere('pemilik', $this->user_kapal)->get();
         }
         // dd($this->pemberangkatan);
         $this->Cari = true;
@@ -132,15 +134,15 @@ class FormPesanTiket extends Component
         if ($this->Cari == false) {
             if ($this->tujuan != null && $this->status != null || $this->jumlah != null) {
                 $this->pemberangkatan = TabelKapal::whereHas('pemberangkatan', function ($query) {
-                    return $query->where('status', '=', $this->status)
-                        ->orWhere('destinasi_id', '=', $this->lokasi);
-                })->get();
+                    return $query->where('destinasi_id', '=', $this->lokasi);
+                })->orWhere('pemilik', $this->user_kapal)->get();
             }
         }
         $this->ulasanItem = Ulasan::all();
         return view('livewire.form-pesan-tiket', [
             'destinasi' => $destinasi,
             'kapal' => $kapal,
+            'datapemilikapal'=> User::where('role_id', '2')->get(),
         ]);
     }
 }

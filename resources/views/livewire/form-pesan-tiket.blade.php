@@ -38,6 +38,19 @@
                                 </select>
 
                             </div>
+                            <div
+                                class="relative @error('tujuan'){{ $message }} @enderror  shadow-red-500  grid grid-cols-4 text-center border border-gray-300 rounded-lg  ">
+                                <label for="tujuan" id="icon"
+                                    class="col-span-1 font-mono text-sm px-3 py-1 text-center rounded-l-lg bg-white text-gray-600 h-full flex items-center">Pemilik</label>
+                                <select wire:model="user_kapal" id="user_kapal"
+                                    class="border-l border-t-0 border-b-0 border-r-0 col-span-3 rounded-r-lg text-gray-500">
+                                    <option value="">Pemilik</option>
+                                    @foreach ($datapemilikapal as $users)
+                                        <option value="{{ $users->id }}">{{ $users->name }}</option>
+                                    @endforeach
+                                </select>
+
+                            </div>
                         </div>
                     </div>
 
