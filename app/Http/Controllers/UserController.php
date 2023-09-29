@@ -17,10 +17,10 @@ class UserController extends Controller
         $user_id = Auth::user()->role->id;
         // dd($user_id);
         if($user_id == 1){
-            return redirect()->route('Pemilik.Dashboard.Pemilik');
+            return redirect()->route('Dashboard.Pemilik');
         }
         if($user_id == 2){
-            return redirect()->route('Pemilik.Dashboard.Pemilik');
+            return redirect()->route('Dashboard.Pemilik');
         }
         if($user_id == 3){
             return redirect()->route('Customer.Customer');
