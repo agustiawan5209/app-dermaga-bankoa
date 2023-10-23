@@ -149,16 +149,6 @@
                                 placeholder=".........." />
 
                         </label>
-                        <label for="">
-                            <p class="font-medium text-slate-700 pb-2">jenis kapal</p>
-                            <select id="jenis_kapal" wire:model="jenis_kapal" type="text"
-                                class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
-                                placeholder=".........." />
-                            <option value="">--Pilih--</option>
-                            <option value="Penumpang">Penumpang</option>
-                            <option value="Kargo">Kargo</option>
-                            </select>
-                        </label>
                         <x-jet-input type="hidden" wire:model="pemilik" />
                         <label for="">
                             <p class="font-medium text-slate-700 pb-2">jumlah muatan</p>

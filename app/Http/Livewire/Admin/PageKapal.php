@@ -65,7 +65,7 @@ class PageKapal extends Component
         $kapal = TabelKapal::find($id);
         $this->itemID = $kapal->id;
         $this->nama_kapal = $kapal->nama_kapal;
-        $this->jenis_kapal = $kapal->jenis_kapal;
+        $this->jenis_kapal = 'Penumpang';
         $this->jumlah_muatan = $kapal->jumlah_muatan;
         $this->gambar = $kapal->gambar;
         $berangkat = Pemberangkatan::where('kapal_id', $id)->first();
@@ -82,7 +82,7 @@ class PageKapal extends Component
         $kapal = TabelKapal::find($id);
         $this->itemID = $kapal->id;
         $this->nama_kapal = $kapal->nama_kapal;
-        $this->jenis_kapal = $kapal->jenis_kapal;
+        $this->jenis_kapal = 'Penumpang';
         $this->jumlah_muatan = $kapal->jumlah_muatan;
         $this->gambar = $kapal->gambar;
         $this->itemDelete = true;
@@ -93,7 +93,7 @@ class PageKapal extends Component
         $valid = $this->validate([
             'nama_kapal' => 'required',
             'kode_berangkat' => 'required|unique:pemberangkatans,kode_berangkat',
-            'jenis_kapal' => 'required',
+            // 'jenis_kapal' => 'required',
             'jadwal_kembali' => 'required',
             'jadwal_berangkat' => 'required',
             'pemilik' => 'required',
@@ -123,7 +123,7 @@ class PageKapal extends Component
         $valid = $this->validate([
             'gambar' => ['image'],
             'nama_kapal' => 'required',
-            'jenis_kapal' => 'required',
+            // 'jenis_kapal' => 'required',
             'pemilik' => 'required',
             'jumlah_muatan' => 'required',
         ]);
@@ -143,9 +143,9 @@ class PageKapal extends Component
 
     public function delete($id)
     {
-        TabelKapal::where('id', $id)->delete();
-        $this->itemDelete = false;
         $this->deleteBerangkat($id);
+        TabelKapal::find($id)->delete();
+        $this->itemDelete = false;
         return redirect()->route('Admin.Data-Kapal', ['user_id'=> $this->user_id]);
     }
 
