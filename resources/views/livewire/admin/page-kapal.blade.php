@@ -114,14 +114,14 @@
                         <td class="capitalize p-1 border border-gray-500 ">Deskripsi</td>
                         <td class="capitalize p-1 border border-gray-500 ">{{ $deskripsi }}</td>
                     </tr>
-                    <tr>
+                    {{-- <tr>
                         <td class="capitalize p-1 border border-gray-500 ">jadwal berangkat</td>
                         <td class="capitalize p-1 border border-gray-500 ">{{ $jadwal_berangkat }}</td>
                     </tr>
                     <tr>
                         <td class="capitalize p-1 border border-gray-500 ">jadwalkembali</td>
                         <td class="capitalize p-1 border border-gray-500 ">{{ $jadwal_kembali }}</td>
-                    </tr>
+                    </tr> --}}
                 </table>
                 <x-jet-danger-button wire:click="closeModal">Tutup</x-jet-danger-button>
             </x-slot>
@@ -184,7 +184,7 @@
                                     class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
                                     placeholder=".........."></textarea>
                             </label>
-                            <label for="email">
+                            {{-- <label for="email">
                                 <p class="font-medium text-slate-700 pb-2">jadwal berangkat</p>
                                 <input id="jadwal_berangkat" wire:model="jadwal_berangkat" type="text"
                                     class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
@@ -195,7 +195,7 @@
                                 <input id="jadwal_kembali" wire:model="jadwal_kembali" type="text"
                                     class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
                                     placeholder="..........">
-                            </label>
+                            </label> --}}
                             @if ($itemEdit == false)
                                 <button wire:click='create' type="button"
                                     class="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">

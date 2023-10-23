@@ -72,8 +72,8 @@ class PageKapal extends Component
         $this->destinasi_id = $berangkat->destinasi_id;
         $this->harga = $berangkat->harga;
         $this->deskripsi = $berangkat->deskripsi;
-        $this->jadwal_berangkat = $berangkat->jadwal_berangkat;
-        $this->jadwal_kembali = $berangkat->jadwal_kembali;
+        // $this->jadwal_berangkat = $berangkat->jadwal_berangkat;
+        // $this->jadwal_kembali = $berangkat->jadwal_kembali;
         $this->itemAdd = true;
         $this->itemEdit = true;
     }
@@ -94,8 +94,8 @@ class PageKapal extends Component
             'nama_kapal' => 'required',
             'kode_berangkat' => 'required|unique:pemberangkatans,kode_berangkat',
             // 'jenis_kapal' => 'required',
-            'jadwal_kembali' => 'required',
-            'jadwal_berangkat' => 'required',
+            // 'jadwal_kembali' => 'required',
+            // 'jadwal_berangkat' => 'required',
             'pemilik' => 'required',
             'destinasi_id' => 'required',
             'harga' => ['required', 'numeric'],
@@ -157,8 +157,8 @@ class PageKapal extends Component
         $berangkat->harga = $this->harga;
         $berangkat->kapal_id = $kapalID;
         $berangkat->deskripsi = $this->deskripsi;
-        $berangkat->jadwal_berangkat = $this->jadwal_berangkat;
-        $berangkat->jadwal_kembali = $this->jadwal_kembali;
+        // $berangkat->jadwal_berangkat = $this->jadwal_berangkat;
+        // $berangkat->jadwal_kembali = $this->jadwal_kembali;
         $berangkat->save();
         $kapal = TabelKapal::find($kapalID);
         $statusMuatan = StatusMuatan::create([
@@ -176,8 +176,8 @@ class PageKapal extends Component
             'destinasi_id' => $this->destinasi_id,
             'harga' => $this->harga,
             'deskripsi' => $this->deskripsi,
-            'jadwal_berangkat' => $this->jadwal_berangkat,
-            'jadwal_kembali' => $this->jadwal_kembali,
+            // 'jadwal_berangkat' => $this->jadwal_berangkat,
+            // 'jadwal_kembali' => $this->jadwal_kembali,
         ]);
         $this->itemAdd = false;
         Alert::success('Info', 'Berhasil');
@@ -208,8 +208,8 @@ class PageKapal extends Component
         $this->destinasi_id = $berangkat->destinasi->lokasi;
         $this->harga = $berangkat->harga;
         $this->deskripsi = $berangkat->deskripsi;
-        $this->jadwal_berangkat = $berangkat->jadwal_berangkat;
-        $this->jadwal_kembali = $berangkat->jadwal_kembali;
+        // $this->jadwal_berangkat = $berangkat->jadwal_berangkat;
+        // $this->jadwal_kembali = $berangkat->jadwal_kembali;
         $this->itemShow = true;
     }
 }
