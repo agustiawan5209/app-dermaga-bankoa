@@ -14,7 +14,7 @@ class PageTransaksi extends Component
 {
     public function render()
     {
-        $transaksi = null;
+        $transaksi = [];
         $tabelKapal = TabelKapal::where('pemilik', Auth::user()->id)->get();
         foreach ($tabelKapal as $key => $value) {
             $kapal = Pemberangkatan::where('kapal_id', $value->id)->first();
