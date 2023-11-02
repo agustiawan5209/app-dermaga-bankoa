@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('gambar')->nullable();
             $table->string('nama_kapal', 30);
-            $table->string('jenis_kapal', 20);
-            $table->string('pemilik', 40);
+            $table->string('jenis_kapal', 20)->nullable();
+            $table->string('Pengantar', 40);
             $table->integer('jumlah_muatan');
 
             $table->timestamps();
