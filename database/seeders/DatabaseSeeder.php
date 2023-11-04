@@ -20,15 +20,15 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(50)->create();
         \App\Models\User::insert([
             [
-                'name' => 'Admin',
-                'email' => 'Admin@super.com',
+                'name' => 'Pemilik',
+                'email' => 'Pemilik@sugmailper.com',
                 'password' => bcrypt('12345678'),
                 'role_id' => '1',
                 'created_at' => Carbon::now(),
             ],
             [
-                'name' => 'Pemilik',
-                'email' => 'Pemilik@gmail.com',
+                'name' => 'Pengantar',
+                'email' => 'Pengantar@gmail.com',
                 'password' => bcrypt('12345678'),
                 'role_id' => '1',
                 'created_at' => Carbon::now(),
