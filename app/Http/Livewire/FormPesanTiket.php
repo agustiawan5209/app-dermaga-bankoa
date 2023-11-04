@@ -142,7 +142,7 @@ class FormPesanTiket extends Component
         return view('livewire.form-pesan-tiket', [
             'destinasi' => $destinasi,
             'kapal' => $kapal,
-            'datapemilikapal'=> User::where('role_id', '2')->get(),
+            'datapemilikapal'=> User::where('role_id', '1')->get(),
         ]);
     }
 }

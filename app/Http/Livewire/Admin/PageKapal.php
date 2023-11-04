@@ -2,16 +2,17 @@
 
 namespace App\Http\Livewire\Admin;
 
+use Carbon\Carbon;
 use Livewire\Component;
+use Nette\Utils\Random;
 use App\Models\Destinasi;
+use App\Models\Pengantar;
 use App\Models\TabelKapal;
 use App\Models\StatusMuatan;
 use Livewire\WithFileUploads;
 use App\Models\Pemberangkatan;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Nette\Utils\Random;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PageKapal extends Component
@@ -46,8 +47,9 @@ class PageKapal extends Component
     public function render()
     {
         $destinasi = Destinasi::all();
-        $kapal = TabelKapal::orderBy('id','desc')->when(Auth::user()->role_id == 2, function($query){
-            $query->where('pemilik', Auth::user()->id);
+        $user = Pengantar::where('user_id','=', Auth::user()->id)->first();
+        $kapal = TabelKapal::orderBy('id','desc')->when(Auth::user()->role_id == 2, function($query) use($user){
+            $query->where('pemilik', $user->pemilik_id);
         })->get();
         return view('livewire.admin.page-kapal', [
             'kapal' => $kapal,

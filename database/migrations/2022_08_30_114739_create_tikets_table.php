@@ -23,6 +23,7 @@ return new class extends Migration
             $table->time('jam_berangkat')->nullable();
             $table->date('jadwal_kembali')->nullable();
             $table->time('jam_kembali')->nullable();
+            $table->string('status', 50)->nullable()->comment('0 = Belum, 1 = Selesai');
             $table->timestamps();
 
         });

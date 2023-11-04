@@ -20,7 +20,7 @@ class UserController extends Controller
             return redirect()->route('Dashboard.Pemilik');
         }
         if($user_id == 2){
-            return redirect()->route('Dashboard.Pemilik');
+            return redirect()->route('Pemilik.Dashboard.Pengantar');
         }
         if($user_id == 3){
             return redirect()->route('Customer.Customer');
