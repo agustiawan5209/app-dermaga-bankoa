@@ -35,7 +35,7 @@
                         @csrf
                         <input
                             class="w-full px-4 py-2 border rounded-md dark:bg-darker dark:border-gray-700 focus:outline-none focus:ring focus:ring-blue-500-100 dark:focus:ring-blue-500-darker"
-                            type="email" name="email" placeholder="Email address" required />
+                            type="text" name="auth" placeholder="Email address" required />
                         <input
                             class="w-full px-4 py-2 border rounded-md dark:bg-darker dark:border-gray-700 focus:outline-none focus:ring focus:ring-blue-500-100 dark:focus:ring-blue-500-darker"
                             type="password" name="password" placeholder="Password" required />
