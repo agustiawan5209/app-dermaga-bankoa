@@ -98,7 +98,7 @@ class PageKapal extends Component
             // 'jenis_kapal' => 'required',
             // 'jadwal_kembali' => 'required',
             // 'jadwal_berangkat' => 'required',
-            'pemilik' => 'required',
+            // 'pemilik' => 'required',
             'destinasi_id' => 'required',
             'harga' => ['required', 'numeric'],
             'jumlah_muatan' => ['required', 'numeric'],
@@ -114,7 +114,7 @@ class PageKapal extends Component
             $this->gambar->storeAs('public/kapal/', $file);
         }
         // dd($random);
-        $push = array_replace($valid, ['gambar' => $file]);
+        $push = array_replace($valid, ['gambar' => $file, 'pemilik'=> Auth::user()->id]);
         $kapal =  TabelKapal::create($push);
         $this->createBerangkat($kapal->id);
         Alert::success('Info', 'Berhasil Di Tambah');
