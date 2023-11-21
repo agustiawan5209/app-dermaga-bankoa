@@ -40,7 +40,7 @@
                 </label>
                 <label for="email">
                     <p class="font-medium text-slate-700 pb-2">Tgl Berangkat</p>
-                    <input id="tgl_berangkat" wire:model="tgl_berangkat" type="date"
+                    <input id="tgl_berangkat" wire:model="tgl_berangkat" type="date" onchange="checkDate"
                         class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
                         placeholder="..........">
                     @error('tgl_berangkat')
@@ -163,4 +163,23 @@
             </x-slot>
         </x-table.table>
     @endif
+
+    <script>
+        function checkDate() {
+            var valid = true;
+            var redate = /(0[1-9]|[12][0-9]|3[01])[\/](0[1-9]|1[012])[\/](19|20)\d\d/;
+
+            if (!redate.test(document.bookingsform.date.value)) {
+                document.bookingsform.date.style.border = "1px solid red";
+                document.getElementById("datewarn").innerHTML = "Enter a date in the format DD/MM/YYYY.";
+                document.bookingsform.date.title = "Please enter a date in the format DD/MM/YYYY.";
+                document.getElementById("datewarn").style.display = "block";
+                valid = false;
+            } else {
+                document.bookingsform.date.style.border = "1px inset #EBE9ED";
+                document.bookingsform.date.style.borderRadius = "2px";
+                document.getElementById("datewarn").style.display = "none";
+            }
+        }
+    </script>
 </div>

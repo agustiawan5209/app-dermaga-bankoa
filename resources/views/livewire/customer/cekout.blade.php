@@ -12,8 +12,7 @@
                     <div
                         class="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full">
                         <div class="pb-4 md:pb-8 w-full md:w-40">
-                            <img class="w-full :block" src="{{ asset('storage/kapal/' . $gambar) }}"
-                                alt="dress" />
+                            <img class="w-full :block" src="{{ asset('storage/kapal/' . $gambar) }}" alt="dress" />
                         </div>
                         <div
                             class="border-b border-gray-200 md:flex-row flex-col flex justify-between items-start w-full pb-8 space-y-4 md:space-y-0">
@@ -71,8 +70,8 @@
                                         <tr class="text-sm  leading-none text-gray-800">
                                             <td class=" text-gray-800">Jadwal Berangkat: </td>
                                             <td class="text-center flex flex-1 items-center">
-                                                <x-jet-input type="date" wire:model='jadwal_berangkat'
-                                                    class="w-full text-center" />
+                                                <x-jet-input type="date" wire:model='jadwal_berangkat' wire:change='cekTanggal'
+                                                    onchange="checkDate" class="w-full text-center" />
                                             </td>
                                         </tr>
                                         <tr class="text-sm  leading-none text-gray-800">
@@ -85,8 +84,8 @@
                                         <tr class="text-sm  leading-none text-gray-800">
                                             <td class=" text-gray-800">Jadwal kembali: </td>
                                             <td class="text-center flex flex-1 items-center">
-                                                <x-jet-input type="date" wire:model='jadwal_kembali'
-                                                    class="w-full text-center" />
+                                                <x-jet-input type="date" wire:model='jadwal_kembali' wire:change='cekTanggal'
+                                                    onchange="checkDate" class="w-full text-center" />
                                             </td>
                                         </tr>
                                         <tr class="text-sm  leading-none text-gray-800">
@@ -153,9 +152,9 @@
                                 <strong>{{ $item->bank }}</strong>
                                 <span class="cursor-pointer">
                                     <svg x-show="bankID != {{ $item->id }}"
-                                        x-on:click="bankID = {{ $item->id }}"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        x-on:click="bankID = {{ $item->id }}" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                        class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="M3.75 9h16.5m-16.5 6.75h16.5" />
                                     </svg>
@@ -193,7 +192,7 @@
                 </div>
             </div>
 
-            <form enctype="multipart/form-data" action="{{ route('Kirim-Bayar') }}"  method="POST"
+            <form enctype="multipart/form-data" action="{{ route('Kirim-Bayar') }}" method="POST"
                 class="relative py-8 px-5 md:px-10 bg-white   shadow-md rounded border border-gray-400">
                 <x-jet-validation-errors />
                 @csrf
@@ -223,8 +222,7 @@
                 <input id="name" type="text" name="nama" value="{{ Auth::user()->name }}"
                     class="mb-5 mt-2 text-gray-600     focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                     placeholder="James" />
-                <label for="email2"
-                    class="text-gray-800   text-sm font-bold leading-tight tracking-normal">Bukti
+                <label for="email2" class="text-gray-800   text-sm font-bold leading-tight tracking-normal">Bukti
                     Transaksi</label>
                 <div class="relative mb-5 mt-2">
                     <div class="absolute text-gray-600 flex items-center px-4  border-r h-full">
@@ -236,8 +234,7 @@
                         placeholder="XXXX - XXXX - XXXX - XXXX" />
 
                 </div>
-                <label for="expiry"
-                    class="text-gray-800   text-sm font-bold leading-tight tracking-normal">Tanggal
+                <label for="expiry" class="text-gray-800   text-sm font-bold leading-tight tracking-normal">Tanggal
                     Transaksi</label>
                 <div class="relative mb-5 mt-2">
                     <input type='date' wire:model='tgl_transaksi' name="tgl_transaksi"
@@ -255,8 +252,8 @@
                     class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600"
                     onclick="modalHandler()" aria-label="close modal" role="button">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20"
-                        height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" />
                         <line x1="18" y1="6" x2="6" y2="18" />
                         <line x1="6" y1="6" x2="18" y2="18" />
@@ -264,9 +261,26 @@
                 </button>
             </form>
             @if ($bukti_transaksi)
-                <img src="{{ $bukti_transaksi->temporaryUrl() }}" class="max-w-md" alt=""
-                    srcset="">
+                <img src="{{ $bukti_transaksi->temporaryUrl() }}" class="max-w-md" alt="" srcset="">
             @endif
         </div>
     </div>
+    <script>
+        function checkDate() {
+            // Mendapatkan tanggal hari ini
+            var today = new Date();
+
+            // Mendapatkan nilai tanggal dari input
+            var inputDate = new Date(document.getElementById("tanggal").value);
+
+            // Membandingkan tanggal
+            if (inputDate < today) {
+                // Jika tanggal sudah terlewat, set atribut readonly
+                document.getElementById("tanggal").setAttribute("readonly", true);
+            } else {
+                // Jika tanggal belum terlewat, hapus atribut readonly
+                document.getElementById("tanggal").removeAttribute("readonly");
+            }
+        }
+    </script>
 </div>

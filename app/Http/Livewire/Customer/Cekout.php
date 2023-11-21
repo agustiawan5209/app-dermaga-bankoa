@@ -30,7 +30,7 @@ class Cekout extends Component
     public $pemilik_kapal, $deskripsi, $batas_muatan, $tiket_tersisa, $gambar;
 
     // Jadwal Tiket
-    public $jadwal_kembali,$jam_kembali, $jadwal_berangkat,$jam_berangkat;
+    public $jadwal_kembali, $jam_kembali, $jadwal_berangkat, $jam_berangkat;
     // Item Hitung
     public $count = 0;
     public function mount($item)
@@ -53,6 +53,25 @@ class Cekout extends Component
         $pesan = Pemberangkatan::find($this->itemID);
         $pemilik = $pesan->kapal->user->bank;
         return $pemilik;
+    }
+
+    public function cekTanggal()
+    {
+        $carbon = Carbon::now();
+
+        // Membuat objek Carbon dari tanggal input
+        $inputDateObj = Carbon::parse($this->jadwal_berangkat);
+        $inputDateObj2 = Carbon::parse($this->jadwal_kembali);
+
+        // Memeriksa apakah tanggal saat ini lebih besar daripada tanggal input
+        if ($carbon->gt($inputDateObj) || $carbon->gt($inputDateObj2)) {
+            // Tanggal saat ini lebih besar daripada tanggal input
+            Alert::error('Gagal', 'Tanggal Salah Input');
+            return false;
+        } else {
+            // Tanggal saat ini tidak lebih besar daripada tanggal input
+            return true;
+        }
     }
     /**
      * cekStatus
@@ -151,7 +170,7 @@ class Cekout extends Component
     {
         $this->validate([
             'bukti_transaksi' => ['required', 'image'],
-            'tgl_transaksi' => ['required','date'],
+            'tgl_transaksi' => ['required', 'date'],
             'nama_bank' => ['required', 'string'],
         ]);
         $berangkat = Pemberangkatan::find($this->itemID);
@@ -179,10 +198,10 @@ class Cekout extends Component
                     'kode_berangkat' => $berangkat->kode_berangkat,
                     'harga' => $berangkat->harga,
                     'ID_transaksi' => $kode_transaksi,
-                    'jadwal_berangkat'=> $this->jadwal_berangkat,
-                    'jam_berangkat'=> $this->jam_berangkat,
-                    'jadwal_kembali'=> $this->jadwal_kembali,
-                    'jam_kembali'=> $this->jam_kembali,
+                    'jadwal_berangkat' => $this->jadwal_berangkat,
+                    'jam_berangkat' => $this->jam_berangkat,
+                    'jadwal_kembali' => $this->jadwal_kembali,
+                    'jam_kembali' => $this->jam_kembali,
                 ]);
             } else {
                 Alert::warning('info', 'Sisa Tiket Kosong');

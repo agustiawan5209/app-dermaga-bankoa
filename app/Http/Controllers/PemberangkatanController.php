@@ -19,17 +19,10 @@ class PemberangkatanController extends Controller
 {
     public function transaksiKode()
     {
-        $transaksi = Transaksi::select('ID_transaksi')->get();
-        $codeAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $codeAlphabet .= 'abcdefghijklmnopqrstuvwxyz';
-        $codeAlphabet .= '0123456789';
-        $kode = substr(str_shuffle($codeAlphabet), 0, 10);
-        foreach ($transaksi as $key => $value) {
-            if ($kode == $value->ID_transaksi) {
-                $kode = substr(str_shuffle($codeAlphabet), 0, 10);
-            }
-        }
-        return $kode;
+        $transaksi = Transaksi::max('id');
+
+
+        return "KPSTR-". (intval($transaksi) + 1);
     }
 
     public function bayar(Request $request)
